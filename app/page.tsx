@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -7,10 +8,10 @@ export default function Home() {
       <header className="w-full flex justify-between items-center py-4 px-8 bg-gray-800 text-white">
         <div className="text-2xl font-bold">Lionheart Tech</div>
         <nav className="flex gap-4">
-          <a href="/" className="hover:underline">Home</a>
-          <a href="/about" className="hover:underline">About</a>
-          <a href="/services" className="hover:underline">Services</a>
-          <a href="/contact" className="hover:underline">Contact</a>
+          <Link href="/" className="hover:underline">Home</Link>
+          <Link href="/about" className="hover:underline">About</Link>
+          <Link href="/services" className="hover:underline">Services</Link>
+          <Link href="/contact" className="hover:underline">Contact</Link>
         </nav>
       </header>
 
