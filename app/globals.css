@@ -66,6 +66,12 @@ body {
 }
 
 /* styles/MovingBackground.css */
+/* Constrain the header's height */
+.header-custom, .header-sticky {
+  height: 80px; /* Or any fixed height you prefer */
+  line-height: 80px; /* Vertically align text and elements */
+}
+
 /* Initial header styles */
 .header-custom {
   max-width: 90%;
@@ -94,20 +100,54 @@ body {
 .header-custom nav a:hover {
   color: #ff6347; /* Tomato color when hovered */
 }
-
-/* Button text color */
-.header-custom button {
-  color: #fff; /* White text color */
+.custom-button {
+  background: linear-gradient(90deg, #f97316, #ea580c); /* Orange gradient */
+  height: 40px; /* Adjust height to fit the header */
+  padding: 0 1rem; /* Add horizontal padding */
+  font-size: 0.875rem; /* Slightly smaller font size for a better fit */
+  border-radius: 6px; /* Slightly rounded corners */
+  line-height: 1; /* Center-align text vertically */
+  display: flex; /* Ensures proper alignment */
+  align-items: center; /* Centers text vertically */
+  justify-content: center; /* Centers text horizontally */
+  transition: all 0.3s ease; /* Smooth transition for hover effects */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  color: white; /* Text color */
 }
 
-/* Button background color */
-.header-custom button.bg-orange-600 {
-  background-color: #ff6347; /* Tomato color for the button */
+.custom-button {
+  background: linear-gradient(90deg, #f97316, #ea580c); /* Orange gradient */
+  height: 40px; /* Adjust height to fit the header */
+  padding: 0 1rem; /* Add horizontal padding */
+  font-size: 0.875rem; /* Slightly smaller font size for a better fit */
+  border-radius: 6px; /* Slightly rounded corners */
+  line-height: 1; /* Center-align text vertically */
+  display: flex; /* Ensures proper alignment */
+  align-items: center; /* Centers text vertically */
+  justify-content: center; /* Centers text horizontally */
+  transition: all 0.3s ease; /* Smooth transition for hover effects */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
 }
 
-/* Button hover color */
-.header-custom button:hover {
-  background-color: #ff4500; /* Darker shade of tomato on hover */
+
+
+/* Hover effect */
+.custom-button:hover {
+  background: linear-gradient(90deg, #ea580c, #c2410c); /* Darker gradient */
+  transform: translateY(-2px); /* Slight lift on hover */
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15); /* Enhanced shadow */
+}
+
+/* Active state for click */
+.custom-button:active {
+  transform: translateY(0); /* Return to original position */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Original shadow */
+}
+
+/* Focus state for accessibility */
+.custom-button:focus {
+  outline: 2px solid #f97316; /* Outline for focus */
+  outline-offset: 2px;
 }
 
 /* Sticky header styles */
@@ -166,3 +206,5 @@ body {
 .main{
   margin-top: 420px;
 }
+
+

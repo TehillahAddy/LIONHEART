@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import Logo from "../public/images/wall1.jpg";
+import Logo from "../public/images/l1 (1).png";
 
 export default function Home() {
   const [isSticky, setIsSticky] = useState(false);
@@ -16,7 +16,7 @@ export default function Home() {
       // Show sticky header after scrolling past 350px
       if (currentScrollY > 350 && !isSticky && !isHiding) {
         setIsSticky(true);
-      } 
+      }
       // Hide sticky header when scrolling back to within 350px
       else if (currentScrollY <= 350 && isSticky) {
         setIsHiding(true);
@@ -37,14 +37,19 @@ export default function Home() {
   return (
     <div className="homepage">
       <div className="background-container"> </div>
-      
+
       <header
-        className={`w-full max-w-7xl mx-auto flex justify-between items-center ${
-          isSticky ? (isHiding ? "header-sticky hide" : "header-sticky") : "header-custom"
-        }`}
+        className={`w-full max-w-7xl mx-auto flex justify-between items-center ${isSticky ? (isHiding ? "header-sticky hide" : "header-sticky") : "header-custom"
+          }`}
+        style={{ height: "80px" }} /* Constrain the header height */
       >
-        <div className="text-2xl font-bold text-orange-600">Lionheart Tech</div>
-        <Image src={Logo} alt="Lionheart Tech Logo" width={40} height={40} />
+        <Image
+          src={Logo}
+          alt="Lionheart Tech Logo"
+          width={100}
+          height={100}
+          className="logo-image"
+        />
         <nav className="flex gap-6">
           <Link href="/" className="hover:underline">
             Home
@@ -59,11 +64,11 @@ export default function Home() {
             Contact
           </Link>
         </nav>
-        <button className="bg-orange-600 text-white py-2 px-4 rounded hover:bg-orange-700">
+        <button className="custom-button" >
           Get in Touch
         </button>
       </header>
-      {/* Hero Section */}
+
       <section className="text-center">
         <h1 className="text-4xl font-bold mb-4">Welcome to Lionheart Tech</h1>
         <p className="text-lg mb-6">Innovative solutions for a modern world</p>
