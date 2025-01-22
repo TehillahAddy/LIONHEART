@@ -44,6 +44,7 @@ export default function Home() {
         }`}
       >
         <div className="text-2xl font-bold text-orange-600">Lionheart Tech</div>
+        <Image src={Logo} alt="Lionheart Tech Logo" width={40} height={40} />
         <nav className="flex gap-6">
           <Link href="/" className="hover:underline">
             Home
