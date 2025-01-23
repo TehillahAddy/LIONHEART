@@ -34,6 +34,27 @@ export default function Home() {
     };
   }, [isSticky, isHiding]);
 
+  const [displayedText, setDisplayedText] = useState("");
+  const fullText =
+    "We help ambitious businesses like yours generate more profits by building awareness, driving web traffic, and connecting with customers.";
+
+  useEffect(() => {
+    let index = 0;
+
+    const interval = setInterval(() => {
+      if (index < fullText.length) {
+        // Use slicing to precisely control the displayed text
+        setDisplayedText(fullText.slice(0, index + 1));
+        index++;
+      } else {
+        clearInterval(interval); // Stop the interval when finished
+      }
+    }, 50); // Typing speed in milliseconds
+
+    return () => clearInterval(interval); // Cleanup on unmount
+  }, []);
+
+
   return (
     <div className="homepage">
       <div className="background-container"> </div>
@@ -69,10 +90,17 @@ export default function Home() {
         </button>
       </header>
 
-      <section className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Lionheart Tech</h1>
-        <p className="text-lg mb-6">Innovative solutions for a modern world</p>
+      <section className="hero-section">
+        <div className="welcome-badge">Welcome To</div>
+        <h1>
+          <span className="highlight">LionHeart</span> <br />
+          <span className="highlight">Tech</span>
+        </h1>
       </section>
+      <p className="description">
+      {displayedText}
+      <span className="cursor"></span>
+    </p>
 
 
       {/* Main Content */}
