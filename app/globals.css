@@ -27,7 +27,7 @@ body {
   flex-direction: column;
   align-items: center;
   padding: 2rem 5rem;
-  background-color: #f7fafc; /* Adjust this if you want a different background color */
+  background-color: whitesmoke; /* Adjust this if you want a different background color */
 }
 
 @media (min-width: 640px) {
@@ -298,11 +298,11 @@ h1 .highlight::after {
 
 
 .description {
+  position: absolute;
   font-size: 1rem;
   color: #d31111;
-  margin-top: 40px;
   max-width: 600px;
-  margin-left: 40px;
+  margin-top: 500px;
   margin-right: auto;
   line-height: 1.8;
   font-family: 'Roboto', sans-serif;
@@ -325,7 +325,12 @@ h1 .highlight::after {
 
 
 .main{
-  margin-top: 150px;
+  margin-top: 200px;
 }
 
 
+.image-content {
+  position: absolute;
+  top: 150px;
+  right: 10px;
+}

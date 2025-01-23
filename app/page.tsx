@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Logo from "../public/images/l1 (1).png";
+import Logos from "../public/images/3.png";
 
 export default function Home() {
   const [isSticky, setIsSticky] = useState(false);
@@ -68,7 +69,6 @@ export default function Home() {
   return (
     <div className="homepage">
       <div className="background-container"> </div>
-
       <header
         className={`w-full max-w-7xl mx-auto flex justify-between items-center ${isSticky ? (isHiding ? "header-sticky hide" : "header-sticky") : "header-custom"
           }`}
@@ -111,6 +111,17 @@ export default function Home() {
         {displayedText}
         <span className="cursor"></span>
       </p>
+
+        <div className="image-content">
+        <Image
+          src={Logos}
+          alt="Lionheart Tech Logo"
+          width={100}
+          height={100}
+          className="imag-content"
+        />
+        </div>
+
 
 
       {/* Main Content */}
