@@ -75,9 +75,9 @@ body {
 .header-custom {
   max-width: 90%;
   padding: 1.5rem 2.5rem;
-  background: linear-gradient(135deg, rgba(255, 165, 0, 0.8), rgba(255, 99, 71, 0.8)); /* Gradient background */
+  background: linear-gradient(45deg, #f7fafc, #050a30, #5e17eb ); 
   background-color: transparent;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 6px #050a30(0, 0, 0, 0.15);
   border-radius: 1.5rem;
   position: relative;
   margin-top: -30px;
@@ -99,8 +99,10 @@ body {
 .header-custom nav a:hover {
   color: #ff6347; /* Tomato color when hovered */
 }
+
+
 .custom-button {
-  background: linear-gradient(90deg, #f97316, #ea580c); /* Orange gradient */
+  background: linear-gradient(45deg, #f7fafc, #050a30, #5e17eb );  
   height: 40px; /* Adjust height to fit the header */
   padding: 0 1rem; /* Add horizontal padding */
   font-size: 0.875rem; /* Slightly smaller font size for a better fit */
@@ -114,25 +116,11 @@ body {
   color: white; /* Text color */
 }
 
-.custom-button {
-  background: linear-gradient(90deg, #f97316, #ea580c); /* Orange gradient */
-  height: 40px; /* Adjust height to fit the header */
-  padding: 0 1rem; /* Add horizontal padding */
-  font-size: 0.875rem; /* Slightly smaller font size for a better fit */
-  border-radius: 6px; /* Slightly rounded corners */
-  line-height: 1; /* Center-align text vertically */
-  display: flex; /* Ensures proper alignment */
-  align-items: center; /* Centers text vertically */
-  justify-content: center; /* Centers text horizontally */
-  transition: all 0.3s ease; /* Smooth transition for hover effects */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-}
-
 
 
 /* Hover effect */
 .custom-button:hover {
-  background: linear-gradient(90deg, #ea580c, #c2410c); /* Darker gradient */
+  background: linear-gradient(45deg,  #5e17eb,#050a30 );  /* Darker gradient */
   transform: translateY(-2px); /* Slight lift on hover */
   box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15); /* Enhanced shadow */
 }
@@ -164,6 +152,10 @@ body {
   z-index: 1000;
   animation: dropdown-in 0.5s ease forwards; /* Dropdown animation */
   margin-top: 1px;
+}
+
+.header-sticky nav a:hover {
+  color: #ff6347; /* Tomato color when hovered */
 }
 
 /* Animation for sticky header appearing */
@@ -198,7 +190,7 @@ body {
   color: #000; /* Set default text color */
   position: relative;
   font-family: Arial, sans-serif; /* Use clean, modern fonts */
- margin-left: -840px;
+ margin-left: -738px;
 }
 
 .welcome-badge {
@@ -206,9 +198,9 @@ body {
   font-weight: bold;
   color: whitesmoke;
   display: inline-block;
-  background: linear-gradient(45deg, #f7fafc, #ff6600);
+  background: linear-gradient(45deg, #f7fafc, #050a30, #5e17eb ); 
   padding: 0.5rem 1rem;
-  border: 2px dashed #ff6600;
+  border: 2px dashed #5e17eb;
   border-radius: 8px; /* Added rounded corners for a softer look */
   transform: rotate(-8deg) translateY(-5px);
   position: relative;
@@ -246,7 +238,7 @@ h1 {
 h1 span {
   display: block;
   margin-bottom: -20px; /* Adjusted to reduce spacing further */
-  animation: fadeIn 0.5s ease forwards; /* Add fade-in animation */
+  animation: fadeInLeftBounce 0.5s ease forwards; /* Add fade-in animation */
   opacity: 0; /* Start hidden for animation */
 }
 
@@ -255,13 +247,16 @@ h1 span:nth-child(2) { animation-delay: 0.4s; }
 
 h1 .highlight {
   color: #ff6600; /* Orange color for emphasis */
-  font-size: 4rem; /* Bigger size for emphasis */
+  font-size: 6rem; /* Bigger size for emphasis */
   text-transform: uppercase; /* Uppercase for impact */
-  background: linear-gradient(90deg, #ff6600, #ffa500); /* Gradient for modern look */
+  background: linear-gradient(90deg, #050a30, #5e17eb); /* Gradient for modern look */
   -webkit-background-clip: text;
+  -moz-background-clip: text;
+  background-clip: text;
+  color: transparent;
   -webkit-text-fill-color: transparent;
   position: relative;
-  transition: transform 0.3s ease; /* Smooth scaling on hover */
+  transition: transform 3.6s ease; /* Smooth scaling on hover */
 }
 
 h1 .highlight:hover {
@@ -272,7 +267,7 @@ h1 .highlight::after {
   content: "";
   display: block;
   height: 4px;
-  background-color: #ff6600;
+  background: linear-gradient(90deg, #050a30, #5e17eb);
   width: 50%;
   margin: 0 auto;
   margin-top: 5px;
@@ -280,45 +275,57 @@ h1 .highlight::after {
   border-radius: 2px; /* Smooth underline effect */
 }
 
-/* Fade-in Animation */
-@keyframes fadeIn {
+
+/* Fade-in from Left with Bounce Animation */
+@keyframes fadeInLeftBounce {
   0% {
     opacity: 0;
-    transform: translateY(20px); /* Slide up effect */
+    transform: translateX(-100px); /* Slide in from left */
+  }
+  50% {
+    opacity: 1;
+    transform: translateX(10px); /* Bounce effect */
+  }
+  70% {
+    transform: translateX(-5px); /* Bounce effect */
   }
   100% {
-    opacity: 1;
-    transform: translateY(0);
+    opacity: 1; /* Ensure the element is visible at the end */
+    transform: translateX(0); /* Final position */
   }
 }
 
+
+
 .description {
   font-size: 1rem;
-  color: black;
+  color: #d31111;
   margin-top: 40px;
   max-width: 600px;
   margin-left: 40px;
   margin-right: auto;
-  line-height: 1.6;
+  line-height: 1.8;
+  font-family: 'Roboto', sans-serif;
+  background-color: transparent;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  background: linear-gradient(90deg, #050a30, #5e17eb);
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
-.cursor {
-  font-weight: bold;
-  color: black;
-  animation: blink 0.7s step-end infinite;
+.description:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  background-color: #e9e9ef;
 }
-
-/* Blinking Cursor */
-@keyframes blink {
-  50% {
-    opacity: 0; /* Cursor disappears halfway through */
-  }
-}
-
 
 
 .main{
-  margin-top: 250px;
+  margin-top: 150px;
 }
 
 

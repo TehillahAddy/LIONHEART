@@ -35,23 +35,33 @@ export default function Home() {
   }, [isSticky, isHiding]);
 
   const [displayedText, setDisplayedText] = useState("");
-  const fullText =
-    "We help ambitious businesses like yours generate more profits by building awareness, driving web traffic, and connecting with customers.";
+  const fullText = "We help ambitious businesses like yours generate more profits by building awareness, driving web traffic, and connecting with customers.";
 
   useEffect(() => {
     let index = 0;
+    let typingInterval: NodeJS.Timeout;
 
-    const interval = setInterval(() => {
-      if (index < fullText.length) {
-        // Use slicing to precisely control the displayed text
-        setDisplayedText(fullText.slice(0, index + 1));
-        index++;
-      } else {
-        clearInterval(interval); // Stop the interval when finished
-      }
-    }, 50); // Typing speed in milliseconds
+    const startTyping = () => {
+      typingInterval = setInterval(() => {
+        if (index < fullText.length) {
+          setDisplayedText(fullText.slice(0, index + 1));
+          index++;
+        } else {
+          clearInterval(typingInterval);
 
-    return () => clearInterval(interval); // Cleanup on unmount
+          // Reset index and clear text, then restart typing after a delay
+          setTimeout(() => {
+            index = 0;
+            setDisplayedText("");
+            startTyping();
+          }, 1000); // Delay before restarting (1 second in this case)
+        }
+      }, 50); // Typing speed in milliseconds
+    };
+
+    startTyping();
+
+    return () => clearInterval(typingInterval); // Cleanup on unmount
   }, []);
 
 
@@ -72,16 +82,16 @@ export default function Home() {
           className="logo-image"
         />
         <nav className="flex gap-6">
-          <Link href="/" className="hover:underline">
+          <Link href="/" className="hover">
             Home
           </Link>
-          <Link href="/about" className="hover:underline">
+          <Link href="/about" className="hover">
             About
           </Link>
-          <Link href="/services" className="hover:underline">
+          <Link href="/services" className="hover">
             Services
           </Link>
-          <Link href="/contact" className="hover:underline">
+          <Link href="/contact" className="hover">
             Contact
           </Link>
         </nav>
@@ -98,9 +108,9 @@ export default function Home() {
         </h1>
       </section>
       <p className="description">
-      {displayedText}
-      <span className="cursor"></span>
-    </p>
+        {displayedText}
+        <span className="cursor"></span>
+      </p>
 
 
       {/* Main Content */}
