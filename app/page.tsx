@@ -4,11 +4,17 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Logo from "../public/images/l1 (1).png";
-import Logos from "../public/images/3.png";
+import Logos from "../public/images/52.webp";
+import AOS from 'aos';
+import 'aos/dist/aos.css'; // Import AOS styles
 
 export default function Home() {
   const [isSticky, setIsSticky] = useState(false);
   const [isHiding, setIsHiding] = useState(false);
+
+  useEffect(() => {
+    AOS.init({ duration: 500 });
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -112,15 +118,16 @@ export default function Home() {
         <span className="cursor"></span>
       </p>
 
-        <div className="image-content">
+
+      <div className="image-content" data-aos="fade-left">
         <Image
           src={Logos}
           alt="Lionheart Tech Logo"
-          width={100}
+          width={500}
           height={100}
           className="imag-content"
         />
-        </div>
+      </div>
 
 
 
