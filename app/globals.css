@@ -39,22 +39,15 @@ body {
 
 
 /* styles/MovingBackground.css */
-
 @keyframes moveBackground {
   0% {
     background-position: 0% 50%;
-    background-size: 100%;
   }
-
   50% {
     background-position: 50% 50%;
-    background-size: 110%;
-    /* Slight zoom effect */
   }
-
   100% {
     background-position: 100% 50%;
-    background-size: 100%;
   }
 }
 
@@ -64,21 +57,24 @@ body {
   left: 0;
   width: 100%;
   height: 100vh;
-  /* Full viewport height */
-  background-size: cover;
+  background-size: 110%; /* Slightly zoomed to minimize edge visibility */
   background-color: #000;
   background-image: url('/images/b6.png');
-  animation: moveBackground 20s linear infinite;
+  background-attachment: fixed; /* Stabilizes background */
+  animation: moveBackground 30s linear infinite; /* Longer duration for smoothness */
 }
 
 /* Media query for smaller screens */
 @media (max-width: 768px) {
   .background-container {
-    background-size: cover; /* Ensure the image covers the section */
-    background-position: center; /* Center the image */
-    background-repeat: no-repeat; /* Prevent the image from repeating */
+    background-size: 120%; /* Slightly zoomed for better fit */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* Ensure stability on small screens */
+    animation: moveBackground 30s linear infinite; /* Same animation as larger screens */
   }
 }
+
 
 /* Constrain the header's height */
 .header-custom,
@@ -346,6 +342,16 @@ h1 .highlight::after {
   /* Smooth underline effect */
 }
 
+h1 .highlight:nth-of-type(1)::after {
+  content: "";
+  display: block;
+  height: 4px;
+  background: linear-gradient(90deg, white, #050a30, white);
+  width: 100%; /* Longer underline for the first line */
+  margin-top: 5px;
+  border-radius: 2px; /* Smooth corners */
+}
+
 
 /* Fade-in from Left with Bounce Animation */
 @keyframes fadeInLeftBounce {
@@ -374,6 +380,87 @@ h1 .highlight::after {
   }
 }
 
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+  .hero-section {
+    text-align: center; /* Center-align content for smaller screens */
+    margin: 20px auto; /* Adjust margins for proper alignment */
+    color: #000;
+    font-family: Arial, sans-serif;
+    position: relative;
+    margin-left: 0; /* Reset left margin */
+    padding: 1rem; /* Add padding for spacing */
+  }
+
+  .welcome-badge {
+    font-size: 0.8rem; /* Reduce font size */
+    padding: 0.3rem 0.6rem; /* Adjust padding */
+    border-width: 1px; /* Thinner border */
+    border-radius: 6px; /* Slightly less rounded corners */
+    top: 10px; /* Adjust position */
+    left: 0; /* Reset left alignment */
+    transform: rotate(-5deg) translateY(-3px); /* Subtle rotation and position */
+    animation: bounce 1.5s infinite ease-in-out; /* Adjust bounce duration */
+  }
+
+  h1 {
+    font-size: 2rem; /* Smaller font size for the heading */
+    line-height: 1.2; /* Adjust line spacing */
+    margin-top: 20px; /* Reduce top margin */
+  }
+
+  h1 span {
+    margin-bottom: -10px; /* Reduce spacing between lines */
+    animation: fadeInLeftBounce 0.4s ease forwards; /* Faster animation */
+    opacity: 0; /* Ensure it starts hidden */
+  }
+
+  h1 span:nth-child(1) {
+    animation-delay: 0.1s; /* Adjust delay */
+  }
+
+  h1 span:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+
+  h1 .highlight {
+    font-size: 3rem; /* Smaller size for emphasis text */
+    background: linear-gradient(45deg, whitesmoke, #808084, white); /* Maintain gradient */
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    transition: transform 0.5s ease; /* Shorter hover effect duration */
+  }
+
+  h1 .highlight:hover {
+    transform: scale(1.05); /* Slightly reduce hover zoom effect */
+  }
+
+  h1 .highlight::after {
+    content: "";
+    display: block;
+    height: 4px;
+    background: linear-gradient(90deg, white, #050a30, white);
+    width: 50%; /* Adjust the width as needed */
+    margin: 0 auto; /* Center the underline */
+    margin-top: 5px; /* Adjust the spacing from the text */
+    border-radius: 2px; /* Smooth corners */
+  }
+  
+  h1 .highlight:nth-of-type(1)::after {
+    content: "";
+    display: block;
+    height: 4px;
+    background: linear-gradient(90deg, white, #050a30, white);
+    width: 100%; /* Longer underline for the first line */
+    margin: 0 auto; /* Centered underline */
+    margin-top: 5px;
+    border-radius: 2px; /* Smooth corners */
+  }
+  
+}
 
 
 .description {
@@ -404,7 +491,7 @@ h1 .highlight::after {
 
 
 .main {
-  margin-top: 330px;
+  margin-top: 280px;
 }
 
 
@@ -412,4 +499,22 @@ h1 .highlight::after {
   position: absolute;
   top: 150px;
   right: 50px;
+}
+
+@media (max-width: 768px) {
+  .image-content {
+    position: static; /* Removes absolute positioning for better flow on smaller screens */
+    margin: 20px auto; /* Centers the image horizontally */
+    text-align: center; /* Ensures the image is centered inside its container */
+    top: auto; /* Resets the top position */
+    right: auto; /* Resets the right position */
+    width: 100%; /* Allows the container to adapt to smaller screens */
+    margin-top: -40px;
+  }
+
+  .image-content img {
+    width: 100%; /* Shrinks the image to fit smaller screens */
+    height: auto; /* Maintains the aspect ratio */
+    max-width: 300px; /* Sets a max width to prevent it from being too large */
+  }
 }
