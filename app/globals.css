@@ -69,6 +69,16 @@ body {
   overflow-x: hidden;
 }
 
+/* Media query for smaller screens */
+@media (max-width: 768px), (max-width: 1024px) {
+  .background-container {
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* Ensure stability on small screens */
+    animation: moveBackground 30s linear infinite; /* Same animation as larger screens */
+    overflow-x: hidden;
+  }
+}
+
 
 /* Constrain the header's height */
 .header-custom,
