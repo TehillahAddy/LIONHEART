@@ -75,6 +75,7 @@ body {
     background-size: 120%; /* Slightly zoomed for better fit */
     background-position: center;
     background-repeat: no-repeat;
+    background-image: url('/images/b6.png');
     background-attachment: fixed; /* Ensure stability on small screens */
     animation: moveBackground 30s linear infinite; /* Same animation as larger screens */
     overflow-x: hidden;
