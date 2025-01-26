@@ -74,6 +74,8 @@ body {
   .background-container {
     background-repeat: no-repeat;
     overflow-x: hidden;
+    background-image: url('/images/b6.png');
+    background-attachment: fixed; /* Stabilizes background */
   }
 }
 
@@ -89,8 +91,8 @@ body {
 
 /* Initial header styles */
 .header-custom {
-  max-width: 90%;
-  padding: 1.5rem 2.5rem;
+  width: 100%;
+  padding: 1rem 2rem;
   background: linear-gradient(45deg, #f7fafc, #050a30, #5e17eb);
   background-color: transparent;
   box-shadow: 0 4px 6px #050a30(0, 0, 0, 0.15);
@@ -229,6 +231,51 @@ body {
   animation: dropdown-out 0.5s ease forwards;
   /* Slide out animation */
 }
+
+/* Hide navigation links on smaller screens */
+@media (max-width: 768px) {
+  .header-custom nav,
+  .header-sticky nav {
+    display: none;
+  }
+
+  .header-custom .custom-button,
+  .header-sticky .custom-button {
+    display: none;
+  }
+
+  .hamburgers-icon {
+    display: block;
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: rgb(154, 28, 28);
+    position: relative;
+    z-index: 1001; /* Make sure it appears above other content */
+  }
+}
+
+/* Default styles for the hamburger icon (hidden on larger screens) */
+.hamburger-icon {
+  display: none; /* Hide by default */
+}
+
+.mobile-menu {
+  display: none; /* Hidden by default */
+  position: absolute;
+  top: 80px; /* Below the header */
+  right: 0;
+  background: white;
+  width: 100%;
+  padding: 1rem;
+  flex-direction: column;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+.mobile-menu.show {
+  display: flex; /* Show menu when toggled */
+}
+
 
 
 .hero-section {

@@ -7,10 +7,14 @@ import Logo from "../public/images/l1 (1).png";
 import Logos from "../public/images/52.webp";
 import AOS from 'aos';
 import 'aos/dist/aos.css'; // Import AOS styles
+import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
+
 
 export default function Home() {
   const [isSticky, setIsSticky] = useState(false);
   const [isHiding, setIsHiding] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  
 
   useEffect(() => {
     AOS.init({ duration: 500 });
@@ -76,35 +80,49 @@ export default function Home() {
     <div className="homepage">
       <div className="background-container"> </div>
       <header
-        className={`w-full max-w-7xl mx-auto flex justify-between items-center ${isSticky ? (isHiding ? "header-sticky hide" : "header-sticky") : "header-custom"
-          }`}
-        style={{ height: "80px" }} /* Constrain the header height */
+      className={`flex justify-between items-center ${isSticky ? (isHiding ? "header-sticky hide" : "header-sticky") : "header-custom"}`}
+      style={{ height: "80px" }} // Constrain the header height
+    >
+      <Image
+        src={Logo}
+        alt="Lionheart Tech Logo"
+        width={100}
+        height={100}
+        className="logo-image"
+      />
+
+      {/* Hamburger Icon */}
+      <div
+        className="hamburgers-icon"
+        onClick={() => setMenuOpen(!menuOpen)}
       >
-        <Image
-          src={Logo}
-          alt="Lionheart Tech Logo"
-          width={100}
-          height={100}
-          className="logo-image"
-        />
-        <nav className="flex gap-6">
-          <Link href="/" className="hover">
-            Home
-          </Link>
-          <Link href="/about" className="hover">
-            About
-          </Link>
-          <Link href="/services" className="hover">
-            Services
-          </Link>
-          <Link href="/contact" className="hover">
-            Contact
-          </Link>
-        </nav>
-        <button className="custom-button" >
-          Get in Touch
-        </button>
-      </header>
+        {menuOpen ? (
+          <XMarkIcon className="h-8 w-8 text-white" /> // Close icon
+        ) : (
+          <Bars3Icon className="h-8 w-8 text-white" /> // Hamburger icon
+        )}
+      </div>
+
+      {/* Mobile Menu */}
+      <nav className={`mobile-menu ${menuOpen ? "show" : ""}`}>
+        <Link href="/" onClick={() => setMenuOpen(false)}>Home</Link>
+        <Link href="/about" onClick={() => setMenuOpen(false)}>About</Link>
+        <Link href="/services" onClick={() => setMenuOpen(false)}>Services</Link>
+        <Link href="/contact" onClick={() => setMenuOpen(false)}>Contact</Link>
+      </nav>
+
+      {/* Desktop Navigation */}
+      <nav className="flex gap-6">
+        <Link href="/" className="hover">Home</Link>
+        <Link href="/about" className="hover">About</Link>
+        <Link href="/services" className="hover">Services</Link>
+        <Link href="/contact" className="hover">Contact</Link>
+      </nav>
+
+      <button className="custom-button">
+        Get in Touch
+      </button>
+    </header>
 
       <section className="hero-section">
         <div className="welcome-badge">Welcome To</div>
