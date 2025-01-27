@@ -100,9 +100,9 @@ export default function Home() {
           onClick={() => setMenuOpen(!menuOpen)}
         >
           {menuOpen ? (
-            <XMarkIcon className="h-8 w-8 text-[#9A1C1C]" /> // Close icon
+            <XMarkIcon className="h-8 w-8 text-[red]" /> // Close icon
           ) : (
-            <Bars3Icon className="h-8 w-8 text-[#9A1C1C]" /> // Hamburger icon
+            <Bars3Icon className="h-8 w-8 text-[grey]" /> // Hamburger icon
           )}
         </div>
 

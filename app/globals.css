@@ -113,7 +113,6 @@ body {
 /* Navigation link color */
 .header-custom nav a {
   color: white;
-  /* Indigo color for links */
 }
 
 /* Navigation link hover color */
@@ -195,6 +194,8 @@ body {
   margin-top: 1px;
 }
 
+
+
 .header-sticky nav a:hover {
   color: #ff6347;
   /* Tomato color when hovered */
@@ -248,9 +249,14 @@ body {
     display: block;
     cursor: pointer;
     font-size: 1.5rem;
-    color: rgb(154, 28, 28);
+    color: rgb(37, 28, 28);
     position: relative;
     z-index: 1001; /* Make sure it appears above other content */
+  }
+
+
+  .header-sticky nav a {
+    color: rgb(212, 211, 228);
   }
 }
 .hamburgers-icon {
@@ -261,14 +267,15 @@ body {
 .mobile-menu {
   display: none; /* Hidden by default */
   position: absolute;
-  top: 80px; /* Below the header */
+  top: 90px; /* Below the header */
   right: 0;
-  background: rgb(208, 43, 43);
+  background: linear-gradient(45deg, #f7fafc, #050a30, #5e17eb);
   width: 100%;
-  padding: 1rem;
+  padding: 1.5rem;
   flex-direction: column;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   z-index: 1000;
+  border-radius: 6px;
 }
 
 .mobile-menu.show {
