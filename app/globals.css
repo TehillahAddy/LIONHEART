@@ -234,7 +234,7 @@ body {
 }
 
 /* Hide navigation links on smaller screens */
-@media (max-width: 768px) {
+@media (max-width: 768px), (max-width: 768px) {
   .header-custom nav,
   .header-sticky nav {
     display: none;
@@ -249,7 +249,7 @@ body {
     display: block;
     cursor: pointer;
     font-size: 1.5rem;
-    color: rgb(37, 28, 28);
+    color: rgb(24, 19, 19);
     position: relative;
     z-index: 1001; /* Make sure it appears above other content */
   }
@@ -588,7 +588,7 @@ h1 .highlight:nth-of-type(1)::after {
   right: 50px;
 }
 
-@media (max-width: 768px), (max-width: 1024px) {
+@media (max-width: 768px) {
   .image-content {
     position: static; /* Removes absolute positioning for better flow on smaller screens */
     margin: 20px auto; /* Centers the image horizontally */
