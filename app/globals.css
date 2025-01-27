@@ -253,18 +253,22 @@ body {
     z-index: 1001; /* Make sure it appears above other content */
   }
 }
-
-/* Default styles for the hamburger icon (hidden on larger screens) */
-.hamburger-icon {
-  display: none; /* Hide by default */
+.hamburgers-icon {
+  display: none; /* Default: hidden */
+  cursor: pointer;
+  font-size: 1.5rem;
+  color: #9a1c1c; /* Dark red */
+  position: relative;
+  z-index: 1001; /* Ensure it appears above content */
 }
 
+/* Mobile Menu */
 .mobile-menu {
   display: none; /* Hidden by default */
   position: absolute;
   top: 80px; /* Below the header */
   right: 0;
-  background: white;
+  background: rgb(208, 43, 43);
   width: 100%;
   padding: 1rem;
   flex-direction: column;
@@ -276,6 +280,34 @@ body {
   display: flex; /* Show menu when toggled */
 }
 
+.desktop-menu {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.custom-button {
+  background-color: #ff5722;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+}
+
+/* Media Query for Mobile */
+@media (max-width: 768px) {
+  .desktop-menu {
+    display: none; /* Hide desktop navigation */
+  }
+
+  .custom-button {
+    display: none; /* Hide desktop button */
+  }
+
+  .hamburgers-icon {
+    display: block; /* Show hamburger icon */
+  }
+}
 
 
 .hero-section {
