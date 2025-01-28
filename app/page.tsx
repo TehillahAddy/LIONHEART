@@ -16,7 +16,6 @@ export default function Home() {
   const [isHiding, setIsHiding] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
-
   useEffect(() => {
     AOS.init({ duration: 500 });
   }, []);
@@ -80,6 +79,50 @@ export default function Home() {
   return (
     <div className="homepage">
       <div className="background-container"> </div>
+      <header className="mobile-header">
+        <div className="header-container">
+          {/* Logo */}
+          <Image src={Logo} alt="Lionheart Tech Logo" width={90} height={90} />
+
+          {/* Hamburger Icon */}
+          <div className="hamburger-icon" onClick={() => setMenuOpen(!menuOpen)}>
+            {menuOpen ? (
+              null
+            ) : (
+              <Bars3Icon className="h-8 w-8 text-[black] transition-transform duration-600 rotate-0" />
+            )}
+          </div>
+        </div>
+
+        {/* Mobile Menu */}
+        <nav className={`mobile-menu ${menuOpen ? "open" : ""}`}>
+          <div className="close-icon" onClick={() => setMenuOpen(false)}>
+            <XMarkIcon className="h-8 w-8 text-[black] transition-transform duration-600 rotate-90" />
+          </div>
+          <div className="search-bar">
+            <input type="text" placeholder="Search..." />
+            <button>
+              <img src="/images/b4.png" alt="Search" />
+            </button>
+          </div>
+          <ul>
+            <li>
+              <Link href="/" onClick={() => setMenuOpen(false)}>Home</Link>
+            </li>
+            <li>
+              <Link href="/about" onClick={() => setMenuOpen(false)}>About</Link>
+            </li>
+            <li>
+              <Link href="/services" onClick={() => setMenuOpen(false)}>Services</Link>
+            </li>
+            <li>
+              <Link href="/contact" onClick={() => setMenuOpen(false)}>Contact</Link>
+            </li>
+          </ul>
+        </nav>
+
+      </header>
+
       <header
         className={`flex justify-between items-center ${isSticky ? (isHiding ? "header-sticky hide" : "header-sticky") : "header-custom"
           }`}
@@ -124,6 +167,7 @@ export default function Home() {
 
         {/* Call-to-Action Button */}
         <button className="custom-button">Get in Touch</button>
+
       </header>
 
 
