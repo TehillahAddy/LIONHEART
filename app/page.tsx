@@ -82,7 +82,7 @@ export default function Home() {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 200) { // Increased threshold
+      if (window.scrollY > 400) { // Increased threshold
         setShowStickyHeader(true);
       } else {
         setShowStickyHeader(false);
