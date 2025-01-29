@@ -798,23 +798,16 @@ h1 .highlight:nth-of-type(1)::after {
 .sticky-header {
   position: fixed;
   top: -5;
-  width: 90%;
+  width: 100%;
   background: linear-gradient(45deg, #f7fafc, #050a30, #5e17eb);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease-in-out;
   z-index: 1000;
   padding: 10px 20px;
-  left:-20;
+  left:-50;
   border-radius: 1.5rem;
  
 }
 
 
-.header-containers {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 20px;
-  height: 50px;
-  gap: 20px;
-}
+
