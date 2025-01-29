@@ -113,7 +113,7 @@ export default function Home() {
 
         {showStickyHeader && (
           <header className="sticky-header">
-            <div className="header-containers">
+            <div className="header-container">
               <Image src={Logo} alt="Lionheart Tech Logo" width={80} height={80} />
               <div className="hamburger-icon" onClick={() => setMenuOpen(!menuOpen)}>
                 <Bars3Icon className="h-8 w-8 text-[black]" />
