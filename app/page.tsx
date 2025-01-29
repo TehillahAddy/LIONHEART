@@ -16,6 +16,8 @@ export default function Home() {
   const [isHiding, setIsHiding] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
+
+
   useEffect(() => {
     AOS.init({ duration: 500 });
   }, []);
@@ -76,6 +78,21 @@ export default function Home() {
   }, []);
 
 
+  const [showStickyHeader, setShowStickyHeader] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 200) { // Increased threshold
+        setShowStickyHeader(true);
+      } else {
+        setShowStickyHeader(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <div className="homepage">
       <div className="background-container"> </div>
@@ -93,6 +110,17 @@ export default function Home() {
             )}
           </div>
         </div>
+
+        {showStickyHeader && (
+          <header className="sticky-header">
+            <div className="header-containers">
+              <Image src={Logo} alt="Lionheart Tech Logo" width={80} height={80} />
+              <div className="hamburger-icon" onClick={() => setMenuOpen(!menuOpen)}>
+                <Bars3Icon className="h-8 w-8 text-[black]" />
+              </div>
+            </div>
+          </header>
+        )}
 
         {/* Mobile Menu */}
         <nav className={`mobile-menu ${menuOpen ? "open" : ""}`}>
@@ -136,7 +164,7 @@ export default function Home() {
           height={100}
           className="logo-image"
         />
-        
+
         {/* Desktop Navigation */}
         <nav className="desktop-menu flex gap-6">
           <Link href="/" className="hover">Home</Link>

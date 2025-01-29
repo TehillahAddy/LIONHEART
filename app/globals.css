@@ -291,7 +291,7 @@ body {
     /* Hide desktop button */
   }
 
-  
+
 }
 
 
@@ -599,7 +599,8 @@ h1 .highlight:nth-of-type(1)::after {
   right: 50px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 768px),
+(max-width: 1024px) {
   .image-content {
     position: static;
     /* Removes absolute positioning for better flow on smaller screens */
@@ -644,7 +645,6 @@ h1 .highlight:nth-of-type(1)::after {
   align-items: center;
   padding: 10px 20px;
   height: 50px;
-  /* Fixed height for the header */
   gap: 20px;
 }
 
@@ -671,6 +671,23 @@ h1 .highlight:nth-of-type(1)::after {
   color: black;
 }
 
+/* Background Overlay (Appears First) */
+.mobile-menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(5, 10, 48, 0.9);
+  /* Semi-transparent dark background */
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+  pointer-events: none;
+  /* Prevent interaction when hidden */
+  z-index: 999;
+}
+
+/* Full Menu (Slides in After Background) */
 .mobile-menu {
   position: fixed;
   top: 0;
@@ -682,13 +699,23 @@ h1 .highlight:nth-of-type(1)::after {
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  transition: left 0.3s ease;
+  transition: left 0.5s ease-in-out 0.3s, filter 0.5s ease-in-out 0.3s, opacity 0.5s ease-in-out 0.3s;
   z-index: 1000;
   padding: 20px;
+  filter: blur(10px);
+  opacity: 0;
+}
+
+/* When menu is opened */
+.mobile-menu-overlay.open {
+  opacity: 1;
+  pointer-events: auto;
 }
 
 .mobile-menu.open {
   left: 0;
+  filter: blur(0);
+  opacity: 1;
 }
 
 .search-bar {
@@ -741,7 +768,7 @@ h1 .highlight:nth-of-type(1)::after {
   padding: 0 20px;
 }
 
-.mobile-menu li + li {
+.mobile-menu li+li {
   border-top: 1px solid #ece7e7;
 }
 
@@ -761,8 +788,33 @@ h1 .highlight:nth-of-type(1)::after {
 }
 
 
-@media screen and (min-width: 768px), (min-width: 1024px) {
+@media screen and (min-width: 768px),
+(min-width: 1024px) {
   .mobile-header {
     display: none;
   }
+}
+
+
+
+.sticky-header {
+  width: 90%;
+  padding: 10px 20px;
+  background: linear-gradient(45deg, #5e17eb, #f7fafc, #050a30);
+  background-color: transparent;
+  box-shadow: 0 4px 6px #050a30(0, 0, 0, 0.15);
+  border-radius: 1.5rem;
+  top: 1;
+  z-index: 1000;
+  position: fixed;
+  left: 20;
+}
+
+.header-containers {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  height: 50px;
+  gap: 20px;
 }
