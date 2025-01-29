@@ -809,5 +809,12 @@ h1 .highlight:nth-of-type(1)::after {
  
 }
 
-
+.header-containers {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  height: 50px;
+  gap: 20px;
+}
 

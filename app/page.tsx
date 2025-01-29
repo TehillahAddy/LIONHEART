@@ -82,7 +82,7 @@ export default function Home() {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 400) { // Increased threshold
+      if (window.scrollY > 100) { // Increased threshold
         setShowStickyHeader(true);
       } else {
         setShowStickyHeader(false);
@@ -113,7 +113,7 @@ export default function Home() {
 
         {showStickyHeader && (
           <header className="sticky-header">
-            <div className="header-container">
+            <div className="header-containers">
               <Image src={Logo} alt="Lionheart Tech Logo" width={80} height={80} />
               <div className="hamburger-icon" onClick={() => setMenuOpen(!menuOpen)}>
                 <Bars3Icon className="h-8 w-8 text-[black]" />
