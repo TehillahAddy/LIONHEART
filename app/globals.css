@@ -761,9 +761,8 @@ h1 .highlight:nth-of-type(1)::after {
 }
 
 
-@media (max-width: 768px) {
+@media screen and (min-width: 768px), (min-width: 1024px) {
   .mobile-header {
-    display: block;
-    /* Display on small screens */
+    display: none;
   }
 }

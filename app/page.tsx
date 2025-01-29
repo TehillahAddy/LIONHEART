@@ -136,27 +136,7 @@ export default function Home() {
           height={100}
           className="logo-image"
         />
-
-        {/* Hamburger Icon */}
-        <div
-          className="hamburgers-icon"
-          onClick={() => setMenuOpen(!menuOpen)}
-        >
-          {menuOpen ? (
-            <XMarkIcon className="h-8 w-8 text-[red] transition-transform duration-600 rotate-90" /> // Close icon
-          ) : (
-            <Bars3Icon className="h-8 w-8 text-[grey] transition-transform duration-600 rotate-0" /> // Hamburger icon
-          )}
-        </div>
-
-        {/* Mobile Menu */}
-        <nav className={`mobile-menu ${menuOpen ? "show" : ""}`}>
-          <Link href="/" onClick={() => setMenuOpen(false)}>Home</Link>
-          <Link href="/about" onClick={() => setMenuOpen(false)}>About</Link>
-          <Link href="/services" onClick={() => setMenuOpen(false)}>Services</Link>
-          <Link href="/contact" onClick={() => setMenuOpen(false)}>Contact</Link>
-        </nav>
-
+        
         {/* Desktop Navigation */}
         <nav className="desktop-menu flex gap-6">
           <Link href="/" className="hover">Home</Link>
