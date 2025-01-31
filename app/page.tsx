@@ -287,6 +287,19 @@ export default function Home() {
             Read our docs
           </a>
         </section>
+
+        <section className="it-support-section">
+          <div className="image-container">
+            <Image src="/images/b4.png" alt="Nhyira Solutions" width={600} height={600} />
+          </div>
+          <div className="content">
+            <h1>We are your fastest I.T Support Agency</h1>
+            <p>Choose The Best Digital Agency To Help You Grow Your Business</p>
+            <div className="button-container">
+              <button>View More About Us</button>
+            </div>
+          </div>
+        </section>
       </main>
 
       {/* Footer */}

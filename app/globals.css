@@ -653,7 +653,12 @@ h1 .highlight:nth-of-type(1)::after {
 .hamburger-icon {
   font-size: 24px;
   cursor: pointer;
-  z-index: 1100;
+  z-index: 1000;
+  transition: transform 0.3s ease-in-out;
+}
+
+.hamburger-icon.rotate, .close-icon.rotate {
+  transform: rotate(90deg); /* Example rotation animation */
 }
 
 .close-icon {
@@ -663,6 +668,7 @@ h1 .highlight:nth-of-type(1)::after {
   top: 10px;
   right: 20px;
   z-index: 1100;
+  transition: transform 0.3s ease-in-out;
 }
 
 .menu-icon,
@@ -826,4 +832,42 @@ h1 .highlight:nth-of-type(1)::after {
 }
 
 
-
+  .it-support-section {
+    display: flex;
+    align-items: center;
+    padding: 80px;
+    background-color: #f0f0f0;
+  }
+  .image-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+  }
+  .content {
+    flex: 1;
+    text-align: left;
+    padding-left: 40px;
+  }
+  .it-support-section h1 {
+    font-size: 2.8em;
+    margin-bottom: 20px;
+  }
+  .it-support-section p {
+    font-size: 1.3em;
+    margin-bottom: 30px;
+  }
+  .button-container {
+    display: flex;
+    justify-content: center;
+  }
+  button {
+    padding: 15px 30px;
+    font-size: 1.2em;
+    background-color: #0070f3;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  button:hover {
+    background-color: #005bb5;
+  }
