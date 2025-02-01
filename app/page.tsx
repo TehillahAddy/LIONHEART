@@ -6,6 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Logo from "../public/images/l1 (1).png";
 import Logos from "../public/images/52.webp";
+import Logs from "../public/images/logs.png";
 import AOS from 'aos';
 import 'aos/dist/aos.css'; // Import AOS styles
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
@@ -290,7 +291,7 @@ export default function Home() {
 
         <section className="it-support-section">
           <div className="image-container">
-            <Image src="/images/b4.png" alt="Nhyira Solutions" width={600} height={600} />
+            <Image className="rotate-image" src="/images/ah.png" alt="Nhyira Solutions" width={600} height={600} />
           </div>
           <div className="content">
             <h1>We are your fastest I.T Support Agency</h1>
