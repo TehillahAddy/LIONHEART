@@ -100,7 +100,7 @@ export default function Home() {
       <header className="mobile-header">
         <div className="header-container">
           {/* Logo */}
-          <Image src={Logo} alt="Lionheart Tech Logo" width={90} height={90} />
+          <Image src={Logs} alt="Lionheart Tech Logo" width={90} height={90} />
 
           {/* Hamburger Icon */}
           <div className="hamburger-icon" onClick={() => setMenuOpen(!menuOpen)}>
