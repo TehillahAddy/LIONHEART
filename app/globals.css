@@ -923,7 +923,7 @@ button:hover {
   }
 
   .rotate-image {
-    width: 80%; /* Make image more visible on small screens */
+    width: 90%; /* Make image more visible on small screens */
     height: auto;
   }
 }

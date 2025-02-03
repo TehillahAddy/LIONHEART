@@ -4,7 +4,6 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import Logo from "../public/images/l1 (1).png";
 import Logos from "../public/images/52.webp";
 import Logs from "../public/images/logs.png";
 import AOS from 'aos';
@@ -131,7 +130,7 @@ export default function Home() {
           <div className="search-bar">
             <input type="text" placeholder="Search..." />
             <button>
-              <img src="/images/b4.png" alt="Search" />
+            <Image src="/images/b4.png" alt="Description" width={600} height={400} />
             </button>
           </div>
           <ul>
