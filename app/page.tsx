@@ -1,7 +1,7 @@
 
 "use client";
 
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState} from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Logos from "../public/images/52.webp";
@@ -393,7 +393,7 @@ export default function Home() {
             <h1>Fast-tracking your I.T. needs with expert support</h1>
             <p>Opt for the leading digital agency to expand your business</p>
             <div className="button-container">
-              <button>View More About Uss</button>
+              <button>View More About Us</button>
             </div>
           </div>
         </section>
@@ -419,7 +419,8 @@ export default function Home() {
         </div>
 
         {/* Project Showcase */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+        <div className="grid project-showcase grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+
           {projects.map((project, index) => (
             <div
               key={index}
