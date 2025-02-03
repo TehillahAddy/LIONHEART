@@ -1,7 +1,7 @@
 
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Logos from "../public/images/52.webp";
@@ -21,6 +21,7 @@ export default function Home() {
   const [isSticky, setIsSticky] = useState(false);
   const [isHiding, setIsHiding] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [offset, setOffset] = useState(0);
 
   const services = [
     {
@@ -152,6 +153,46 @@ export default function Home() {
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+
+
+  const projects = [
+    {
+      company: "TechCorp",
+      service: "Web Development",
+      image: "/projects/techcorp.png",
+      description: "Revamped their entire online presence with a modern, responsive website.",
+      link: "#",
+    },
+    {
+      company: "DesignPro",
+      service: "Branding & Graphics",
+      image: "/projects/designpro.png",
+      description: "Created a sleek brand identity with logo, colors, and marketing assets.",
+      link: "#",
+    },
+    {
+      company: "CloudNet",
+      service: "IT Solutions",
+      image: "/projects/cloudnet.png",
+      description: "Implemented a secure cloud infrastructure for their growing business.",
+      link: "#",
+    },
+  ];
+
+  const clients = [
+    { name: "Company A", logo: "/logos/company-a.png" },
+    { name: "Company B", logo: "/logos/company-b.png" },
+    { name: "Company C", logo: "/logos/company-c.png" },
+    { name: "Company D", logo: "/logos/company-d.png" },
+  ];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setOffset((prev) => (prev === -100 * (clients.length - 1) ? 0 : prev - 100));
+    }, 3000);
+    return () => clearInterval(interval);
   }, []);
 
   return (
@@ -344,33 +385,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Call to Action Section */}
-        <section className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </section>
-
         <section className="it-support-section">
           <div className="image-container" data-aos="fade-right">
             <Image className="rotate-image" src="/images/ah.png" alt="lIonheart Tech" width={600} height={600} />
@@ -384,6 +398,53 @@ export default function Home() {
           </div>
         </section>
       </main>
+
+      <section className="our-work-section w-full px-8 py-16 bg-gray-50 text-center">
+
+        <h2 className="text-4xl font-bold mb-6 text-gray-800">Our Work & Clients</h2>
+        <p className="text-lg text-gray-600 mb-12">Some of the brands we've helped grow.</p>
+
+        {/* Client Logos Auto-Scrolling */}
+        <div className="overflow-hidden w-full">
+          <div
+            className="flex w-max transition-transform duration-700 ease-in-out"
+            style={{ transform: `translateX(${offset}%)` }}
+          >
+            {clients.concat(clients).map((client, index) => (
+              <div key={index} className="p-4">
+                <Image src={client.logo} alt={client.name} width={150} height={60} />
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Project Showcase */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+          {projects.map((project, index) => (
+            <div
+              key={index}
+              className="bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition duration-300"
+            >
+              <Image src={project.image} alt={project.company} width={300} height={200} className="rounded-lg" />
+              <h3 className="text-2xl font-semibold mt-4">{project.company}</h3>
+              <p className="text-blue-500 font-medium">{project.service}</p>
+              <p className="text-gray-600 mt-2">{project.description}</p>
+              <a href={project.link} className="mt-4 inline-block text-white bg-blue-500 px-5 py-2 rounded-lg hover:bg-blue-600 transition">
+                View Project →
+              </a>
+            </div>
+          ))}
+        </div>
+
+        {/* Call to Action */}
+        <div className="mt-16">
+          <h3 className="text-3xl font-bold text-gray-800">Want to be our next success story?</h3>
+          <p className="text-lg text-gray-600 mt-2">Let’s build something amazing together.</p>
+          <a href="/contact" className="mt-6 inline-block bg-green-500 text-white px-6 py-3 rounded-lg hover:scale-105 transition">
+            Get in Touch →
+          </a>
+        </div>
+      </section>
 
       {/* Footer */}
       <footer className="w-full py-4 bg-gray-800 text-white flex justify-center items-center">

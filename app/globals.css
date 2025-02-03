@@ -955,3 +955,33 @@ button:hover {
     width: 90%;
   }
 }
+
+
+@media (max-width: 768px) {
+  .project-showcase {
+    grid-template-columns: 1fr !important; /* Single column layout */
+    gap: 20px !important; /* Reduce spacing */
+  }
+
+  .project-showcase div {
+    padding: 16px !important; /* Smaller padding for better fit */
+  }
+
+  .project-showcase img {
+    width: 100% !important; /* Make images fully responsive */
+    height: auto !important;
+  }
+
+  .project-showcase h3 {
+    font-size: 1.5rem !important; /* Adjust heading size */
+  }
+
+  .project-showcase p {
+    font-size: 1rem !important; /* Adjust paragraph size */
+  }
+
+  .project-showcase a {
+    font-size: 1rem !important;
+    padding: 10px 16px !important; /* Adjust button size */
+  }
+}
