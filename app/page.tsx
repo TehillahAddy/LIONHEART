@@ -9,17 +9,77 @@ import Logs from "../public/images/logs.png";
 import AOS from 'aos';
 import 'aos/dist/aos.css'; // Import AOS styles
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
+import { motion } from "framer-motion";
+import { 
+  Monitor, PenTool, Server, TrendingUp, Smartphone, Search, ClipboardList, ShieldCheck, FileText
+} from "lucide-react"; 
+
 
 
 export default function Home() {
   const [isSticky, setIsSticky] = useState(false);
   const [isHiding, setIsHiding] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-
-
+  
+  const services = [
+    {
+      title: "Web Design",
+      description: "We create stunning and responsive websites that captivate your audience.",
+      link: "/services/web-design",
+      icon: <Monitor size={40} className="text-blue-500" />,
+    },
+    {
+      title: "Graphic Design",
+      description: "Our team delivers eye-catching designs for branding, marketing, and more.",
+      link: "/services/graphic-design",
+      icon: <PenTool size={40} className="text-pink-500" />,
+    },
+    {
+      title: "Tech Solutions",
+      description: "From custom software to IT consulting, we provide solutions that meet your needs.",
+      link: "/services/tech-solutions",
+      icon: <Server size={40} className="text-green-500" />,
+    },
+    {
+      title: "SEO Optimization",
+      description: "Boost your website rankings with cutting-edge SEO strategies and analytics.",
+      link: "/services/seo",
+      icon: <Search size={40} className="text-yellow-500" />,
+    },
+    {
+      title: "Digital Marketing",
+      description: "Engage and grow your audience with data-driven marketing strategies.",
+      link: "/services/digital-marketing",
+      icon: <TrendingUp size={40} className="text-purple-500" />,
+    },
+    {
+      title: "Mobile App Development",
+      description: "We develop intuitive and scalable mobile applications for iOS & Android.",
+      link: "/services/mobile-app-development",
+      icon: <Smartphone size={40} className="text-red-500" />,
+    },
+    {
+      title: "Secretarial & Admin Services",
+      description: "We offer professional administrative support to keep your business running smoothly.",
+      link: "/services/secretarial-admin",
+      icon: <ClipboardList size={40} className="text-orange-500" />,
+    },
+    {
+      title: "Cybersecurity",
+      description: "Protect your business with top-tier cybersecurity solutions and risk assessments.",
+      link: "/services/cybersecurity",
+      icon: <ShieldCheck size={40} className="text-teal-500" />,
+    },
+    {
+      title: "Content Creation",
+      description: "High-quality content that enhances your brand’s voice and engagement.",
+      link: "/services/content-creation",
+      icon: <FileText size={40} className="text-indigo-500" />,
+    },
+  ];
 
   useEffect(() => {
-    AOS.init({ duration: 500 });
+    AOS.init({ duration: 1000 });
   }, []);
 
   useEffect(() => {
@@ -130,7 +190,7 @@ export default function Home() {
           <div className="search-bar">
             <input type="text" placeholder="Search..." />
             <button>
-            <Image src="/images/b4.png" alt="Description" width={600} height={400} />
+              <Image src="/images/b4.png" alt="Description" width={600} height={400} />
             </button>
           </div>
           <ul>
@@ -206,58 +266,80 @@ export default function Home() {
 
       {/* Main Content */}
       <main className="flex flex-col items-center flex-1 justify-center gap-8 py-12 main" >
-        {/* Services Section */}
-        <section className="w-full px-8 py-12 bg-white">
-          <h2 className="text-3xl font-bold mb-8 text-center">Our Services</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="p-6 bg-gray-100 rounded shadow">
-              <h3 className="text-2xl font-semibold mb-4">Web Design</h3>
-              <p className="text-gray-700 mb-4">
-                We create stunning and responsive websites that captivate your audience.
-              </p>
-              <Link href="/services/web-design" className="text-blue-500 hover:underline">Learn more &rarr;</Link>
-            </div>
-            <div className="p-6 bg-gray-100 rounded shadow">
-              <h3 className="text-2xl font-semibold mb-4">Graphic Design</h3>
-              <p className="text-gray-700 mb-4">
-                Our team delivers eye-catching designs for branding, marketing, and more.
-              </p>
-              <Link href="/services/graphic-design" className="text-blue-500 hover:underline">Learn more &rarr;</Link>
-            </div>
-            <div className="p-6 bg-gray-100 rounded shadow">
-              <h3 className="text-2xl font-semibold mb-4">Tech Solutions</h3>
-              <p className="text-gray-700 mb-4">
-                From custom software to IT consulting, we provide solutions that meet your needs.
-              </p>
-              <Link href="/services/tech-solutions" className="text-blue-500 hover:underline">Learn more &rarr;</Link>
-            </div>
-          </div>
-        </section>
+        <section className="w-full px-4 py-10 bg-gradient-to-b from-[#f8f9fa] to-[#e3e6ea] relative overflow-hidden">
+          {/* Animated Title */}
+          <motion.h2
+            className="text-3xl font-bold text-center mb-10 text-gray-900 relative z-10"
+            initial={{ opacity: 0, y: -20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1 }}
+            viewport={{ once: true }}
+          >
+            Our Services
+          </motion.h2>
 
-        <section className="w-full px-8 py-12 bg-white">
-          <h2 className="text-3xl font-bold mb-8 text-center">Our Services</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="p-6 bg-gray-100 rounded shadow">
-              <h3 className="text-2xl font-semibold mb-4">Web Design</h3>
-              <p className="text-gray-700 mb-4">
-                We create stunning and responsive websites that captivate your audience.
-              </p>
-              <Link href="/services/web-design" className="text-blue-500 hover:underline">Learn more &rarr;</Link>
-            </div>
-            <div className="p-6 bg-gray-100 rounded shadow">
-              <h3 className="text-2xl font-semibold mb-4">Graphic Design</h3>
-              <p className="text-gray-700 mb-4">
-                Our team delivers eye-catching designs for branding, marketing, and more.
-              </p>
-              <Link href="/services/graphic-design" className="text-blue-500 hover:underline">Learn more &rarr;</Link>
-            </div>
-            <div className="p-6 bg-gray-100 rounded shadow">
-              <h3 className="text-2xl font-semibold mb-4">Tech Solutions</h3>
-              <p className="text-gray-700 mb-4">
-                From custom software to IT consulting, we provide solutions that meet your needs.
-              </p>
-              <Link href="/services/tech-solutions" className="text-blue-500 hover:underline">Learn more &rarr;</Link>
-            </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 relative z-10">
+            {services.map((service, index) => (
+              <motion.div
+                key={index}
+                className="p-6 bg-white rounded-xl shadow-md transition duration-300 relative overflow-hidden group"
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6, delay: index * 0.2 }}
+                viewport={{ once: true }}
+                whileHover={{
+                  scale: 1.05,
+                  rotate: [0, 1, -1, 0], // Light wiggle effect
+                  transition: { duration: 0.3 },
+                }}
+              >
+                {/* Glowing effect on hover */}
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent to-blue-100 opacity-0 group-hover:opacity-30 transition duration-500"></div>
+
+                {/* Animated Icon */}
+                <motion.div
+                  className="mb-4 flex justify-center"
+                  animate={{ y: [0, -5, 0] }}
+                  transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
+                >
+                  {service.icon}
+                </motion.div>
+
+                {/* Service Title */}
+                <motion.h3
+                  className="text-xl font-semibold text-gray-800 mb-3 text-center"
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.3 }}
+                  viewport={{ once: true }}
+                >
+                  {service.title}
+                </motion.h3>
+
+                {/* Service Description */}
+                <motion.p
+                  className="text-gray-600 mb-4 text-center text-sm"
+                  initial={{ opacity: 0, x: 20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.3 }}
+                  viewport={{ once: true }}
+                >
+                  {service.description}
+                </motion.p>
+
+                {/* Animated Button */}
+                <div className="text-center">
+                  <motion.a
+                    href={service.link}
+                    className="text-blue-600 font-medium hover:underline text-sm inline-block"
+                    whileHover={{ scale: 1.1 }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                  >
+                    Learn more &rarr;
+                  </motion.a>
+                </div>
+              </motion.div>
+            ))}
           </div>
         </section>
 
@@ -289,14 +371,14 @@ export default function Home() {
         </section>
 
         <section className="it-support-section">
-          <div className="image-container">
+          <div className="image-container" data-aos="fade-right">
             <Image className="rotate-image" src="/images/ah.png" alt="lIonheart Tech" width={600} height={600} />
           </div>
-          <div className="content">
+          <div className="content" data-aos="fade-left">
             <h1>Fast-tracking your I.T. needs with expert support</h1>
             <p>Opt for the leading digital agency to expand your business</p>
             <div className="button-container">
-              <button>View More About Us</button>
+              <button>View More About Uss</button>
             </div>
           </div>
         </section>
