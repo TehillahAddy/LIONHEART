@@ -402,8 +402,7 @@ export default function Home() {
       <section className="our-work-section w-full px-8 py-16 bg-gray-50 text-center">
 
         <h2 className="text-4xl font-bold mb-6 text-gray-800">Our Work & Clients</h2>
-        <p className="text-lg text-gray-600 mb-12">Some of the brands we've helped grow.</p>
-
+        <p className="text-lg text-gray-600 mb-12">Some of the brands we&apos;ve helped grow.</p>
         {/* Client Logos Auto-Scrolling */}
         <div className="overflow-hidden w-full">
           <div
