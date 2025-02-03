@@ -115,7 +115,7 @@ export default function Home() {
         {showStickyHeader && (
           <header className="sticky-header">
             <div className="header-container">
-              <Image src={Logo} alt="Lionheart Tech Logo" width={80} height={80} />
+              <Image src={Logs} alt="Lionheart Tech Logo" width={80} height={80} />
               <div className="hamburger-icon" onClick={() => setMenuOpen(!menuOpen)}>
                 <Bars3Icon className="h-8 w-8 text-[black]" />
               </div>
@@ -159,7 +159,7 @@ export default function Home() {
       >
         {/* Logo */}
         <Image
-          src={Logo}
+          src={Logs}
           alt="Lionheart Tech Logo"
           width={100}
           height={100}
@@ -291,11 +291,11 @@ export default function Home() {
 
         <section className="it-support-section">
           <div className="image-container">
-            <Image className="rotate-image" src="/images/ah.png" alt="Nhyira Solutions" width={600} height={600} />
+            <Image className="rotate-image" src="/images/ah.png" alt="lIonheart Tech" width={600} height={600} />
           </div>
           <div className="content">
-            <h1>We are your fastest I.T Support Agency</h1>
-            <p>Choose The Best Digital Agency To Help You Grow Your Business</p>
+            <h1>Fast-tracking your I.T. needs with expert support</h1>
+            <p>Opt for the leading digital agency to expand your business</p>
             <div className="button-container">
               <button>View More About Us</button>
             </div>

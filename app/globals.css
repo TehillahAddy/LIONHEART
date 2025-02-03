@@ -831,56 +831,122 @@ h1 .highlight:nth-of-type(1)::after {
   }
 }
 
+.it-support-section {
+  display: flex;
+  align-items: center;
+  padding: 80px;
+  background-color: white;
+  flex-wrap: wrap; /* Allows better stacking on small screens */
+}
 
+/* Image container styling */
+.image-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+/* Content styling */
+.content {
+  flex: 1;
+  text-align: left;
+  padding-left: 40px;
+}
+
+/* Typography adjustments */
+.it-support-section h1 {
+  font-size: 2.8em;
+  margin-bottom: 20px;
+}
+
+.it-support-section p {
+  font-size: 1.3em;
+  margin-bottom: 30px;
+}
+
+/* Button styling */
+.button-container {
+  display: flex;
+  justify-content: center;
+}
+
+button {
+  padding: 15px 30px;
+  font-size: 1.2em;
+  background-color: #0070f3;
+  color: white;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #005bb5;
+}
+
+/* Rotation animation */
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.rotate-image {
+  animation: rotate 3s linear infinite;
+}
+
+/* Responsive Design for Smaller Screens */
+@media (max-width: 768px) {
   .it-support-section {
-    display: flex;
-    align-items: center;
-    padding: 80px;
-    background-color: #f0f0f0;
+    flex-direction: column; /* Stack content vertically */
+    padding: 40px; /* Reduce padding */
+    text-align: center;
   }
-  .image-container {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-  }
+
   .content {
-    flex: 1;
-    text-align: left;
-    padding-left: 40px;
+    padding-left: 0;
+    padding-top: 20px;
   }
+
   .it-support-section h1 {
-    font-size: 2.8em;
-    margin-bottom: 20px;
+    font-size: 2em; /* Reduce heading size */
   }
+
   .it-support-section p {
-    font-size: 1.3em;
-    margin-bottom: 30px;
-  }
-  .button-container {
-    display: flex;
-    justify-content: center;
-  }
-  button {
-    padding: 15px 30px;
-    font-size: 1.2em;
-    background-color: #0070f3;
-    color: white;
-    border: none;
-    cursor: pointer;
-  }
-  button:hover {
-    background-color: #005bb5;
+    font-size: 1.1em; /* Adjust paragraph size */
   }
 
-
-  @keyframes rotate {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
+  .image-container {
+    order: -1; /* Moves image above text */
   }
+
   .rotate-image {
-    animation: rotate 3s linear infinite;
+    width: 80%; /* Make image more visible on small screens */
+    height: auto;
   }
+}
+
+@media (max-width: 480px) {
+  .it-support-section {
+    padding: 20px;
+  }
+
+  .it-support-section h1 {
+    font-size: 1.8em;
+  }
+
+  .it-support-section p {
+    font-size: 1em;
+  }
+
+  button {
+    font-size: 1em;
+    padding: 12px 25px;
+  }
+
+  .rotate-image {
+    width: 90%;
+  }
+}
