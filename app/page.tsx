@@ -10,9 +10,10 @@ import AOS from 'aos';
 import 'aos/dist/aos.css'; // Import AOS styles
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { motion } from "framer-motion";
-import { 
+import { FaStar } from 'react-icons/fa';
+import {
   Monitor, PenTool, Server, TrendingUp, Smartphone, Search, ClipboardList, ShieldCheck, FileText
-} from "lucide-react"; 
+} from "lucide-react";
 
 
 
@@ -20,7 +21,7 @@ export default function Home() {
   const [isSticky, setIsSticky] = useState(false);
   const [isHiding, setIsHiding] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  
+
   const services = [
     {
       title: "Web Design",
@@ -190,7 +191,7 @@ export default function Home() {
           <div className="search-bar">
             <input type="text" placeholder="Search..." />
             <button>
-              <Image src="/images/b4.png" alt="Description" width={600} height={400} />
+              <FaStar style={{ fontSize: "24px", color: "blue" }} />
             </button>
           </div>
           <ul>
@@ -266,7 +267,7 @@ export default function Home() {
 
       {/* Main Content */}
       <main className="flex flex-col items-center flex-1 justify-center gap-8 py-12 main" >
-        <section className="w-full px-4 py-10 bg-gradient-to-b from-[#f8f9fa] to-[#e3e6ea] relative overflow-hidden">
+        <section className="w-full px-4 py-10 bg-gradient-to-b from-[white] to-[white] relative overflow-hidden">
           {/* Animated Title */}
           <motion.h2
             className="text-3xl font-bold text-center mb-10 text-gray-900 relative z-10"

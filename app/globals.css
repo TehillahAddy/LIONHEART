@@ -592,6 +592,28 @@ h1 .highlight:nth-of-type(1)::after {
   margin-top: 280px;
 }
 
+/* For smaller screens */
+@media (max-width: 768px) {
+  .main {
+    padding-left: -5px;
+    padding-right: -5px;
+  }
+  .section {
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 40px;
+    padding-right: 40px;
+    width: 100%;
+  }
+  .content {
+    padding: 0 30px;
+  }
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 10px; /* Reduce gap if necessary */
+  }
+}
+
 
 .image-content {
   position: absolute;
@@ -743,23 +765,6 @@ h1 .highlight:nth-of-type(1)::after {
   border-radius: 4px;
 }
 
-.search-bar button {
-  width: 40px;
-  height: 40px;
-  background: #0070f3;
-  border: none;
-  border-radius: 4px;
-  color: white;
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.search-bar button img {
-  width: 20px;
-  height: 20px;
-}
 
 .mobile-menu ul {
   list-style: none;
