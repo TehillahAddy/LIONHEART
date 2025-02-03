@@ -193,7 +193,7 @@ export default function Home() {
       setOffset((prev) => (prev === -100 * (clients.length - 1) ? 0 : prev - 100));
     }, 3000);
     return () => clearInterval(interval);
-  }, []);
+  }, [clients.length]);
 
   return (
     <div className="homepage">
