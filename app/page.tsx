@@ -1,7 +1,7 @@
 
 "use client";
 
-import { useEffect, useState} from "react";
+import { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Logos from "../public/images/52.webp";
@@ -14,6 +14,7 @@ import { FaStar } from 'react-icons/fa';
 import {
   Monitor, PenTool, Server, TrendingUp, Smartphone, Search, ClipboardList, ShieldCheck, FileText
 } from "lucide-react";
+import { FaCheckCircle, FaTimesCircle, FaBolt, FaClock, FaAward } from "react-icons/fa";
 
 
 
@@ -79,6 +80,28 @@ export default function Home() {
       icon: <FileText size={40} className="text-indigo-500" />,
     },
   ];
+
+  const projectss = [
+    {
+      company: "Our Mission",
+      service: "To empower industries with cutting-edge technology, creating seamless, innovative solutions that drive progress and unlock potential.",
+      image: "/images/1.png",
+      link: "/portfolio/neonverse",
+    },
+    {
+      company: "Our Vision",
+      service: "To become the global leader in transformative technology, pioneering the future with a focus on sustainability, intelligence, and human potential.",
+      image: "/images/4.png",
+      link: "/portfolio/warpdrive",
+    },
+    {
+      company: "Core Values",
+      service: "We are committed to innovative, ethical, and collaborative solutions that foster sustainability and shape a better future for society and the planet.",
+      image: "/images/q.webp",
+      link: "/portfolio/synthwave",
+    },
+  ];
+
 
   useEffect(() => {
     AOS.init({ duration: 1000 });
@@ -445,6 +468,167 @@ export default function Home() {
           </a>
         </div>
       </section>
+
+      <section className="w-full px-8 py-16 bg-gradient-to-br from-gray-900 to-black text-center text-white">
+        <motion.h2
+          className="text-5xl font-extrabold mb-6"
+          initial={{ opacity: 0, y: -50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+        >
+          Why Choose Lionheart Tech?
+        </motion.h2>
+        <motion.p
+          className="text-lg text-gray-300 mb-12"
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+        >
+          What makes us different from the rest?
+        </motion.p>
+
+        {/* Quick Stats */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+          {[
+            { icon: FaBolt, title: "Fast Turnaround", text: "Delivering projects on time, every time.", color: "text-blue-400" },
+            { icon: FaStar, title: "5-Star Quality", text: "High-quality designs & development.", color: "text-yellow-400" },
+            { icon: FaAward, title: "Certified Experts", text: "Skilled professionals at your service.", color: "text-green-400" }
+          ].map((item, index) => (
+            <motion.div
+              key={index}
+              className="flex items-center justify-center flex-col p-6 bg-gray-800 rounded-lg shadow-lg transform hover:scale-110 hover:shadow-xl transition"
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6, delay: index * 0.2 }}
+              whileHover={{ rotate: [0, 2, -2, 0] }}
+            >
+              <item.icon className={`${item.color} text-5xl mb-3 animate-pulse`} />
+              <h3 className="text-2xl font-semibold">{item.title}</h3>
+              <p className="text-gray-400">{item.text}</p>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Comparison Table */}
+        <motion.div
+          className="overflow-x-auto"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+        >
+          <table className="w-full max-w-4xl mx-auto border-collapse border border-gray-600 bg-gray-900 shadow-xl text-lg">
+            <thead>
+              <tr className="bg-gray-700 text-white">
+                <th className="p-4">Feature</th>
+                <th className="p-4">Lionheart Tech ✅</th>
+                <th className="p-4">Competitors ❌</th>
+              </tr>
+            </thead>
+            <tbody>
+              {[
+                ["Custom Web Solutions", true],
+                ["Affordable Pricing", true],
+                ["Fast Project Delivery", true],
+                ["24/7 Customer Support", true]
+              ].map((row, index) => (
+                <tr key={index} className={`${index % 2 === 0 ? "bg-gray-800" : "bg-gray-700"} border-t border-gray-600`}>
+                  <td className="p-4">{row[0]}</td>
+                  <td className="p-4"><FaCheckCircle className="text-green-400 text-2xl" /></td>
+                  <td className="p-4"><FaTimesCircle className="text-red-400 text-2xl" /></td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </motion.div>
+
+        {/* Call to Action */}
+        <motion.div
+          className="mt-12"
+          initial={{ opacity: 0, scale: 0.8 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6 }}
+        >
+          <h3 className="text-3xl font-bold">Ready to work with the best?</h3>
+          <p className="text-lg text-gray-300 mt-2">Let's take your business to the next level.</p>
+          <motion.a
+            href="/contact"
+            className="mt-6 inline-block bg-blue-500 text-white px-6 py-3 rounded-lg hover:scale-110 transition duration-300"
+            whileHover={{ scale: 1.1, boxShadow: "0px 0px 20px rgba(59, 130, 246, 0.5)" }}
+          >
+            Get Started →
+          </motion.a>
+        </motion.div>
+      </section>
+
+
+      <section className="relative w-full px-8 py-16 bg-black text-white text-center overflow-hidden">
+        {/* GALACTIC BACKGROUND ANIMATION */}
+        <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
+          <video autoPlay loop muted className="absolute w-full h-full object-cover opacity-20">
+            <source src="/videos/galaxy-warp.mp4" type="video/mp4" />
+          </video>
+        </div>
+
+        {/* LIGHT TRAILS ANIMATION */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-10 left-10 w-32 h-32 bg-blue-400 blur-3xl opacity-50 animate-pulse"></div>
+          <div className="absolute bottom-20 right-20 w-24 h-24 bg-purple-500 blur-2xl opacity-60 animate-spin"></div>
+        </div>
+
+        <motion.h2
+          className="text-6xl font-extrabold mb-6 tracking-wide glitch-text"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1, textShadow: "0px 0px 20px cyan" }}
+          transition={{ duration: 1 }}
+        >
+          <img
+            src="/images/d3.png"  // Path to your 3D rocket image
+            alt="3D Rocket"
+            className="inline-block w-24 h-24 transform rotate-12"  // You can adjust the size and rotation
+          />
+          WELCOME TO THE FUTURE
+        </motion.h2>
+
+        <p className="text-lg text-gray-300 mb-12">We build experiences beyond your imagination!!</p>
+
+        {/* HIGH-TECH PROJECT SHOWCASE */}
+        <div className="relative grid grid-cols-1 md:grid-cols-3 gap-10 z-10">
+          {projectss.map((project, index) => (
+            <motion.div
+              key={index}
+              className="relative bg-gray-900 p-6 rounded-xl shadow-xl transform hover:scale-110 transition duration-500 hover:shadow-neon"
+              whileHover={{ scale: 1.15, rotate: 2 }}
+            >
+              {/* HOLOGRAPHIC FLOATING CARD */}
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-500 to-purple-600 opacity-40 blur-lg -z-10"></div>
+
+              <div className="flex justify-center">
+                <Image src={project.image} alt={project.company} width={100} height={50} className="rounded-lg" />
+              </div>
+
+              <h3 className="text-3xl font-extrabold text-white mb-4 neon-glow">{project.company}</h3>
+              <p className="text-white-400 font-medium">{project.service}</p>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* 🚀 ROCKET-LAUNCH CTA BUTTON */}
+        <motion.div
+          className="mt-16 relative inline-block"
+          whileHover={{ y: -10, boxShadow: "0px 0px 20px lime" }}
+          whileTap={{ scale: 0.9, y: -100, opacity: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          <h3 className="text-4xl font-extrabold text-white tracking-wider neon-glow">READY TO LAUNCH? 🚀</h3>
+          <p className="text-lg text-gray-400 mt-2">Let's build **beyond limits.**</p>
+          <Link href="/contact" legacyBehavior>
+            <a className="mt-6 inline-block bg-green-500 text-white px-6 py-3 rounded-lg hover:scale-110 transition rocket-hover">
+              Get in Touch →
+            </a>
+          </Link>
+        </motion.div>
+      </section>
+
 
       {/* Footer */}
       <footer className="w-full py-4 bg-gray-800 text-white flex justify-center items-center">
