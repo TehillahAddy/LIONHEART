@@ -102,6 +102,12 @@ export default function Home() {
     },
   ];
 
+  const stats = [
+    { icon: <FaBolt />, title: "Fast Turnaround", text: "Delivering projects on time.", color: "text-blue-400" },
+    { icon: <FaStar />, title: "Top Quality", text: "Premium designs & development.", color: "text-yellow-400" },
+    { icon: <FaAward />, title: "Certified Experts", text: "Industry-leading professionals.", color: "text-green-400" },
+  ];
+
 
   useEffect(() => {
     AOS.init({ duration: 1000 });
@@ -178,45 +184,6 @@ export default function Home() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-
-
-  const projects = [
-    {
-      company: "TechCorp",
-      service: "Web Development",
-      image: "/projects/techcorp.png",
-      description: "Revamped their entire online presence with a modern, responsive website.",
-      link: "#",
-    },
-    {
-      company: "DesignPro",
-      service: "Branding & Graphics",
-      image: "/projects/designpro.png",
-      description: "Created a sleek brand identity with logo, colors, and marketing assets.",
-      link: "#",
-    },
-    {
-      company: "CloudNet",
-      service: "IT Solutions",
-      image: "/projects/cloudnet.png",
-      description: "Implemented a secure cloud infrastructure for their growing business.",
-      link: "#",
-    },
-  ];
-
-  const clients = [
-    { name: "Company A", logo: "/logos/company-a.png" },
-    { name: "Company B", logo: "/logos/company-b.png" },
-    { name: "Company C", logo: "/logos/company-c.png" },
-    { name: "Company D", logo: "/logos/company-d.png" },
-  ];
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setOffset((prev) => (prev === -100 * (clients.length - 1) ? 0 : prev - 100));
-    }, 3000);
-    return () => clearInterval(interval);
-  }, [clients.length]);
 
   return (
     <div className="homepage">
@@ -331,6 +298,76 @@ export default function Home() {
 
       {/* Main Content */}
       <main className="flex flex-col items-center flex-1 justify-center gap-8 py-12 main" >
+
+
+        <section className="relative w-full px-8 py-16 bg-black text-white text-center overflow-hidden">
+          {/* GALACTIC BACKGROUND ANIMATION */}
+          <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
+            <video autoPlay loop muted className="absolute w-full h-full object-cover opacity-20">
+              <source src="/videos/galaxy-warp.mp4" type="video/mp4" />
+            </video>
+          </div>
+
+          {/* LIGHT TRAILS ANIMATION */}
+          <div className="absolute inset-0 pointer-events-none">
+            <div className="absolute top-10 left-10 w-32 h-32 bg-blue-400 blur-3xl opacity-50 animate-pulse"></div>
+            <div className="absolute bottom-20 right-20 w-24 h-24 bg-purple-500 blur-2xl opacity-60 animate-spin"></div>
+          </div>
+
+          <motion.h2
+            className="text-6xl font-extrabold mb-6 tracking-wide glitch-text"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1, textShadow: "0px 0px 20px cyan" }}
+            transition={{ duration: 1 }}
+          >
+            <img
+              src="/images/d3.png"  // Path to your 3D rocket image
+              alt="3D Rocket"
+              className="inline-block w-24 h-24 transform rotate-12"  // You can adjust the size and rotation
+            />
+            WELCOME TO THE FUTURE
+          </motion.h2>
+
+          <p className="text-lg text-gray-300 mb-12">We build experiences beyond your imagination!!</p>
+
+          {/* HIGH-TECH PROJECT SHOWCASE */}
+          <div className="relative grid grid-cols-1 md:grid-cols-3 gap-10 z-10">
+            {projectss.map((project, index) => (
+              <motion.div
+                key={index}
+                className="relative bg-gray-900 p-6 rounded-xl shadow-xl transform hover:scale-110 transition duration-500 hover:shadow-neon"
+                whileHover={{ scale: 1.15, rotate: 2 }}
+              >
+                {/* HOLOGRAPHIC FLOATING CARD */}
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-500 to-purple-600 opacity-40 blur-lg -z-10"></div>
+
+                <div className="flex justify-center">
+                  <Image src={project.image} alt={project.company} width={100} height={50} className="rounded-lg" />
+                </div>
+
+                <h3 className="text-3xl font-extrabold text-white mb-4 neon-glow">{project.company}</h3>
+                <p className="text-white-400 font-medium">{project.service}</p>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* 🚀 ROCKET-LAUNCH CTA BUTTON */}
+          <motion.div
+            className="mt-16 relative inline-block"
+            whileHover={{ y: -10, boxShadow: "0px 0px 20px lime" }}
+            whileTap={{ scale: 0.9, y: -100, opacity: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <h3 className="text-4xl font-extrabold text-white tracking-wider neon-glow">READY TO LAUNCH? 🚀</h3>
+            <p className="text-lg text-gray-400 mt-2">Let's build beyond limits.</p>
+            <Link href="/about" legacyBehavior>
+              <a className="mt-6 inline-block bg-green-500 text-white px-6 py-3 rounded-lg hover:scale-110 transition rocket-hover">
+                Get in Touch →
+              </a>
+            </Link>
+          </motion.div>
+        </section>
+
         <section className="w-full px-4 py-10 bg-gradient-to-b from-[white] to-[white] relative overflow-hidden">
           {/* Animated Title */}
           <motion.h2
@@ -422,53 +459,6 @@ export default function Home() {
         </section>
       </main>
 
-      <section className="our-work-section w-full px-8 py-16 bg-gray-50 text-center">
-
-        <h2 className="text-4xl font-bold mb-6 text-gray-800">Our Work & Clients</h2>
-        <p className="text-lg text-gray-600 mb-12">Some of the brands we&apos;ve helped grow.</p>
-        {/* Client Logos Auto-Scrolling */}
-        <div className="overflow-hidden w-full">
-          <div
-            className="flex w-max transition-transform duration-700 ease-in-out"
-            style={{ transform: `translateX(${offset}%)` }}
-          >
-            {clients.concat(clients).map((client, index) => (
-              <div key={index} className="p-4">
-                <Image src={client.logo} alt={client.name} width={150} height={60} />
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Project Showcase */}
-        <div className="grid project-showcase grid-cols-1 md:grid-cols-3 gap-8 mt-12">
-
-          {projects.map((project, index) => (
-            <div
-              key={index}
-              className="bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition duration-300"
-            >
-              <Image src={project.image} alt={project.company} width={300} height={200} className="rounded-lg" />
-              <h3 className="text-2xl font-semibold mt-4">{project.company}</h3>
-              <p className="text-blue-500 font-medium">{project.service}</p>
-              <p className="text-gray-600 mt-2">{project.description}</p>
-              <a href={project.link} className="mt-4 inline-block text-white bg-blue-500 px-5 py-2 rounded-lg hover:bg-blue-600 transition">
-                View Project →
-              </a>
-            </div>
-          ))}
-        </div>
-
-        {/* Call to Action */}
-        <div className="mt-16">
-          <h3 className="text-3xl font-bold text-gray-800">Want to be our next success story?</h3>
-          <p className="text-lg text-gray-600 mt-2">Let’s build something amazing together.</p>
-          <a href="/contact" className="mt-6 inline-block bg-green-500 text-white px-6 py-3 rounded-lg hover:scale-105 transition">
-            Get in Touch →
-          </a>
-        </div>
-      </section>
-
       <section className="w-full px-8 py-16 bg-gradient-to-br from-gray-900 to-black text-center text-white">
         <motion.h2
           className="text-5xl font-extrabold mb-6"
@@ -559,76 +549,6 @@ export default function Home() {
           </motion.a>
         </motion.div>
       </section>
-
-
-      <section className="relative w-full px-8 py-16 bg-black text-white text-center overflow-hidden">
-        {/* GALACTIC BACKGROUND ANIMATION */}
-        <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
-          <video autoPlay loop muted className="absolute w-full h-full object-cover opacity-20">
-            <source src="/videos/galaxy-warp.mp4" type="video/mp4" />
-          </video>
-        </div>
-
-        {/* LIGHT TRAILS ANIMATION */}
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-10 left-10 w-32 h-32 bg-blue-400 blur-3xl opacity-50 animate-pulse"></div>
-          <div className="absolute bottom-20 right-20 w-24 h-24 bg-purple-500 blur-2xl opacity-60 animate-spin"></div>
-        </div>
-
-        <motion.h2
-          className="text-6xl font-extrabold mb-6 tracking-wide glitch-text"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1, textShadow: "0px 0px 20px cyan" }}
-          transition={{ duration: 1 }}
-        >
-          <img
-            src="/images/d3.png"  // Path to your 3D rocket image
-            alt="3D Rocket"
-            className="inline-block w-24 h-24 transform rotate-12"  // You can adjust the size and rotation
-          />
-          WELCOME TO THE FUTURE
-        </motion.h2>
-
-        <p className="text-lg text-gray-300 mb-12">We build experiences beyond your imagination!!</p>
-
-        {/* HIGH-TECH PROJECT SHOWCASE */}
-        <div className="relative grid grid-cols-1 md:grid-cols-3 gap-10 z-10">
-          {projectss.map((project, index) => (
-            <motion.div
-              key={index}
-              className="relative bg-gray-900 p-6 rounded-xl shadow-xl transform hover:scale-110 transition duration-500 hover:shadow-neon"
-              whileHover={{ scale: 1.15, rotate: 2 }}
-            >
-              {/* HOLOGRAPHIC FLOATING CARD */}
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-500 to-purple-600 opacity-40 blur-lg -z-10"></div>
-
-              <div className="flex justify-center">
-                <Image src={project.image} alt={project.company} width={100} height={50} className="rounded-lg" />
-              </div>
-
-              <h3 className="text-3xl font-extrabold text-white mb-4 neon-glow">{project.company}</h3>
-              <p className="text-white-400 font-medium">{project.service}</p>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* 🚀 ROCKET-LAUNCH CTA BUTTON */}
-        <motion.div
-          className="mt-16 relative inline-block"
-          whileHover={{ y: -10, boxShadow: "0px 0px 20px lime" }}
-          whileTap={{ scale: 0.9, y: -100, opacity: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          <h3 className="text-4xl font-extrabold text-white tracking-wider neon-glow">READY TO LAUNCH? 🚀</h3>
-          <p className="text-lg text-gray-400 mt-2">Let's build **beyond limits.**</p>
-          <Link href="/contact" legacyBehavior>
-            <a className="mt-6 inline-block bg-green-500 text-white px-6 py-3 rounded-lg hover:scale-110 transition rocket-hover">
-              Get in Touch →
-            </a>
-          </Link>
-        </motion.div>
-      </section>
-
 
       {/* Footer */}
       <footer className="w-full py-4 bg-gray-800 text-white flex justify-center items-center">
