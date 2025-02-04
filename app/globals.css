@@ -74,6 +74,18 @@ body {
   overflow-x: hidden;
 }
 
+.footer {
+  width: 100rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  background-color: #2d3748; /* Corresponds to bg-gray-800 */
+  color: #ffffff; /* Corresponds to text-white */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
 /* Media query for smaller screens */
 @media (max-width: 768px),
 (max-width: 1024px) {

@@ -459,7 +459,10 @@ export default function Home() {
         </section>
       </main>
 
-      <section className="w-full px-8 py-16 bg-gradient-to-br from-gray-900 to-black text-center text-white">
+      <section
+        className="w-full px-8 py-16 bg-gradient-to-br from-gray-900 to-black text-center text-white"
+        style={{ width: "100vw !important", marginLeft: "calc(-50vw + 50%)", marginRight: "calc(-50vw + 50%)" }}
+      >
         <motion.h2
           className="text-5xl font-extrabold mb-6"
           initial={{ opacity: 0, y: -50 }}
@@ -510,8 +513,8 @@ export default function Home() {
             <thead>
               <tr className="bg-gray-700 text-white">
                 <th className="p-4">Feature</th>
-                <th className="p-4">Lionheart Tech ✅</th>
-                <th className="p-4">Competitors ❌</th>
+                <th className="p-4 text-center">Lionheart Tech ✅</th>
+                <th className="p-4 text-center">Competitors ❌</th>
               </tr>
             </thead>
             <tbody>
@@ -523,8 +526,8 @@ export default function Home() {
               ].map((row, index) => (
                 <tr key={index} className={`${index % 2 === 0 ? "bg-gray-800" : "bg-gray-700"} border-t border-gray-600`}>
                   <td className="p-4">{row[0]}</td>
-                  <td className="p-4"><FaCheckCircle className="text-green-400 text-2xl" /></td>
-                  <td className="p-4"><FaTimesCircle className="text-red-400 text-2xl" /></td>
+                  <td className="p-4 text-center"><FaCheckCircle className="text-green-400 text-2xl mx-auto" /></td>
+                  <td className="p-4 text-center"><FaTimesCircle className="text-red-400 text-2xl mx-auto" /></td>
                 </tr>
               ))}
             </tbody>
@@ -551,7 +554,7 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="w-full py-4 bg-gray-800 text-white flex justify-center items-center">
+      <footer className="footer">
         &copy; {new Date().getFullYear()} Lionheart Tech
       </footer>
     </div>
