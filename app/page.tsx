@@ -361,7 +361,7 @@ export default function Home() {
             whileTap={{ scale: 0.9, y: -100, opacity: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <h3 className="text-4xl font-extrabold text-white tracking-wider neon-glow">READY TO LAUNCH? <img
+            <h3 className="text-4xl font-extrabold text-white tracking-wider neon-glow">READY TO LAUNCH?! <img
               src="/images/34.png"  // Path to your 3D rocket image
               alt="3D Rocket"
               className="inline-block w-24 h-24 transform rotate-12"  // You can adjust the size and rotation
