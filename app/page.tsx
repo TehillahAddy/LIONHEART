@@ -366,7 +366,7 @@ export default function Home() {
               alt="3D Rocket"
               className="inline-block w-24 h-24 transform rotate-12"  // You can adjust the size and rotation
             /></h3>
-            <p className="text-lg text-gray-400 mt-2">Let's build beyond limits.</p>
+            <p className="text-lg text-gray-400 mt-2">Let's build beyond limits!!</p>
             <Link href="/about" legacyBehavior>
               <a className="mt-6 inline-block bg-green-500 text-white px-6 py-3 rounded-lg hover:scale-110 transition rocket-hover">
                 Get in Touch →
