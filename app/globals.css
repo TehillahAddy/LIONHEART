@@ -63,15 +63,19 @@ body {
   left: 0;
   width: 100%;
   height: 100vh;
-  background-size: 110%;
-  /* Slightly zoomed to minimize edge visibility */
-  background-color: #000;
-  background-image: url('/images/b6.png');
-  background-attachment: fixed;
-  /* Stabilizes background */
-  animation: moveBackground 30s linear infinite;
-  /* Longer duration for smoothness */
-  overflow-x: hidden;
+  overflow: hidden; /* Prevents overflow from the video */
+}
+
+.background-video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100%; /* Ensures the video covers the container */
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  transform: translate(-50%, -50%); /* Centers the video */
+  z-index: -1; /* Puts the video behind other content */
 }
 
 .footer {

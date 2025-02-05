@@ -187,7 +187,11 @@ export default function Home() {
 
   return (
     <div className="homepage">
-      <div className="background-container"> </div>
+      <div className="background-container">
+        <video autoPlay loop muted className="absolute w-full h-full object-cover ">
+          <source src="/images/CV.mp4" type="video/mp4" />
+        </video>
+      </div>
       <header className="mobile-header">
         <div className="header-container">
           {/* Logo */}
@@ -299,12 +303,11 @@ export default function Home() {
       {/* Main Content */}
       <main className="flex flex-col items-center flex-1 justify-center gap-8 py-12 main" >
 
-
         <section className="relative w-full px-8 py-16 bg-black text-white text-center overflow-hidden">
           {/* GALACTIC BACKGROUND ANIMATION */}
           <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
             <video autoPlay loop muted className="absolute w-full h-full object-cover opacity-20">
-              <source src="/videos/galaxy-warp.mp4" type="video/mp4" />
+            <source src="/path/to/your/video.mp4"  type="video/mp4" />
             </video>
           </div>
 
@@ -358,7 +361,11 @@ export default function Home() {
             whileTap={{ scale: 0.9, y: -100, opacity: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <h3 className="text-4xl font-extrabold text-white tracking-wider neon-glow">READY TO LAUNCH? 🚀</h3>
+            <h3 className="text-4xl font-extrabold text-white tracking-wider neon-glow">READY TO LAUNCH? <img
+              src="/images/d3.png"  // Path to your 3D rocket image
+              alt="3D Rocket"
+              className="inline-block w-24 h-24 transform rotate-12"  // You can adjust the size and rotation
+            /></h3>
             <p className="text-lg text-gray-400 mt-2">Let's build beyond limits.</p>
             <Link href="/about" legacyBehavior>
               <a className="mt-6 inline-block bg-green-500 text-white px-6 py-3 rounded-lg hover:scale-110 transition rocket-hover">
