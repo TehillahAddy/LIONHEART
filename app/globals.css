@@ -28,7 +28,7 @@ body {
   flex-direction: column;
   align-items: center;
   padding: 2rem 5rem;
-  background-color: white;
+  background-color: black;
   overflow-x: hidden;
 
   /* Adjust this if you want a different background color */
@@ -619,12 +619,12 @@ h1 .highlight:nth-of-type(1)::after {
 
 
 .main {
-  margin-top: 210px;
+  margin-top: 280px;
 }
 
 .galaxy {
   width: 95rem;
-  position: relative;
+  position: relative; /* Keep as relative */
   padding-left: 2rem; /* 32px */
   padding-right: 2rem; /* 32px */
   padding-top: 4rem; /* 64px */
@@ -633,8 +633,8 @@ h1 .highlight:nth-of-type(1)::after {
   color: white;
   text-align: center;
   overflow: hidden;
+  z-index: 1; /* Ensure it has a lower stacking context than the sticky header */
 }
-
 /* Media query for smaller screens */
 @media (max-width: 768px) {
   .galaxy {
