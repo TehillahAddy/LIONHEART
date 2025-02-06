@@ -30,8 +30,7 @@ body {
   padding: 2rem 5rem;
   background-color: black;
   overflow-x: hidden;
-
-  /* Adjust this if you want a different background color */
+  width: 100%;
 }
 
 @media (min-width: 768px) {
@@ -106,7 +105,7 @@ body {
 }
 
 .footer {
-  width: 100rem;
+  width: 100%; /* Changed from 100rem to 100% */
   padding-top: 1rem;
   padding-bottom: 1rem;
   background-color: #2d3748; /* Corresponds to bg-gray-800 */

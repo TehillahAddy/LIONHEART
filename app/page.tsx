@@ -185,6 +185,8 @@ export default function Home() {
   }, []);
 
 
+  
+
   return (
     <div className="homepage">
       <div className="background-container">
@@ -564,9 +566,7 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="footer">
-        &copy; {new Date().getFullYear()} Lionheart Tech
-      </footer>
+      <footer className="w-full py-4 bg-gray-800 text-white flex justify-center items-center"> &copy; {new Date().getFullYear()} Lionheart Tech </footer>
     </div>
   );
 }
