@@ -8,12 +8,21 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sora: ["Sora", "sans-serif"],
+      },
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
     },
   },
+
+
+
+
+
+
   plugins: [],
 } satisfies Config;
 

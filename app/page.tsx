@@ -16,6 +16,8 @@ import {
 } from "lucide-react";
 import { FaCheckCircle, FaTimesCircle, FaBolt, FaClock, FaAward } from "react-icons/fa";
 import { FaFacebookF, FaTwitter, FaLinkedinIn, FaInstagram } from "react-icons/fa";
+import { FaXTwitter, FaLinkedin } from "react-icons/fa6";
+import "@fontsource/sora";
 
 
 
@@ -24,6 +26,31 @@ export default function Home() {
   const [isHiding, setIsHiding] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [offset, setOffset] = useState(0);
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const [showButton, setShowButton] = useState(false);
+
+  useEffect(() => {
+    const updateScrollProgress = () => {
+      const scrollTop = window.scrollY;
+      const windowHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = (scrollTop / windowHeight) * 100;
+      setScrollProgress(progress);
+
+      // Show button only when scrolling down OR up, hide at the top
+      setShowButton(scrollTop > 100);
+    };
+
+    window.addEventListener("scroll", updateScrollProgress);
+    return () => window.removeEventListener("scroll", updateScrollProgress);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+
+    // Hide button immediately after clicking
+    setTimeout(() => setShowButton(false), 500);
+  };
+
 
   const services = [
     {
@@ -300,160 +327,160 @@ export default function Home() {
           />
         </div>
       </div>
-      
-        <section className="galaxy" >
-          {/* GALACTIC BACKGROUND ANIMATION */}
-          <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
-            <video autoPlay loop muted className="absolute w-full h-full object-cover opacity-20">
-              <source src="/path/to/your/video.mp4" type="video/mp4" />
-            </video>
-          </div>
 
-          {/* LIGHT TRAILS ANIMATION */}
-          <div className="absolute inset-0 pointer-events-none">
-            <div className="absolute top-10 left-10 w-32 h-32 bg-blue-400 blur-3xl opacity-50 animate-pulse"></div>
-            <div className="absolute bottom-20 right-20 w-24 h-24 bg-purple-500 blur-2xl opacity-60 animate-spin"></div>
-          </div>
+      <section className="galaxy" >
+        {/* GALACTIC BACKGROUND ANIMATION */}
+        <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
+          <video autoPlay loop muted className="absolute w-full h-full object-cover opacity-20">
+            <source src="/path/to/your/video.mp4" type="video/mp4" />
+          </video>
+        </div>
 
-          <motion.h2
-            className="text-6xl font-extrabold mb-6 tracking-wide glitch-text"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1, textShadow: "0px 0px 20px cyan" }}
-            transition={{ duration: 1 }}
-          >
+        {/* LIGHT TRAILS ANIMATION */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-10 left-10 w-32 h-32 bg-blue-400 blur-3xl opacity-50 animate-pulse"></div>
+          <div className="absolute bottom-20 right-20 w-24 h-24 bg-purple-500 blur-2xl opacity-60 animate-spin"></div>
+        </div>
+
+        <motion.h2
+          className="text-6xl font-extrabold mb-6 tracking-wide glitch-text"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1, textShadow: "0px 0px 20px cyan" }}
+          transition={{ duration: 1 }}
+        >
+          <img
+            src="/images/d3.png"
+            alt="3D Rocket"
+            className="inline-block w-24 h-24 rotate"
+          />
+          WELCOME TO THE FUTURE
+        </motion.h2>
+
+        <p className="text-lg text-gray-300 mb-12">We build experiences beyond your imagination!!</p>
+
+        {/* HIGH-TECH PROJECT SHOWCASE */}
+        <div className="relative grid grid-cols-1 md:grid-cols-3 gap-10 z-10">
+          {projectss.map((project, index) => (
+            <motion.div
+              key={index}
+              className="relative bg-gray-900 p-6 rounded-xl shadow-xl transform hover:scale-110 transition duration-500 hover:shadow-neon"
+              whileHover={{ scale: 1.15, rotate: 2 }}
+            >
+              {/* HOLOGRAPHIC FLOATING CARD */}
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-500 to-purple-600 opacity-40 blur-lg -z-10"></div>
+
+              <div className="flex justify-center">
+                <Image src={project.image} alt={project.company} width={100} height={50} className="rounded-lg" />
+              </div>
+
+              <h3 className="text-3xl font-extrabold text-white mb-4 neon-glow">{project.company}</h3>
+              <p className="text-white-400 font-medium">{project.service}</p>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* 🚀 ROCKET-LAUNCH CTA BUTTON */}
+        <motion.div
+          className="mt-16 relative inline-block"
+          whileHover={{ y: -10, boxShadow: "0px 0px 20px lime" }}
+          whileTap={{ scale: 0.9, y: -100, opacity: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          <h3 className="text-4xl font-extrabold text-white tracking-wider neon-glow">
+            READY TO LAUNCH?!
             <img
-              src="/images/d3.png"
+              src="/images/34.png"  // Path to your 3D rocket image
               alt="3D Rocket"
-              className="inline-block w-24 h-24 rotate"
+              className="inline-block w-24 h-24 transform rotate-12 rocket-animation"
             />
-            WELCOME TO THE FUTURE
-          </motion.h2>
+          </h3>
+          <p className="text-lg text-gray-400 mt-2">Let's build beyond limits!!</p>
+          <Link href="/about" legacyBehavior>
+            <a className="mt-6 inline-block bg-green-500 text-white px-6 py-3 rounded-lg hover:scale-110 transition rocket-hover">
+              Get in Touch →
+            </a>
+          </Link>
+        </motion.div>
+      </section>
 
-          <p className="text-lg text-gray-300 mb-12">We build experiences beyond your imagination!!</p>
+      <section className="w-full px-4 py-10 bg-gradient-to-b from-[white] to-[white] relative overflow-hidden">
+        {/* Animated Title */}
+        <motion.h2
+          className="text-3xl font-bold text-center mb-10 text-gray-900 relative z-10"
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1 }}
+          viewport={{ once: true }}
+        >
+          Our Services
+        </motion.h2>
 
-          {/* HIGH-TECH PROJECT SHOWCASE */}
-          <div className="relative grid grid-cols-1 md:grid-cols-3 gap-10 z-10">
-            {projectss.map((project, index) => (
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 relative z-10">
+          {services.map((service, index) => (
+            <motion.div
+              key={index}
+              className="p-6 bg-white rounded-xl shadow-md transition duration-300 relative overflow-hidden group"
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6, delay: index * 0.2 }}
+              viewport={{ once: true }}
+              whileHover={{
+                scale: 1.05,
+                rotate: [0, 1, -1, 0], // Light wiggle effect
+                transition: { duration: 0.3 },
+              }}
+            >
+              {/* Glowing effect on hover */}
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent to-blue-100 opacity-0 group-hover:opacity-30 transition duration-500"></div>
+
+              {/* Animated Icon */}
               <motion.div
-                key={index}
-                className="relative bg-gray-900 p-6 rounded-xl shadow-xl transform hover:scale-110 transition duration-500 hover:shadow-neon"
-                whileHover={{ scale: 1.15, rotate: 2 }}
+                className="mb-4 flex justify-center"
+                animate={{ y: [0, -5, 0] }}
+                transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
               >
-                {/* HOLOGRAPHIC FLOATING CARD */}
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-500 to-purple-600 opacity-40 blur-lg -z-10"></div>
-
-                <div className="flex justify-center">
-                  <Image src={project.image} alt={project.company} width={100} height={50} className="rounded-lg" />
-                </div>
-
-                <h3 className="text-3xl font-extrabold text-white mb-4 neon-glow">{project.company}</h3>
-                <p className="text-white-400 font-medium">{project.service}</p>
+                {service.icon}
               </motion.div>
-            ))}
-          </div>
 
-          {/* 🚀 ROCKET-LAUNCH CTA BUTTON */}
-          <motion.div
-            className="mt-16 relative inline-block"
-            whileHover={{ y: -10, boxShadow: "0px 0px 20px lime" }}
-            whileTap={{ scale: 0.9, y: -100, opacity: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <h3 className="text-4xl font-extrabold text-white tracking-wider neon-glow">
-              READY TO LAUNCH?!
-              <img
-                src="/images/34.png"  // Path to your 3D rocket image
-                alt="3D Rocket"
-                className="inline-block w-24 h-24 transform rotate-12 rocket-animation"
-              />
-            </h3>
-            <p className="text-lg text-gray-400 mt-2">Let's build beyond limits!!</p>
-            <Link href="/about" legacyBehavior>
-              <a className="mt-6 inline-block bg-green-500 text-white px-6 py-3 rounded-lg hover:scale-110 transition rocket-hover">
-                Get in Touch →
-              </a>
-            </Link>
-          </motion.div>
-        </section>
-
-        <section className="w-full px-4 py-10 bg-gradient-to-b from-[white] to-[white] relative overflow-hidden">
-          {/* Animated Title */}
-          <motion.h2
-            className="text-3xl font-bold text-center mb-10 text-gray-900 relative z-10"
-            initial={{ opacity: 0, y: -20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1 }}
-            viewport={{ once: true }}
-          >
-            Our Services
-          </motion.h2>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 relative z-10">
-            {services.map((service, index) => (
-              <motion.div
-                key={index}
-                className="p-6 bg-white rounded-xl shadow-md transition duration-300 relative overflow-hidden group"
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.6, delay: index * 0.2 }}
+              {/* Service Title */}
+              <motion.h3
+                className="text-xl font-semibold text-gray-800 mb-3 text-center"
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.3 }}
                 viewport={{ once: true }}
-                whileHover={{
-                  scale: 1.05,
-                  rotate: [0, 1, -1, 0], // Light wiggle effect
-                  transition: { duration: 0.3 },
-                }}
               >
-                {/* Glowing effect on hover */}
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent to-blue-100 opacity-0 group-hover:opacity-30 transition duration-500"></div>
+                {service.title}
+              </motion.h3>
 
-                {/* Animated Icon */}
-                <motion.div
-                  className="mb-4 flex justify-center"
-                  animate={{ y: [0, -5, 0] }}
-                  transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
+              {/* Service Description */}
+              <motion.p
+                className="text-gray-600 mb-4 text-center text-sm"
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.3 }}
+                viewport={{ once: true }}
+              >
+                {service.description}
+              </motion.p>
+
+              {/* Animated Button */}
+              <div className="text-center">
+                <motion.a
+                  href={service.link}
+                  className="text-blue-600 font-medium hover:underline text-sm inline-block"
+                  whileHover={{ scale: 1.1 }}
+                  transition={{ type: "spring", stiffness: 300 }}
                 >
-                  {service.icon}
-                </motion.div>
+                  Learn more &rarr;
+                </motion.a>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </section>
 
-                {/* Service Title */}
-                <motion.h3
-                  className="text-xl font-semibold text-gray-800 mb-3 text-center"
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.3 }}
-                  viewport={{ once: true }}
-                >
-                  {service.title}
-                </motion.h3>
 
-                {/* Service Description */}
-                <motion.p
-                  className="text-gray-600 mb-4 text-center text-sm"
-                  initial={{ opacity: 0, x: 20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.3 }}
-                  viewport={{ once: true }}
-                >
-                  {service.description}
-                </motion.p>
-
-                {/* Animated Button */}
-                <div className="text-center">
-                  <motion.a
-                    href={service.link}
-                    className="text-blue-600 font-medium hover:underline text-sm inline-block"
-                    whileHover={{ scale: 1.1 }}
-                    transition={{ type: "spring", stiffness: 300 }}
-                  >
-                    Learn more &rarr;
-                  </motion.a>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </section>
-
-      
 
       <section
         className="w-full px-8 py-16 bg-gradient-to-br from-gray-900 to-black text-center text-white"
@@ -550,20 +577,118 @@ export default function Home() {
       </section>
 
       <section className="it-support-section">
-          <div className="image-container" data-aos="fade-right">
-            <Image className="rotate-image" src="/images/ah.png" alt="lIonheart Tech" width={600} height={600} />
+        <div className="image-container" data-aos="fade-right">
+          <Image className="rotate-image" src="/images/ah.png" alt="lIonheart Tech" width={600} height={600} />
+        </div>
+        <div className="content" data-aos="fade-left">
+          <h1>Fast-tracking your I.T. needs with expert support</h1>
+          <p>Opt for the leading digital agency to expand your business</p>
+          <div className="button-container">
+            <button>View More About Us</button>
           </div>
-          <div className="content" data-aos="fade-left">
-            <h1>Fast-tracking your I.T. needs with expert support</h1>
-            <p>Opt for the leading digital agency to expand your business</p>
-            <div className="button-container">
-              <button>View More About Us</button>
-            </div>
-          </div>
-        </section>
-    
+        </div>
+      </section>
 
-      <footer className=" w-full  py-4 bg-gray-800 text-white flex justify-center items-center"> &copy; {new Date().getFullYear()} Lionheart Tech </footer>
+      <footer className="bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-black py-12 px-6 md:px-16 lg:px-24 border-t border-gray-200 dark:border-gray-800 font-sora text-center md:text-left transition-colors duration-300">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between">
+          {/* Left Section */}
+          <div className="mb-8 md:mb-0 text-center md:text-left">
+            <h2 className="text-2xl font-bold text-black hover:text-blue-600 transition-all duration-300">
+              LIONHEART TECH<span className="text-blue-600">.</span>
+            </h2>
+            <p className="text-gray-600 mt-2">Empowering businesses with cutting-edge technology.</p>
+            <p className="text-gray-600 mt-1">Accra, GH</p>
+            {/* Certifications */}
+            <div className="flex justify-center md:justify-start gap-3 mt-4">
+              <img src="/images/logs.png" alt="Certifications" className="w-24 h-24 " />
+            </div>
+            <p className="text-gray-500 text-sm mt-2">&copy; {new Date().getFullYear()} Lionheart Tech. All rights reserved.</p>
+          </div>
+
+          {/* Links Section */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-gray-700">
+            {[
+              { title: "Solutions", links: ["AI Solutions", "Cybersecurity", "Cloud Services", "Enterprise IT"], paths: ["/ai-solutions", "/cybersecurity", "/cloud-services", "/enterprise-it"] },
+              { title: "Resources", links: ["Blog", "Case Studies", "Whitepapers", "Webinars"], paths: ["/blog", "/case-studies", "/whitepapers", "/webinars"] },
+              { title: "Company", links: ["About Us", "Careers", "Contact", "Partnerships"], paths: ["/about", "/careers", "/contact", "/partnerships"] },
+              { title: "Legal", links: ["Privacy Policy", "Terms of Service", "Cookie Policy", "Security"], paths: ["/privacy-policy", "/terms-of-service", "/cookie-policy", "/security"] }
+            ].map((section, index) => (
+              <div key={index}>
+                <h3 className="font-semibold text-black">{section.title}</h3>
+                <ul className="mt-2 space-y-2">
+                  {section.links.map((link, idx) => (
+                    <li key={idx}>
+                      <Link href={section.paths[idx]} className="relative hover:text-blue-600 transition group">
+                        {link}
+                        <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+
+          {/* Social Icons */}
+          <div className="flex flex-col md:flex-row items-center gap-3 mt-6 md:mt-0">
+            {[{ icon: FaXTwitter, href: "https://twitter.com/LionheartTech" },
+            { icon: FaLinkedin, href: "https://linkedin.com/company/lionheart-tech" },
+            { icon: FaInstagram, href: "https://instagram.com/lionheart.tech" }].map(({ icon: Icon, href }, index) => (
+              <Link key={index} href={href} target="_blank" className="bg-blue-500 text-white w-10 h-10 flex items-center justify-center rounded-full hover:bg-blue-700 hover:scale-110 transition-all duration-300">
+                <Icon size={20} />
+              </Link>
+            ))}
+          </div>
+        </div>
+
+        {/* Newsletter Subscription */}
+        <div className="mt-8 text-center relative w-full max-w-md mx-auto">
+          <h3 className="font-semibold text-black mb-2">Stay Updated</h3>
+          <div className="relative w-full max-w-md">
+            <input
+              type="email"
+              placeholder="Enter your email"
+              className="p-4 border border-gray-300 rounded-full w-full focus:outline-none focus:ring-2 focus:ring-blue-500 pr-36 text-gray-700"
+            />
+            <button
+              type="submit"
+              className="absolute right-1 top-1 bottom-1 px-6 text-white font-semibold rounded-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 transition-all"
+            >
+              Subscribe
+            </button>
+          </div>
+
+        </div>
+
+        <button
+          onClick={scrollToTop}
+          className={`fixed bottom-5 right-5 p-3 rounded-full shadow-lg transition-all z-50 
+        ${showButton ? "opacity-100" : "opacity-0 pointer-events-none"}
+        bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700
+      `}
+        >
+          {/* Circular Progress Ring */}
+          <svg width="50" height="50" viewBox="0 0 100 100" className="rotate-[-90deg]">
+            <circle cx="50" cy="50" r="40" stroke="#ddd" strokeWidth="8" fill="none" />
+            <circle
+              cx="50"
+              cy="50"
+              r="40"
+              stroke="white"
+              strokeWidth="8"
+              fill="none"
+              strokeDasharray="251.2"
+              strokeDashoffset={`${251.2 - (scrollProgress / 100) * 251.2}`}
+              strokeLinecap="round"
+            />
+          </svg>
+
+          {/* Up Arrow */}
+          <span className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white font-bold text-lg">
+            ↑
+          </span>
+        </button>
+      </footer>
     </div>
 
 
