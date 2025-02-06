@@ -15,6 +15,7 @@ import {
   Monitor, PenTool, Server, TrendingUp, Smartphone, Search, ClipboardList, ShieldCheck, FileText
 } from "lucide-react";
 import { FaCheckCircle, FaTimesCircle, FaBolt, FaClock, FaAward } from "react-icons/fa";
+import { FaFacebookF, FaTwitter, FaLinkedinIn, FaInstagram } from "react-icons/fa";
 
 
 
@@ -185,126 +186,121 @@ export default function Home() {
   }, []);
 
 
-  
-
   return (
-    <div className="homepage">
-      <div className="background-container">
-        <video autoPlay loop muted className="absolute w-full h-full object-cover ">
-          <source src="/images/CV.mp4" type="video/mp4" />
-        </video>
-      </div>
-      <header className="mobile-header">
-        <div className="header-container">
-          {/* Logo */}
-          <Image src={Logs} alt="Lionheart Tech Logo" width={90} height={90} />
-
-          {/* Hamburger Icon */}
-          <div className="hamburger-icon" onClick={() => setMenuOpen(!menuOpen)}>
-            {menuOpen ? (
-              null
-            ) : (
-              <Bars3Icon className="h-8 w-8 text-[black] transition-transform duration-600 rotate-0" />
-            )}
-          </div>
+    <div className="bg-gray-100 min-h-screen lp">
+      <div className="homepage">
+        <div className="background-container">
+          <video autoPlay loop muted className="absolute w-full h-full object-cover ">
+            <source src="/images/CV.mp4" type="video/mp4" />
+          </video>
         </div>
+        <header className="mobile-header">
+          <div className="header-container">
+            {/* Logo */}
+            <Image src={Logs} alt="Lionheart Tech Logo" width={90} height={90} />
 
-        {showStickyHeader && (
-          <header className="sticky-header">
-            <div className="header-container">
-              <Image src={Logs} alt="Lionheart Tech Logo" width={80} height={80} />
-              <div className="hamburger-icon" onClick={() => setMenuOpen(!menuOpen)}>
-                <Bars3Icon className="h-8 w-8 text-[black]" />
-              </div>
+            {/* Hamburger Icon */}
+            <div className="hamburger-icon" onClick={() => setMenuOpen(!menuOpen)}>
+              {menuOpen ? (
+                null
+              ) : (
+                <Bars3Icon className="h-8 w-8 text-[black] transition-transform duration-600 rotate-0" />
+              )}
             </div>
-          </header>
-        )}
-
-        {/* Mobile Menu */}
-        <nav className={`mobile-menu ${menuOpen ? "open" : ""}`}>
-          <div className="close-icon" onClick={() => setMenuOpen(false)}>
-            <XMarkIcon className="h-8 w-8 text-[black] transition-transform duration-600 rotate-90" />
           </div>
-          <div className="search-bar">
-            <input type="text" placeholder="Search..." />
-            <button>
-              <FaStar style={{ fontSize: "24px", color: "blue" }} />
-            </button>
-          </div>
-          <ul>
-            <li>
-              <Link href="/" onClick={() => setMenuOpen(false)}>Home</Link>
-            </li>
-            <li>
-              <Link href="/about" onClick={() => setMenuOpen(false)}>About</Link>
-            </li>
-            <li>
-              <Link href="/services" onClick={() => setMenuOpen(false)}>Services</Link>
-            </li>
-            <li>
-              <Link href="/contact" onClick={() => setMenuOpen(false)}>Contact</Link>
-            </li>
-          </ul>
-        </nav>
 
-      </header>
+          {showStickyHeader && (
+            <header className="sticky-header">
+              <div className="header-container">
+                <Image src={Logs} alt="Lionheart Tech Logo" width={80} height={80} />
+                <div className="hamburger-icon" onClick={() => setMenuOpen(!menuOpen)}>
+                  <Bars3Icon className="h-8 w-8 text-[black]" />
+                </div>
+              </div>
+            </header>
+          )}
 
-      <header
-        className={`flex justify-between items-center ${isSticky ? (isHiding ? "header-sticky hide" : "header-sticky") : "header-custom"
-          }`}
-        style={{ height: "80px" }} // Constrain the header height
-      >
-        {/* Logo */}
-        <Image
-          src={Logs}
-          alt="Lionheart Tech Logo"
-          width={100}
-          height={100}
-          className="logo-image"
-        />
+          {/* Mobile Menu */}
+          <nav className={`mobile-menu ${menuOpen ? "open" : ""}`}>
+            <div className="close-icon" onClick={() => setMenuOpen(false)}>
+              <XMarkIcon className="h-8 w-8 text-[black] transition-transform duration-600 rotate-90" />
+            </div>
+            <div className="search-bar">
+              <input type="text" placeholder="Search..." />
+              <button>
+                <FaStar style={{ fontSize: "24px", color: "blue" }} />
+              </button>
+            </div>
+            <ul>
+              <li>
+                <Link href="/" onClick={() => setMenuOpen(false)}>Home</Link>
+              </li>
+              <li>
+                <Link href="/about" onClick={() => setMenuOpen(false)}>About</Link>
+              </li>
+              <li>
+                <Link href="/services" onClick={() => setMenuOpen(false)}>Services</Link>
+              </li>
+              <li>
+                <Link href="/contact" onClick={() => setMenuOpen(false)}>Contact</Link>
+              </li>
+            </ul>
+          </nav>
 
-        {/* Desktop Navigation */}
-        <nav className="desktop-menu flex gap-6">
-          <Link href="/" className="hover">Home</Link>
-          <Link href="/about" className="hover">About</Link>
-          <Link href="/services" className="hover">Services</Link>
-          <Link href="/contact" className="hover">Contact</Link>
-        </nav>
+        </header>
 
-        {/* Call-to-Action Button */}
-        <button className="custom-button">Get in Touch</button>
+        <header
+          className={`flex justify-between items-center ${isSticky ? (isHiding ? "header-sticky hide" : "header-sticky") : "header-custom"
+            }`}
+          style={{ height: "80px" }} // Constrain the header height
+        >
+          {/* Logo */}
+          <Image
+            src={Logs}
+            alt="Lionheart Tech Logo"
+            width={100}
+            height={100}
+            className="logo-image"
+          />
 
-      </header>
+          {/* Desktop Navigation */}
+          <nav className="desktop-menu flex gap-6">
+            <Link href="/" className="hover">Home</Link>
+            <Link href="/about" className="hover">About</Link>
+            <Link href="/services" className="hover">Services</Link>
+            <Link href="/contact" className="hover">Contact</Link>
+          </nav>
+
+          {/* Call-to-Action Button */}
+          <button className="custom-button">Get in Touch</button>
+
+        </header>
 
 
-      <section className="hero-section">
-        <div className="welcome-badge">Welcome To</div>
-        <h1>
-          <span className="highlight">LionHeart</span> <br />
-          <span className="highlight">Tech</span>
-        </h1>
-      </section>
-      <p className="description">
-        {displayedText}
-        <span className="cursor"></span>
-      </p>
+        <section className="hero-section">
+          <div className="welcome-badge">Welcome To</div>
+          <h1>
+            <span className="highlight">LionHeart</span> <br />
+            <span className="highlight">Tech</span>
+          </h1>
+        </section>
+        <p className="description">
+          {displayedText}
+          <span className="cursor"></span>
+        </p>
 
 
-      <div className="image-content" data-aos="fade-left">
-        <Image
-          src={Logos}
-          alt="Lionheart Tech Logo"
-          width={500}
-          height={100}
-          className="imag-content"
-        />
+        <div className="image-content" data-aos="fade-left">
+          <Image
+            src={Logos}
+            alt="Lionheart Tech Logo"
+            width={500}
+            height={100}
+            className="imag-content"
+          />
+        </div>
       </div>
-
-
-
-      {/* Main Content */}
-      <main className="flex flex-col items-center flex-1 justify-center gap-8 py-12 main" >
-
+      
         <section className="galaxy" >
           {/* GALACTIC BACKGROUND ANIMATION */}
           <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
@@ -326,10 +322,10 @@ export default function Home() {
             transition={{ duration: 1 }}
           >
             <img
-              src="/images/d3.png"  
-            alt="3D Rocket"
-            className="inline-block w-24 h-24 rotate" 
-/>
+              src="/images/d3.png"
+              alt="3D Rocket"
+              className="inline-block w-24 h-24 rotate"
+            />
             WELCOME TO THE FUTURE
           </motion.h2>
 
@@ -457,19 +453,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="it-support-section">
-          <div className="image-container" data-aos="fade-right">
-            <Image className="rotate-image" src="/images/ah.png" alt="lIonheart Tech" width={600} height={600} />
-          </div>
-          <div className="content" data-aos="fade-left">
-            <h1>Fast-tracking your I.T. needs with expert support</h1>
-            <p>Opt for the leading digital agency to expand your business</p>
-            <div className="button-container">
-              <button>View More About Us</button>
-            </div>
-          </div>
-        </section>
-      </main>
+      
 
       <section
         className="w-full px-8 py-16 bg-gradient-to-br from-gray-900 to-black text-center text-white"
@@ -565,8 +549,23 @@ export default function Home() {
         </motion.div>
       </section>
 
-      {/* Footer */}
-      <footer className="w-full py-4 bg-gray-800 text-white flex justify-center items-center"> &copy; {new Date().getFullYear()} Lionheart Tech </footer>
+      <section className="it-support-section">
+          <div className="image-container" data-aos="fade-right">
+            <Image className="rotate-image" src="/images/ah.png" alt="lIonheart Tech" width={600} height={600} />
+          </div>
+          <div className="content" data-aos="fade-left">
+            <h1>Fast-tracking your I.T. needs with expert support</h1>
+            <p>Opt for the leading digital agency to expand your business</p>
+            <div className="button-container">
+              <button>View More About Us</button>
+            </div>
+          </div>
+        </section>
+    
+
+      <footer className=" w-full  py-4 bg-gray-800 text-white flex justify-center items-center"> &copy; {new Date().getFullYear()} Lionheart Tech </footer>
     </div>
+
+
   );
 }

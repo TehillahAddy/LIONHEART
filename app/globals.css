@@ -2,36 +2,24 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
 
 body {
-  color: var(--foreground);
-  background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
   overflow-x: hidden;
+  font-family: 'Roboto', sans-serif;
 }
 
 
 .homepage {
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 2rem 5rem;
-  background-color: black;
   overflow-x: hidden;
   width: 100%;
+  min-height: 100vh; /* Ensures the page covers the full viewport height */
 }
+
 
 @media (min-width: 768px) {
   .homepage {
@@ -104,16 +92,7 @@ body {
   z-index: -1; /* Puts the video behind other content */
 }
 
-.footer {
-  width: 100%; /* Changed from 100rem to 100% */
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-  background-color: #2d3748; /* Corresponds to bg-gray-800 */
-  color: #ffffff; /* Corresponds to text-white */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+
 
 
 /* Constrain the header's height */
@@ -272,6 +251,10 @@ body {
 /* Hide navigation links on smaller screens */
 @media (max-width: 768px),
 (max-width: 768px) {
+
+.lp {
+  overflow-x: hidden;
+}
 
   .header-custom,
   .header-sticky {
@@ -619,6 +602,7 @@ h1 .highlight:nth-of-type(1)::after {
 
 .main {
   margin-top: 280px;
+  overflow-x: hidden;
 }
 
 .galaxy {
@@ -892,23 +876,46 @@ h1 .highlight:nth-of-type(1)::after {
 .it-support-section {
   display: flex;
   align-items: center;
+  justify-content: space-between; /* Ensures space between image and text */
+  flex-wrap: nowrap; /* Prevents wrapping */
   padding: 80px;
   background-color: white;
-  flex-wrap: wrap; /* Allows better stacking on small screens */
+  width: 100%;
+  overflow: hidden;
 }
 
-/* Image container styling */
 .image-container {
   flex: 1;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start; /* Align image to the left */
 }
 
-/* Content styling */
 .content {
   flex: 1;
   text-align: left;
   padding-left: 40px;
+}
+
+.rotate-image {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .it-support-section {
+    flex-direction: column; /* Stack content on smaller screens */
+    text-align: center;
+  }
+
+  .image-container {
+    justify-content: center; /* Center image */
+    order: -1; /* Image stays on top */
+  }
+
+  .content {
+    padding-left: 0;
+  }
 }
 
 /* Typography adjustments */
@@ -955,40 +962,10 @@ button:hover {
   animation: rotate 3s linear infinite;
 }
 
-/* Responsive Design for Smaller Screens */
-@media (max-width: 768px) {
-  .it-support-section {
-    flex-direction: column; /* Stack content vertically */
-    padding: 40px; /* Reduce padding */
-    text-align: center;
-  }
-
-  .content {
-    padding-left: 0;
-    padding-top: 20px;
-  }
-
-  .it-support-section h1 {
-    font-size: 2em; /* Reduce heading size */
-  }
-
-  .it-support-section p {
-    font-size: 1.1em; /* Adjust paragraph size */
-  }
-
-  .image-container {
-    order: -1; /* Moves image above text */
-  }
-
-  .rotate-image {
-    width: 90%; /* Make image more visible on small screens */
-    height: auto;
-  }
-}
-
 @media (max-width: 480px) {
   .it-support-section {
     padding: 20px;
+    overflow-x: hidden;
   }
 
   .it-support-section h1 {
@@ -1040,3 +1017,6 @@ button:hover {
 }
 
 
+.footer {
+  width: 150%;
+}
