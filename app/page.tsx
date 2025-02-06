@@ -217,7 +217,7 @@ export default function Home() {
     <div className="bg-gray-100 min-h-screen lp">
       <div className="homepage">
         <div className="background-container">
-          <video autoPlay loop muted className="absolute w-full h-full object-cover ">
+          <video autoPlay loop muted playsInline className="absolute w-full h-full object-cover">
             <source src="/images/CV.mp4" type="video/mp4" />
           </video>
         </div>
@@ -602,7 +602,6 @@ export default function Home() {
             <div className="flex justify-center md:justify-start gap-3 mt-4">
               <img src="/images/logs.png" alt="Certifications" className="w-24 h-24 " />
             </div>
-            <p className="text-gray-500 text-sm mt-2">&copy; {new Date().getFullYear()} Lionheart Tech. All rights reserved.</p>
           </div>
 
           {/* Links Section */}
@@ -630,16 +629,26 @@ export default function Home() {
           </div>
 
           {/* Social Icons */}
-          <div className="flex flex-col md:flex-row items-center gap-3 mt-6 md:mt-0">
-            {[{ icon: FaXTwitter, href: "https://twitter.com/LionheartTech" },
-            { icon: FaLinkedin, href: "https://linkedin.com/company/lionheart-tech" },
-            { icon: FaInstagram, href: "https://instagram.com/lionheart.tech" }].map(({ icon: Icon, href }, index) => (
-              <Link key={index} href={href} target="_blank" className="bg-blue-500 text-white w-10 h-10 flex items-center justify-center rounded-full hover:bg-blue-700 hover:scale-110 transition-all duration-300">
+          <div className="flex flex-row md:flex-col items-center md:items-start justify-center md:justify-start gap-3 mt-6 md:mt-0">
+            {[
+              { icon: FaXTwitter, href: "https://twitter.com/LionheartTech" },
+              { icon: FaLinkedin, href: "https://linkedin.com/company/lionheart-tech" },
+              { icon: FaInstagram, href: "https://instagram.com/lionheart.tech" }
+            ].map(({ icon: Icon, href }, index) => (
+              <Link
+                key={index}
+                href={href}
+                target="_blank"
+                className="bg-blue-500 text-white w-10 h-10 flex items-center justify-center rounded-full 
+                 hover:bg-blue-700 hover:scale-110 transition-all duration-300"
+              >
                 <Icon size={20} />
               </Link>
             ))}
           </div>
         </div>
+
+
 
         {/* Newsletter Subscription */}
         <div className="mt-8 text-center relative w-full max-w-md mx-auto">
@@ -660,6 +669,7 @@ export default function Home() {
 
         </div>
 
+        <p className="text-gray-500 text-sm mt-2">&copy; {new Date().getFullYear()} Lionheart Tech. All rights reserved.</p>
         <button
           onClick={scrollToTop}
           className={`fixed bottom-5 right-5 p-3 rounded-full shadow-lg transition-all z-50 
