@@ -668,6 +668,39 @@ h1 .highlight:nth-of-type(1)::after {
   }
 }
 
+/* MEDIA QUERIES FOR HORIZONTAL MOBILE SCREENS */
+@media (max-width: 900px) and (orientation: landscape) {
+  .hero-section {
+    flex-direction: row; /* Align text and image side by side */
+    justify-content: space-between;
+    padding: 10px;
+  }
+
+  .welcome-badge {
+    font-size: 0.8rem;
+    padding: 0.3rem 0.6rem;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  h1 .highlight {
+    font-size: 3rem;
+  }
+
+  .image-content {
+    width: 40%; /* Adjust image size */
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .image-content img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
 .mobile-header {
   width: 100%;
   padding: 1rem 1rem;
