@@ -253,6 +253,11 @@ body {
 
 .lp {
   overflow-x: hidden;
+  width: 100%; /* Full width */
+  padding-left: 1rem; /* 16px */
+  padding-right: 1rem; /* 16px */
+  padding-top: 2rem; /* 32px */
+  padding-bottom: 2rem; /* 32px */
 }
 
   .header-custom,
@@ -598,10 +603,8 @@ h1 .highlight:nth-of-type(1)::after {
 }
 
 
-.main {
-  margin-top: 280px;
-  overflow-x: hidden;
-}
+
+
 
 .galaxy {
   width: 95rem;
@@ -627,27 +630,6 @@ h1 .highlight:nth-of-type(1)::after {
   }
 }
 
-/* For smaller screens */
-@media (max-width: 768px) {
-  .main {
-    padding-left: -5px;
-    padding-right: -5px;
-  }
-  .section {
-    margin-left: 0;
-    margin-right: 0;
-    padding-left: 40px;
-    padding-right: 40px;
-    width: 100%;
-  }
-  .content {
-    padding: 0 30px;
-  }
-  .grid {
-    grid-template-columns: 1fr;
-    gap: 10px; /* Reduce gap if necessary */
-  }
-}
 
 
 .image-content {
