@@ -253,11 +253,6 @@ body {
 
 .lp {
   overflow-x: hidden;
-  width: 100%; /* Full width */
-  padding-left: 1rem; /* 16px */
-  padding-right: 1rem; /* 16px */
-  padding-top: 2rem; /* 32px */
-  padding-bottom: 2rem; /* 32px */
 }
 
   .header-custom,
@@ -855,47 +850,46 @@ h1 .highlight:nth-of-type(1)::after {
 .it-support-section {
   display: flex;
   align-items: center;
-  justify-content: space-between; /* Ensures space between image and text */
-  flex-wrap: nowrap; /* Prevents wrapping */
-  padding: 80px;
+  justify-content: space-between;
+  flex-wrap: wrap; /* ✅ Allows proper wrapping on smaller screens */
+  padding: 8vw; /* ✅ Adjusts padding dynamically */
   background-color: white;
   width: 100%;
   overflow: hidden;
 }
 
-.image-container {
-  flex: 1;
-  display: flex;
-  justify-content: flex-start; /* Align image to the left */
+
+.image-container,
+.content {
+  flex: 1 1 50%; /* ✅ Ensures proper width handling */
+  min-width: 300px; /* ✅ Prevents elements from shrinking too much */
+ 
 }
 
-.content {
-  flex: 1;
-  text-align: left;
-  padding-left: 40px;
-}
+
 
 .rotate-image {
   max-width: 100%;
   height: auto;
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
   .it-support-section {
-    flex-direction: column; /* Stack content on smaller screens */
+    flex-direction: column; /* ✅ Stack items in small screens */
+    padding: 40px; /* ✅ Adjust padding */
     text-align: center;
   }
 
   .image-container {
-    justify-content: center; /* Center image */
-    order: -1; /* Image stays on top */
+    justify-content: center; /* ✅ Center image */
   }
 
   .content {
-    padding-left: 0;
+    padding-left: 0; /* ✅ Remove left padding */
+    text-align: center; /* ✅ Center text */
   }
 }
+
 
 /* Typography adjustments */
 .it-support-section h1 {
