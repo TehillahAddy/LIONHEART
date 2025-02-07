@@ -481,6 +481,36 @@ export default function Home() {
       </section>
 
 
+      <section className="py-16 bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-black text-gray-900 dark:text-white">
+        <div className="max-w-6xl mx-auto px-6 text-center">
+          <h2 className="text-3xl font-bold mb-6">Choose Your Plan</h2>
+          <p className="text-gray-600 dark:text-gray-400 mb-12">Flexible pricing for businesses of all sizes.</p>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              { name: "Starter", price: "$29", features: ["Basic AI tools", "Standard support", "5 team members"], button: "Get Started" },
+              { name: "Business", price: "$99", features: ["Advanced AI tools", "Priority support", "20 team members"], button: "Upgrade" },
+              { name: "Enterprise", price: "Custom", features: ["AI-powered automation", "Dedicated expert", "Unlimited users"], button: "Contact Us" }
+            ].map((plan, index) => (
+              <div key={index} className="p-8 border border-gray-200 dark:border-gray-800 rounded-xl shadow-lg bg-white dark:bg-gray-800 hover:scale-105 transition-all">
+                <h3 className="text-xl font-semibold">{plan.name}</h3>
+                <p className="text-4xl font-bold my-4">{plan.price}</p>
+                <ul className="text-gray-600 dark:text-gray-400 space-y-2">
+                  {plan.features.map((feature, i) => (
+                    <li key={i} className="flex items-center justify-center gap-2">
+                      ✅ {feature}
+                    </li>
+                  ))}
+                </ul>
+                <button className="mt-6 px-6 py-2 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-full hover:from-blue-600 hover:to-purple-700 transition-all">
+                  {plan.button}
+                </button>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
 
       <section
         className="w-full px-8 py-16 bg-gradient-to-br from-gray-900 to-black text-center text-white"
@@ -590,7 +620,7 @@ export default function Home() {
       </section>
 
       <footer className="w-full bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-black py-12 px-6 md:px-16 lg:px-24 border-t border-gray-200 dark:border-gray-800 font-sora text-center md:text-left transition-colors duration-300">
-      <div className="w-full max-w-7xl mx-auto flex flex-col md:flex-row justify-between">
+        <div className="w-full max-w-7xl mx-auto flex flex-col md:flex-row justify-between">
           {/* Left Section */}
           <div className="mb-8 md:mb-0 text-center md:text-left">
             <h2 className="text-2xl font-bold text-black hover:text-blue-600 transition-all duration-300">
