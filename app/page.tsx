@@ -605,21 +605,19 @@ export default function Home() {
           </motion.a>
         </motion.div>
       </section>
-      <section className="it-support-section bg-white dark:bg-gray-900 transition-colors duration-300">
+
+      <section className="it-support-section">
         <div className="image-container" data-aos="fade-right">
-          <Image className="rotate-image" src="/images/ah.png" alt="Lionheart Tech" width={600} height={600} />
+          <Image className="rotate-image" src="/images/ah.png" alt="lIonheart Tech" width={600} height={600} />
         </div>
         <div className="content" data-aos="fade-left">
-          <h1 className="text-black dark:text-white">Fast-tracking your I.T. needs with expert support</h1>
-          <p className="text-gray-600 dark:text-gray-300">Opt for the leading digital agency to expand your business</p>
+          <h1>Fast-tracking your I.T. needs with expert support</h1>
+          <p>Opt for the leading digital agency to expand your business</p>
           <div className="button-container">
-            <button className="px-6 py-2 rounded-full text-white font-semibold bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 transition-all dark:shadow-lg">
-              View More About Us
-            </button>
+            <button>View More About Us</button>
           </div>
         </div>
       </section>
-
 
       <footer className="w-full bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-black py-12 px-6 md:px-16 lg:px-24 border-t border-gray-200 dark:border-gray-800 font-sora text-center md:text-left transition-colors duration-300">
         <div className="w-full max-w-7xl mx-auto flex flex-col md:flex-row justify-between">
