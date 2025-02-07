@@ -589,8 +589,8 @@ export default function Home() {
         </div>
       </section>
 
-      <footer className="bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-black py-12 px-6 md:px-16 lg:px-24 border-t border-gray-200 dark:border-gray-800 font-sora text-center md:text-left transition-colors duration-300">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between">
+      <footer className="w-full bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-black py-12 px-6 md:px-16 lg:px-24 border-t border-gray-200 dark:border-gray-800 font-sora text-center md:text-left transition-colors duration-300">
+      <div className="w-full max-w-7xl mx-auto flex flex-col md:flex-row justify-between">
           {/* Left Section */}
           <div className="mb-8 md:mb-0 text-center md:text-left">
             <h2 className="text-2xl font-bold text-black hover:text-blue-600 transition-all duration-300">
