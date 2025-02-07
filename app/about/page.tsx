@@ -1,12 +1,39 @@
 "use client";
 
+import {  useState } from "react";
 import Link from "next/link";
 import { FaXTwitter, FaLinkedin, FaInstagram } from "react-icons/fa6";
-import "@fontsource/sora"; 
+import "@fontsource/sora";
 
 
 
 export default function About() {
+
+     const [scrollProgress, setScrollProgress] = useState(0);
+      const [showButton, setShowButton] = useState(false);
+    
+      useEffect(() => {
+        const updateScrollProgress = () => {
+          const scrollTop = window.scrollY;
+          const windowHeight = document.documentElement.scrollHeight - window.innerHeight;
+          const progress = (scrollTop / windowHeight) * 100;
+          setScrollProgress(progress);
+    
+          // Show button only when scrolling down OR up, hide at the top
+          setShowButton(scrollTop > 100);
+        };
+    
+        window.addEventListener("scroll", updateScrollProgress);
+        return () => window.removeEventListener("scroll", updateScrollProgress);
+      }, []);
+    
+      const scrollToTop = () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    
+        // Hide button immediately after clicking
+        setTimeout(() => setShowButton(false), 500);
+      };
+    
     return (
         <div className="bg-gray-100 min-h-screen">
             {/* 🔹 Hero Section */}
@@ -77,75 +104,118 @@ export default function About() {
             </section>
 
             {/* Footer */}
-            <footer className="bg-white py-12 px-6 md:px-16 lg:px-24 border-t border-gray-200 font-sora text-center md:text-left">
-                <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between">
+            <footer className="w-full bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-black py-12 px-6 md:px-16 lg:px-24 border-t border-gray-200 dark:border-gray-800 font-sora text-center md:text-left transition-colors duration-300">
+                <div className="w-full max-w-7xl mx-auto flex flex-col md:flex-row justify-between">
                     {/* Left Section */}
-                    <div className="mb-8 md:mb-0">
-                        <h2 className="text-2xl font-sora text-black">
-                            LIONHEART TECH<span className="text-blue-600">.</span>
+                    <div className="mb-8 md:mb-0 text-center md:text-left">
+                        <h2 className="text-2xl font-bold text-black dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-300">
+                            LIONHEART TECH<span className="text-blue-600 dark:text-blue-400">.</span>
                         </h2>
-                        <p className="text-gray-600 mt-2">Empowering businesses with cutting-edge technology.</p>
-                        <p className="text-gray-600 mt-1">Accra, GH</p>
+                        <p className="text-gray-600 dark:text-gray-300 mt-2">Empowering businesses with cutting-edge technology.</p>
+                        <p className="text-gray-600 dark:text-gray-300 mt-1">Accra, GH</p>
+
                         {/* Certifications */}
-                        <div className="flex gap-3 mt-4">
-                            <img src="/images/logs.png" alt="SOC 2" className="w-24 h-24" />
+                        <div className="flex justify-center md:justify-start gap-3 mt-4">
+                            <img src="/images/logs.png" alt="Certifications" className="w-24 h-24" />
                         </div>
-                        <p className="text-gray-500 text-sm mt-2"> &copy; {new Date().getFullYear()} Lionheart Tech. All rights reserved.</p>
                     </div>
+
 
                     {/* Links Section */}
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-gray-700">
-                        <div>
-                            <h3 className="font-sora text-black">Solutions</h3>
-                            <ul className="mt-2 space-y-2">
-                                <li><Link href="/ai-solutions" className="hover:text-blue-600 transition">AI Solutions</Link></li>
-                                <li><Link href="/cybersecurity" className="hover:text-blue-600 transition">Cybersecurity</Link></li>
-                                <li><Link href="/cloud-services" className="hover:text-blue-600 transition">Cloud Services</Link></li>
-                                <li><Link href="/enterprise-it" className="hover:text-blue-600 transition">Enterprise IT</Link></li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h3 className="font-sora text-black">Resources</h3>
-                            <ul className="mt-2 space-y-2">
-                                <li><Link href="/blog" className="hover:text-blue-600 transition">Blog</Link></li>
-                                <li><Link href="/case-studies" className="hover:text-blue-600 transition">Case Studies</Link></li>
-                                <li><Link href="/whitepapers" className="hover:text-blue-600 transition">Whitepapers</Link></li>
-                                <li><Link href="/webinars" className="hover:text-blue-600 transition">Webinars</Link></li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h3 className="font-sora text-black">Company</h3>
-                            <ul className="mt-2 space-y-2">
-                                <li><Link href="/about" className="hover:text-blue-600 transition">About Us</Link></li>
-                                <li><Link href="/careers" className="hover:text-blue-600 transition">Careers</Link></li>
-                                <li><Link href="/contact" className="hover:text-blue-600 transition">Contact</Link></li>
-                                <li><Link href="/partnerships" className="hover:text-blue-600 transition">Partnerships</Link></li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h3 className="font-sora text-black">Legal</h3>
-                            <ul className="mt-2 space-y-2">
-                                <li><Link href="/privacy-policy" className="hover:text-blue-600 transition">Privacy Policy</Link></li>
-                                <li><Link href="/terms-of-service" className="hover:text-blue-600 transition">Terms of Service</Link></li>
-                                <li><Link href="/cookie-policy" className="hover:text-blue-600 transition">Cookie Policy</Link></li>
-                                <li><Link href="/security" className="hover:text-blue-600 transition">Security</Link></li>
-                            </ul>
-                        </div>
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-gray-700 dark:text-gray-300">
+                        {[
+                            { title: "Solutions", links: ["AI Solutions", "Cybersecurity", "Cloud Services", "Enterprise IT"], paths: ["/ai-solutions", "/cybersecurity", "/cloud-services", "/enterprise-it"] },
+                            { title: "Resources", links: ["Blog", "Case Studies", "Whitepapers", "Webinars"], paths: ["/blog", "/case-studies", "/whitepapers", "/webinars"] },
+                            { title: "Company", links: ["About Us", "Careers", "Contact", "Partnerships"], paths: ["/about", "/careers", "/contact", "/partnerships"] },
+                            { title: "Legal", links: ["Privacy Policy", "Terms of Service", "Cookie Policy", "Security"], paths: ["/privacy-policy", "/terms-of-service", "/cookie-policy", "/security"] }
+                        ].map((section, index) => (
+                            <div key={index}>
+                                <h3 className="font-semibold text-black dark:text-white">{section.title}</h3>
+                                <ul className="mt-2 space-y-2">
+                                    {section.links.map((link, idx) => (
+                                        <li key={idx}>
+                                            <Link href={section.paths[idx]} className="relative hover:text-blue-600 dark:hover:text-blue-400 transition group">
+                                                {link}
+                                                <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-blue-600 dark:bg-blue-400 transition-all duration-300 group-hover:w-full"></span>
+                                            </Link>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        ))}
                     </div>
 
+
                     {/* Social Icons */}
-                    <div className="flex flex-col items-center gap-3">
-                        <Link href="https://twitter.com/LionheartTech" target="_blank" className="bg-blue-500 text-white w-10 h-10 flex items-center justify-center rounded-full hover:bg-blue-700 transition">
-                            <FaXTwitter size={20} />
-                        </Link>
-                        <Link href="https://linkedin.com/company/lionheart-tech" target="_blank" className="bg-blue-500 text-white w-10 h-10 flex items-center justify-center rounded-full hover:bg-blue-700 transition">
-                            <FaLinkedin size={20} />
-                        </Link>
-                        <Link href="https://instagram.com/lionheart.tech" target="_blank" className="bg-blue-500 text-white w-10 h-10 flex items-center justify-center rounded-full hover:bg-blue-700 transition">
-                            <FaInstagram size={20} />
-                        </Link>
+                    <div className="flex flex-row md:flex-col items-center md:items-start justify-center md:justify-start gap-3 mt-6 md:mt-0">
+                        {[
+                            { icon: FaXTwitter, href: "https://twitter.com/LionheartTech" },
+                            { icon: FaLinkedin, href: "https://linkedin.com/company/lionheart-tech" },
+                            { icon: FaInstagram, href: "https://instagram.com/lionheart.tech" }
+                        ].map(({ icon: Icon, href }, index) => (
+                            <Link
+                                key={index}
+                                href={href}
+                                target="_blank"
+                                className="bg-blue-500 text-white w-10 h-10 flex items-center justify-center rounded-full 
+                 hover:bg-blue-700 hover:scale-110 transition-all duration-300"
+                            >
+                                <Icon size={20} />
+                            </Link>
+                        ))}
                     </div>
                 </div>
+
+
+
+                {/* Newsletter Subscription */}
+                <div className="mt-8 text-center relative w-full max-w-md mx-auto">
+                    <h3 className="font-semibold text-black mb-2">Stay Updated</h3>
+                    <div className="relative w-full max-w-md">
+                        <input
+                            type="email"
+                            placeholder="Enter your email"
+                            className="p-4 border border-gray-300 rounded-full w-full focus:outline-none focus:ring-2 focus:ring-blue-500 pr-36 text-gray-700"
+                        />
+                        <button
+                            type="submit"
+                            className="absolute right-1 top-1 bottom-1 px-6 text-white font-semibold rounded-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 transition-all"
+                        >
+                            Subscribe
+                        </button>
+                    </div>
+
+                </div>
+
+                <p className="text-gray-500 text-sm mt-2">&copy; {new Date().getFullYear()} Lionheart Tech. All rights reserved.</p>
+                <button
+                    onClick={scrollToTop}
+                    className={`fixed bottom-5 right-5 p-3 rounded-full shadow-lg transition-all z-50 
+        ${showButton ? "opacity-100" : "opacity-0 pointer-events-none"}
+        bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700
+      `}
+                >
+                    {/* Circular Progress Ring */}
+                    <svg width="50" height="50" viewBox="0 0 100 100" className="rotate-[-90deg]">
+                        <circle cx="50" cy="50" r="40" stroke="#ddd" strokeWidth="8" fill="none" />
+                        <circle
+                            cx="50"
+                            cy="50"
+                            r="40"
+                            stroke="white"
+                            strokeWidth="8"
+                            fill="none"
+                            strokeDasharray="251.2"
+                            strokeDashoffset={`${251.2 - (scrollProgress / 100) * 251.2}`}
+                            strokeLinecap="round"
+                        />
+                    </svg>
+
+                    {/* Up Arrow */}
+                    <span className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white font-bold text-lg">
+                        ↑
+                    </span>
+                </button>
             </footer>
         </div>
     );
