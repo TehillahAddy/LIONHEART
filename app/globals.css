@@ -460,8 +460,7 @@ h1 .highlight:nth-of-type(1)::after {
 }
 
 /* Media query for smaller screens */
-@media (max-width: 768px),
-(max-width: 1024px) {
+@media (max-width: 768px) {
   .hero-section {
     text-align: center;
     /* Center-align content for smaller screens */
@@ -657,8 +656,7 @@ h1 .highlight:nth-of-type(1)::after {
   right: 50px;
 }
 
-@media (max-width: 768px),
-(max-width: 1024px) {
+@media (max-width: 768px){
   .image-content {
     position: static;
     /* Removes absolute positioning for better flow on smaller screens */
