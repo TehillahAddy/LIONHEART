@@ -605,37 +605,41 @@ export default function Home() {
           </motion.a>
         </motion.div>
       </section>
-
-      <section className="it-support-section">
+      <section className="it-support-section bg-white dark:bg-gray-900 transition-colors duration-300">
         <div className="image-container" data-aos="fade-right">
-          <Image className="rotate-image" src="/images/ah.png" alt="lIonheart Tech" width={600} height={600} />
+          <Image className="rotate-image" src="/images/ah.png" alt="Lionheart Tech" width={600} height={600} />
         </div>
         <div className="content" data-aos="fade-left">
-          <h1>Fast-tracking your I.T. needs with expert support</h1>
-          <p>Opt for the leading digital agency to expand your business</p>
+          <h1 className="text-black dark:text-white">Fast-tracking your I.T. needs with expert support</h1>
+          <p className="text-gray-600 dark:text-gray-300">Opt for the leading digital agency to expand your business</p>
           <div className="button-container">
-            <button>View More About Us</button>
+            <button className="px-6 py-2 rounded-full text-white font-semibold bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 transition-all dark:shadow-lg">
+              View More About Us
+            </button>
           </div>
         </div>
       </section>
+
 
       <footer className="w-full bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-black py-12 px-6 md:px-16 lg:px-24 border-t border-gray-200 dark:border-gray-800 font-sora text-center md:text-left transition-colors duration-300">
         <div className="w-full max-w-7xl mx-auto flex flex-col md:flex-row justify-between">
           {/* Left Section */}
           <div className="mb-8 md:mb-0 text-center md:text-left">
-            <h2 className="text-2xl font-bold text-black hover:text-blue-600 transition-all duration-300">
-              LIONHEART TECH<span className="text-blue-600">.</span>
+            <h2 className="text-2xl font-bold text-black dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-300">
+              LIONHEART TECH<span className="text-blue-600 dark:text-blue-400">.</span>
             </h2>
-            <p className="text-gray-600 mt-2">Empowering businesses with cutting-edge technology.</p>
-            <p className="text-gray-600 mt-1">Accra, GH</p>
+            <p className="text-gray-600 dark:text-gray-300 mt-2">Empowering businesses with cutting-edge technology.</p>
+            <p className="text-gray-600 dark:text-gray-300 mt-1">Accra, GH</p>
+
             {/* Certifications */}
             <div className="flex justify-center md:justify-start gap-3 mt-4">
-              <img src="/images/logs.png" alt="Certifications" className="w-24 h-24 " />
+              <img src="/images/logs.png" alt="Certifications" className="w-24 h-24" />
             </div>
           </div>
 
+
           {/* Links Section */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-gray-700">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-gray-700 dark:text-gray-300">
             {[
               { title: "Solutions", links: ["AI Solutions", "Cybersecurity", "Cloud Services", "Enterprise IT"], paths: ["/ai-solutions", "/cybersecurity", "/cloud-services", "/enterprise-it"] },
               { title: "Resources", links: ["Blog", "Case Studies", "Whitepapers", "Webinars"], paths: ["/blog", "/case-studies", "/whitepapers", "/webinars"] },
@@ -643,13 +647,13 @@ export default function Home() {
               { title: "Legal", links: ["Privacy Policy", "Terms of Service", "Cookie Policy", "Security"], paths: ["/privacy-policy", "/terms-of-service", "/cookie-policy", "/security"] }
             ].map((section, index) => (
               <div key={index}>
-                <h3 className="font-semibold text-black">{section.title}</h3>
+                <h3 className="font-semibold text-black dark:text-white">{section.title}</h3>
                 <ul className="mt-2 space-y-2">
                   {section.links.map((link, idx) => (
                     <li key={idx}>
-                      <Link href={section.paths[idx]} className="relative hover:text-blue-600 transition group">
+                      <Link href={section.paths[idx]} className="relative hover:text-blue-600 dark:hover:text-blue-400 transition group">
                         {link}
-                        <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
+                        <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-blue-600 dark:bg-blue-400 transition-all duration-300 group-hover:w-full"></span>
                       </Link>
                     </li>
                   ))}
@@ -657,6 +661,7 @@ export default function Home() {
               </div>
             ))}
           </div>
+
 
           {/* Social Icons */}
           <div className="flex flex-row md:flex-col items-center md:items-start justify-center md:justify-start gap-3 mt-6 md:mt-0">
