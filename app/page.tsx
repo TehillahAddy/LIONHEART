@@ -218,7 +218,7 @@ export default function Home() {
       <div className="homepage">
         <div className="background-container">
           <video autoPlay loop muted playsInline className="absolute w-full h-full object-cover">
-            <source src="/images/CV.mp4" type="video/mp4" />
+            <source src="/images/CVx.mp4" type="video/mp4" />
           </video>
         </div>
         <header className="mobile-header">
@@ -732,8 +732,75 @@ export default function Home() {
           </span>
         </button>
       </footer>
+      
+      <section className="relative flex items-center justify-center h-[500px] w-full overflow-hidden bg-gradient-to-b from-white to-[#6D78DC] group">
+      {/* Text with Effects */}
+      <h1 
+        className="absolute text-[12vw] font-extrabold text-[#6D78DC] uppercase tracking-wide flex items-center justify-center w-full text-center transition-all duration-700 group-hover:animate-glitch group-hover:animate-3d group-hover:animate-fire"
+        style={{ 
+          fontFamily: 'Arial, sans-serif', 
+          WebkitTextStroke: '3px #6D78DC', 
+          textShadow: '4px 4px 10px rgba(0,0,0,0.5)',
+          position: 'relative',
+          overflow: 'hidden'
+        }}
+      >
+        LIONHEART TECH
+        <span className="absolute w-full h-full translate-y-4 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 animate-shimmer" />
+      </h1>
+      <style>
+        {`
+          @keyframes glitch {
+            0% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(2px, -2px); }
+            60% { transform: translate(-2px, -2px); }
+            80% { transform: translate(2px, 2px); }
+            100% { transform: translate(0); }
+          }
+          
+          @keyframes shimmer {
+            from { transform: translateX(-100%); }
+            to { transform: translateX(100%); }
+          }
+          
+          @keyframes threeD {
+            0% { transform: perspective(1000px) rotateX(0deg) rotateY(0deg); }
+            50% { transform: perspective(1000px) rotateX(10deg) rotateY(-10deg); }
+            100% { transform: perspective(1000px) rotateX(0deg) rotateY(0deg); }
+          }
+          
+          @keyframes fire {
+            0% { text-shadow: 0 0 10px rgba(255, 69, 0, 0.8), 0 0 20px rgba(255, 140, 0, 1); }
+            50% { text-shadow: 0 0 20px rgba(255, 69, 0, 1), 0 0 30px rgba(255, 140, 0, 1.2); }
+            100% { text-shadow: 0 0 10px rgba(255, 69, 0, 0.8), 0 0 20px rgba(255, 140, 0, 1); }
+          }
+          
+          @keyframes smoke {
+            0% { opacity: 0; transform: translateY(10px) scale(1); }
+            50% { opacity: 0.5; transform: translateY(-10px) scale(1.1); }
+            100% { opacity: 0; transform: translateY(20px) scale(1.2); }
+          }
+          
+          .group-hover\:animate-glitch:hover {
+            animation: glitch 0.3s infinite;
+          }
+          
+          .group-hover\:animate-3d:hover {
+            animation: threeD 1s infinite alternate;
+          }
+          
+          .group-hover\:animate-fire:hover {
+            animation: fire 1.5s infinite alternate;
+          }
+          
+          .animate-smoke {
+            background: radial-gradient(circle, rgba(200,200,200,0.4) 20%, transparent 70%);
+            animation: smoke 3s infinite alternate;
+          }
+        `}
+      </style>
+    </section>
     </div>
-
-
   );
 }
