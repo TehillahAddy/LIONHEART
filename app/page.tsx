@@ -735,15 +735,18 @@ export default function Home() {
 
 
       <motion.section
-        className="relative flex items-center justify-center h-[500px] md:h-[400px] sm:h-[300px] w-full overflow-hidden bg-gradient-to-b from-white to-[#6D78DC] group"
-        initial={{ opacity: 0, filter: "blur(15px)", scale: 0.95 }} // Slight zoom-out start
-        whileInView={{ opacity: 1, filter: "blur(0px)", scale: 1 }} // Smooth fade-in & zoom
-        transition={{ duration: 1, ease: "easeInOut" }} // Improved easing
+        className="relative flex items-center justify-center 
+             h-[500px] md:h-[400px] sm:h-[180px] xs:h-[150px] 
+             w-full overflow-hidden bg-gradient-to-b from-white to-[#6D78DC] group"
+        initial={{ opacity: 0, filter: "blur(15px)", scale: 0.95 }}
+        whileInView={{ opacity: 1, filter: "blur(0px)", scale: 1 }}
+        transition={{ duration: 1, ease: "easeInOut" }}
         viewport={{ once: true }}
       >
+
         {/* Text with Effects */}
         <motion.h1
-          className="absolute text-[8vw] md:text-[10vw] sm:text-[12vw] font-extrabold text-[#6D78DC] uppercase tracking-wide flex items-center justify-center w-full text-center transition-all duration-700"
+          className="absolute text-[80px] md:text-[10vw] sm:text-[60px] xs:text-[50px] font-extrabold text-[#6D78DC] uppercase tracking-wide flex items-center justify-center w-full text-center transition-all duration-700"
           style={{
             fontFamily: "Arial, sans-serif",
             WebkitTextStroke: "2px #6D78DC", // Reduced stroke width for smaller text
