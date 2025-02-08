@@ -736,9 +736,9 @@ export default function Home() {
 
       <motion.section
         className="relative flex items-center justify-center 
-             h-[500px] md:h-[400px] 
-             w-full overflow-hidden bg-gradient-to-b from-white to-[#6D78DC] group
-             hidden lg:flex"
+     h-[500px] md:h-[400px] 
+     w-full overflow-hidden bg-gradient-to-b from-white to-[#616EE0] group
+     hidden lg:flex"
         initial={{ opacity: 0, filter: "blur(15px)", scale: 0.95 }}
         whileInView={{ opacity: 1, filter: "blur(0px)", scale: 1 }}
         transition={{ duration: 1, ease: "easeInOut" }}
