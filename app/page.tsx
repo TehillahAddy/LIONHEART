@@ -217,7 +217,7 @@ export default function Home() {
     <div className="bg-gray-100 min-h-screen lp">
       <div className="homepage">
         <div className="background-container">
-          <video autoPlay loop muted playsInline className="absolute w-full h-full object-cover">
+          <video autoPlay loop muted  className="absolute w-full h-full object-cover">
             <source src="/images/CV.mp4" type="video/mp4" />
           </video>
         </div>
