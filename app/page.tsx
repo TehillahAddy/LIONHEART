@@ -18,6 +18,7 @@ import { FaCheckCircle, FaTimesCircle, FaBolt, FaClock, FaAward } from "react-ic
 import { FaFacebookF, FaTwitter, FaLinkedinIn, FaInstagram } from "react-icons/fa";
 import { FaXTwitter, FaLinkedin } from "react-icons/fa6";
 import "@fontsource/sora";
+import { FaRocket, FaLaptopCode, FaDatabase, FaMobileAlt, FaPalette, FaGem } from "react-icons/fa";
 
 
 
@@ -135,6 +136,54 @@ export default function Home() {
     { icon: <FaStar />, title: "Top Quality", text: "Premium designs & development.", color: "text-yellow-400" },
     { icon: <FaAward />, title: "Certified Experts", text: "Industry-leading professionals.", color: "text-green-400" },
   ];
+  const pricingVariants = {
+    hidden: { opacity: 0, scale: 0.8, rotateX: -15 },
+    visible: (i: number) => ({
+      opacity: 1,
+      scale: 1,
+      rotateX: 0,
+      transition: { delay: i * 0.15, type: "spring", stiffness: 100, damping: 10 },
+    }),
+  };
+
+  const plans = [
+    {
+      name: "Starter",
+      price: "GHC 800.00 / Project",
+      features: ["2D Logo", "1 Flyer Design", "1 Mockup Design"],
+      icon: "/images/co (7).png",
+    },
+    {
+      name: "Smart",
+      price: "GHC 1500.00 / Project",
+      features: ["3D Logo", "2 Flyer Designs", "2 Mockup Designs"],
+      icon: "/images/co (8).png",
+    },
+    {
+      name: "Pro",
+      price: "GHC 2000.00 / Project",
+      features: ["3D Logo", "3 Flyer Designs", "3 Mockup Designs", "2 Motion Designs"],
+      icon: "/images/co (2).png",
+    },
+    {
+      name: "Website Packages",
+      price: "GHC 5000.00 / Project",
+      features: ["Domain Name", "Hosting", "SSL Certificate"],
+      icon: "/images/co (1).png",
+    },
+    {
+      name: "Database System Packages",
+      price: "Negotiable",
+      features: ["Mobile", "Web", "Desktop"],
+      icon: "/images/co (6).png",
+    },
+    {
+      name: "Mobile App",
+      price: "Negotiable",
+      features: ["Web", "Data Collection", "E-Commerce"],
+      icon: "/images/co (3).png",
+    },
+  ];
 
 
   useEffect(() => {
@@ -218,7 +267,7 @@ export default function Home() {
       <div className="homepage">
         <div className="background-container">
           <video autoPlay loop muted playsInline className="absolute w-full h-full object-cover">
-            <source src="/images/CV.mp4" type="video/mp4" />
+            <source src="/images/CVx.mp4" type="video/mp4" />
           </video>
         </div>
         <header className="mobile-header">
@@ -481,20 +530,52 @@ export default function Home() {
       </section>
 
 
-      <section className="py-16 bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-black text-gray-900 dark:text-white">
+      <motion.section
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        transition={{ staggerChildren: 0.15 }}
+        className="py-16 bg-cover bg-center bg-no-repeat text-gray-900 dark:text-white"
+        style={{ backgroundImage: "url('/images/b3.avif')" }} // Change to your actual image path
+      >
         <div className="max-w-6xl mx-auto px-6 text-center">
-          <h2 className="text-3xl font-bold mb-6">Choose Your Plan</h2>
-          <p className="text-gray-600 dark:text-gray-400 mb-12">Flexible pricing for businesses of all sizes.</p>
+          <h2 className="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-gray-800 to-blue-900 dark:from-gray-200 dark:to-blue-300 mb-6">
+            Affordable Pricing Plan For Your Business
+          </h2>
+
+          <p className="text-lg text-gray-600 dark:text-gray-400 mb-12">
+            Choose a plan that fits your needs and scale with ease.
+          </p>
 
           <div className="grid md:grid-cols-3 gap-8">
-            {[
-              { name: "Starter", price: "$29", features: ["Basic AI tools", "Standard support", "5 team members"], button: "Get Started" },
-              { name: "Business", price: "$99", features: ["Advanced AI tools", "Priority support", "20 team members"], button: "Upgrade" },
-              { name: "Enterprise", price: "Custom", features: ["AI-powered automation", "Dedicated expert", "Unlimited users"], button: "Contact Us" }
-            ].map((plan, index) => (
-              <div key={index} className="p-8 border border-gray-200 dark:border-gray-800 rounded-xl shadow-lg bg-white dark:bg-gray-800 hover:scale-105 transition-all">
-                <h3 className="text-xl font-semibold">{plan.name}</h3>
-                <p className="text-4xl font-bold my-4">{plan.price}</p>
+            {plans.map((plan, index) => (
+              <motion.div
+                key={index}
+                variants={pricingVariants}
+                custom={index}
+                whileHover={{
+                  scale: 1.05,
+                  rotateX: 5,
+                  boxShadow: "0px 10px 20px rgba(0, 0, 255, 0.3)",
+                }}
+                transition={{ type: "spring", stiffness: 150, damping: 10 }}
+                className="relative p-8 border border-gray-300 dark:border-gray-700 rounded-xl shadow-lg bg-cover bg-center bg-no-repeat backdrop-blur-lg group overflow-hidden transition-all"
+                style={{ backgroundImage: "url('/images/your-card-bg.jpg')" }} // Change to your actual image path
+              >
+                <div className="absolute inset-0 w-full h-full border-2 border-transparent group-hover:border-blue-500 rounded-xl transition-all duration-300"></div>
+
+                <div className="mb-4 flex justify-center">
+                  <Image src={plan.icon} alt={plan.name} width={50} height={50} />
+                </div>
+
+                <h3 className="text-2xl font-bold text-gray-900 dark:text-gray-200 mb-4 group-hover:text-blue-500 transition-all">
+                  {plan.name}
+                </h3>
+
+                <p className="text-3xl font-extrabold text-gray-800 dark:text-gray-300 mb-4">
+                  {plan.price}
+                </p>
+
                 <ul className="text-gray-600 dark:text-gray-400 space-y-2">
                   {plan.features.map((feature, i) => (
                     <li key={i} className="flex items-center justify-center gap-2">
@@ -502,14 +583,24 @@ export default function Home() {
                     </li>
                   ))}
                 </ul>
-                <button className="mt-6 px-6 py-2 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-full hover:from-blue-600 hover:to-purple-700 transition-all">
-                  {plan.button}
-                </button>
-              </div>
+
+                <motion.div
+                  whileHover={{ scale: 1.1, rotate: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                  transition={{ type: "spring", stiffness: 200, damping: 10 }}
+                  className="mt-6"
+                >
+                  <Link href="/contact" legacyBehavior>
+                    <a className="inline-block bg-gradient-to-r from-gray-900 to-blue-900 text-white px-6 py-3 rounded-lg transition-all shadow-md hover:scale-110 hover:from-blue-800 hover:to-gray-900">
+                      Make An Offer →
+                    </a>
+                  </Link>
+                </motion.div>
+              </motion.div>
             ))}
           </div>
         </div>
-      </section>
+      </motion.section>
 
 
       <section
