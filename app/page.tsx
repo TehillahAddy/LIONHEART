@@ -267,7 +267,7 @@ export default function Home() {
       <div className="homepage">
         <div className="background-container">
           <video autoPlay loop muted playsInline className="absolute w-full h-full object-cover">
-            <source src="/images/CVx.mp4" type="video/mp4" />
+            <source src="/images/CV.mp4" type="video/mp4" />
           </video>
         </div>
         <header className="mobile-header">
@@ -536,7 +536,7 @@ export default function Home() {
         viewport={{ once: true }}
         transition={{ staggerChildren: 0.15 }}
         className="py-16 bg-cover bg-center bg-no-repeat text-gray-900 dark:text-white"
-        style={{ backgroundImage: "url('/images/b3.avif')" }} // Change to your actual image path
+        style={{ backgroundImage: "url('/images/pnd.jpg')" }} // Change to your actual image path
       >
         <div className="max-w-6xl mx-auto px-6 text-center">
           <h2 className="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-gray-800 to-blue-900 dark:from-gray-200 dark:to-blue-300 mb-6">
@@ -560,7 +560,7 @@ export default function Home() {
                 }}
                 transition={{ type: "spring", stiffness: 150, damping: 10 }}
                 className="relative p-8 border border-gray-300 dark:border-gray-700 rounded-xl shadow-lg bg-cover bg-center bg-no-repeat backdrop-blur-lg group overflow-hidden transition-all"
-                style={{ backgroundImage: "url('/images/your-card-bg.jpg')" }} // Change to your actual image path
+                style={{ backgroundImage: "url('/images/l.avif')" }} // Change to your actual image path
               >
                 <div className="absolute inset-0 w-full h-full border-2 border-transparent group-hover:border-blue-500 rounded-xl transition-all duration-300"></div>
 
