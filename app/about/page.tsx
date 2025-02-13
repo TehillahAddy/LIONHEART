@@ -8,6 +8,7 @@ import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { FaStar } from 'react-icons/fa';
 import Image from "next/image";
 import { motion } from "framer-motion";
+import styles from './about.module.css';
 
 
 
@@ -98,29 +99,29 @@ export default function About() {
 
     const projectss = [
         {
-          company: "Our Mission",
-          service: "To empower industries with cutting-edge technology, creating seamless, innovative solutions that drive progress and unlock potential.",
-          image: "/images/1.png",
-          link: "/portfolio/neonverse",
+            company: "Our Mission",
+            service: "To empower industries with cutting-edge technology, creating seamless, innovative solutions that drive progress and unlock potential.",
+            image: "/images/1.png",
+            link: "/portfolio/neonverse",
         },
         {
-          company: "Our Vision",
-          service: "To become the global leader in transformative technology, pioneering the future with a focus on sustainability, intelligence, and human potential.",
-          image: "/images/4.png",
-          link: "/portfolio/warpdrive",
+            company: "Our Vision",
+            service: "To become the global leader in transformative technology, pioneering the future with a focus on sustainability, intelligence, and human potential.",
+            image: "/images/4.png",
+            link: "/portfolio/warpdrive",
         },
         {
-          company: "Core Values",
-          service: "We are committed to innovative, ethical, and collaborative solutions that foster sustainability and shape a better future for society and the planet.",
-          image: "/images/5.png",
-          link: "/portfolio/synthwave",
+            company: "Core Values",
+            service: "We are committed to innovative, ethical, and collaborative solutions that foster sustainability and shape a better future for society and the planet.",
+            image: "/images/5.png",
+            link: "/portfolio/synthwave",
         },
-      ];
+    ];
 
 
     return (
         <div className="bg-gray-100 min-h-screen">
-           <div className="homepage" style={{marginTop: "-30px", gap: "20px", marginBottom: "0", paddingBottom: "0" }}>
+             <div className={styles.homepages}>
                 <header className="mobile-header">
                     <div className="header-container">
                         {/* Logo */}
@@ -199,83 +200,82 @@ export default function About() {
                     {/* Call-to-Action Button */}
                     <button className="custom-button">Get in Touch</button>
                 </header>
-
-                <section className="galaxy" >
-                    {/* GALACTIC BACKGROUND ANIMATION */}
-                    <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
-                        <video autoPlay loop muted className="absolute w-full h-full object-cover opacity-20">
-                            <source src="/path/to/your/video.mp4" type="video/mp4" />
-                        </video>
-                    </div>
-
-                    {/* LIGHT TRAILS ANIMATION */}
-                    <div className="absolute inset-0 pointer-events-none">
-                        <div className="absolute top-10 left-10 w-32 h-32 bg-blue-400 blur-3xl opacity-50 animate-pulse"></div>
-                        <div className="absolute bottom-20 right-20 w-24 h-24 bg-purple-500 blur-2xl opacity-60 animate-spin"></div>
-                    </div>
-
-                    <motion.h2
-                        className="text-6xl font-extrabold mb-6 tracking-wide glitch-text"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1, textShadow: "0px 0px 20px cyan" }}
-                        transition={{ duration: 1 }}
-                    >
-                        <img
-                            src="/images/d3.png"
-                            alt="3D Rocket"
-                            className="inline-block w-24 h-24 rotate"
-                        />
-                        WELCOME TO THE FUTURE
-                    </motion.h2>
-
-                    <p className="text-lg text-gray-300 mb-12">We build experiences beyond your imagination!!</p>
-
-                    {/* HIGH-TECH PROJECT SHOWCASE */}
-                    <div className="relative grid grid-cols-1 md:grid-cols-3 gap-10 z-10">
-                        {projectss.map((project, index) => (
-                            <motion.div
-                                key={index}
-                                className="relative bg-gray-900 p-6 rounded-xl shadow-xl transform hover:scale-110 transition duration-500 hover:shadow-neon"
-                                whileHover={{ scale: 1.15, rotate: 2 }}
-                            >
-                                {/* HOLOGRAPHIC FLOATING CARD */}
-                                <div className="absolute inset-0 bg-gradient-to-br from-blue-500 to-purple-600 opacity-40 blur-lg -z-10"></div>
-
-                                <div className="flex justify-center">
-                                    <Image src={project.image} alt={project.company} width={100} height={50} className="rounded-lg" />
-                                </div>
-
-                                <h3 className="text-3xl font-extrabold text-white mb-4 neon-glow">{project.company}</h3>
-                                <p className="text-white-400 font-medium">{project.service}</p>
-                            </motion.div>
-                        ))}
-                    </div>
-
-                    {/* 🚀 ROCKET-LAUNCH CTA BUTTON */}
-                    <motion.div
-                        className="mt-16 relative inline-block"
-                        whileHover={{ y: -10, boxShadow: "0px 0px 20px lime" }}
-                        whileTap={{ scale: 0.9, y: -100, opacity: 0 }}
-                        transition={{ duration: 0.5 }}
-                    >
-                        <h3 className="text-4xl font-extrabold text-white tracking-wider neon-glow">
-                            READY TO LAUNCH?!
-                            <img
-                                src="/images/34.png"  // Path to your 3D rocket image
-                                alt="3D Rocket"
-                                className="inline-block w-24 h-24 transform rotate-12 rocket-animation"
-                            />
-                        </h3>
-                        <p className="text-lg text-gray-400 mt-2">Let's build beyond limits!!</p>
-                        <Link href="/about" legacyBehavior>
-                            <a className="mt-6 inline-block bg-green-500 text-white px-6 py-3 rounded-lg hover:scale-110 transition rocket-hover">
-                                Get in Touch →
-                            </a>
-                        </Link>
-                    </motion.div>
-                </section>
             </div>
 
+            <section className="galaxy" style={{ marginTop: "-60px" }} >
+                {/* GALACTIC BACKGROUND ANIMATION */}
+                <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
+                    <video autoPlay loop muted className="absolute w-full h-full object-cover opacity-20">
+                        <source src="/path/to/your/video.mp4" type="video/mp4" />
+                    </video>
+                </div>
+
+                {/* LIGHT TRAILS ANIMATION */}
+                <div className="absolute inset-0 pointer-events-none">
+                    <div className="absolute top-10 left-10 w-32 h-32 bg-blue-400 blur-3xl opacity-50 animate-pulse"></div>
+                    <div className="absolute bottom-20 right-20 w-24 h-24 bg-purple-500 blur-2xl opacity-60 animate-spin"></div>
+                </div>
+
+                <motion.h2
+                    className="text-6xl font-extrabold mb-6 tracking-wide glitch-text"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1, textShadow: "0px 0px 20px cyan" }}
+                    transition={{ duration: 1 }}
+                >
+                    <img
+                        src="/images/d3.png"
+                        alt="3D Rocket"
+                        className="inline-block w-24 h-24 rotate"
+                    />
+                    WELCOME TO THE FUTURE
+                </motion.h2>
+
+                <p className="text-lg text-gray-300 mb-12">We build experiences beyond your imagination!!</p>
+
+                {/* HIGH-TECH PROJECT SHOWCASE */}
+                <div className="relative grid grid-cols-1 md:grid-cols-3 gap-10 z-10">
+                    {projectss.map((project, index) => (
+                        <motion.div
+                            key={index}
+                            className="relative bg-gray-900 p-6 rounded-xl shadow-xl transform hover:scale-110 transition duration-500 hover:shadow-neon"
+                            whileHover={{ scale: 1.15, rotate: 2 }}
+                        >
+                            {/* HOLOGRAPHIC FLOATING CARD */}
+                            <div className="absolute inset-0 bg-gradient-to-br from-blue-500 to-purple-600 opacity-40 blur-lg -z-10"></div>
+
+                            <div className="flex justify-center">
+                                <Image src={project.image} alt={project.company} width={100} height={50} className="rounded-lg" />
+                            </div>
+
+                            <h3 className="text-3xl font-extrabold text-white mb-4 neon-glow">{project.company}</h3>
+                            <p className="text-white-400 font-medium">{project.service}</p>
+                        </motion.div>
+                    ))}
+                </div>
+
+                {/* 🚀 ROCKET-LAUNCH CTA BUTTON */}
+                <motion.div
+                    className="mt-16 relative inline-block"
+                    whileHover={{ y: -10, boxShadow: "0px 0px 20px lime" }}
+                    whileTap={{ scale: 0.9, y: -100, opacity: 0 }}
+                    transition={{ duration: 0.5 }}
+                >
+                    <h3 className="text-4xl font-extrabold text-white tracking-wider neon-glow">
+                        READY TO LAUNCH?!
+                        <img
+                            src="/images/34.png"  // Path to your 3D rocket image
+                            alt="3D Rocket"
+                            className="inline-block w-24 h-24 transform rotate-12 rocket-animation"
+                        />
+                    </h3>
+                    <p className="text-lg text-gray-400 mt-2">Let's build beyond limits!!</p>
+                    <Link href="/about" legacyBehavior>
+                        <a className="mt-6 inline-block bg-green-500 text-white px-6 py-3 rounded-lg hover:scale-110 transition rocket-hover">
+                            Get in Touch →
+                        </a>
+                    </Link>
+                </motion.div>
+            </section>
             {/* 🔹 Company History */}
             <section className="bg-white py-16 px-6">
                 <div className="max-w-6xl mx-auto">

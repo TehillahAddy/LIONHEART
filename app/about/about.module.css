@@ -1,0 +1,21 @@
+.homepages {
+    margin-top: -30px;
+    gap: 20px;
+    margin-bottom: 0;
+    padding-bottom: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem 5rem;
+    overflow-x: hidden;
+    width: 100%;
+    background-color: #850d0d; 
+  }
+
+  @media (min-width: 768px) {
+    .homepages {
+      padding: 5rem;
+      overflow-x: hidden;
+    }
+  }
+  
