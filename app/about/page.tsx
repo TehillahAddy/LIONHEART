@@ -121,7 +121,7 @@ export default function About() {
 
     return (
         <div className="bg-gray-100 min-h-screen">
-             <div className={styles.homepages}>
+            <div className={styles.homepages}>
                 <header className="mobile-header">
                     <div className="header-container">
                         {/* Logo */}
@@ -203,6 +203,21 @@ export default function About() {
             </div>
 
             <section className="galaxy" style={{ marginTop: "-60px" }} >
+                <div className="header-container">
+                    {/* Logo */}
+                    <img src="/images/logs.png" alt="Lionheart Tech Logo" width={90} height={90} />
+
+                    {/* Hamburger Icon */}
+                    
+                    <div className="hamburger-icon" onClick={() => setMenuOpen(!menuOpen)}>
+                        {menuOpen ? (
+                            null
+                        ) : (
+                            <Bars3Icon className="h-8 w-8 text-red-500 transition-transform duration-600 rotate-0" />
+                        )}
+                    </div>
+                </div>
+
                 {/* GALACTIC BACKGROUND ANIMATION */}
                 <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
                     <video autoPlay loop muted className="absolute w-full h-full object-cover opacity-20">
