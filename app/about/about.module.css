@@ -9,7 +9,8 @@
     padding: 1rem 5rem;
     overflow-x: hidden;
     width: 100%;
-    background-color: #850d0d; 
+    background: linear-gradient(to right, black, blue, black);
+
   }
 
   @media (min-width: 768px) {
@@ -18,4 +19,21 @@
       overflow-x: hidden;
     }
   }
+
+  /* Hide header by default */
+.headerContainer {
+  display: none;
+}
+
+/* Show only on small screens (phones) */
+@media (max-width: 768px) {
+  .headerContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    margin-top: -30px;
+  }
+}
+
   

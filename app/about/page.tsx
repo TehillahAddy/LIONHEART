@@ -203,16 +203,13 @@ export default function About() {
             </div>
 
             <section className="galaxy" style={{ marginTop: "-60px" }} >
-                <div className="header-container">
+                <div className={styles.headerContainer}>
                     {/* Logo */}
                     <img src="/images/logs.png" alt="Lionheart Tech Logo" width={90} height={90} />
 
                     {/* Hamburger Icon */}
-                    
-                    <div className="hamburger-icon" onClick={() => setMenuOpen(!menuOpen)}>
-                        {menuOpen ? (
-                            null
-                        ) : (
+                    <div className={styles.hamburgerIcon} onClick={() => setMenuOpen(!menuOpen)}>
+                        {!menuOpen && (
                             <Bars3Icon className="h-8 w-8 text-red-500 transition-transform duration-600 rotate-0" />
                         )}
                     </div>
