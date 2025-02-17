@@ -342,37 +342,37 @@ export default function Home() {
           />
 
           {/* Desktop Navigation */}
+          {/* Desktop Navigation */}
           <nav className="hidden md:flex gap-6">
             <Link
               href="/"
-              className={`${pathname === "/" ? "font-bold border-b-2 border-blue-500" : ""
+              className={`${pathname === "/" ? "font-bold border-b-2 border-blue-500 text-blue-500" : ""
                 } ${isSticky ? "text-black" : "text-white"} hover:text-blue-300 transition`}
             >
               Home
             </Link>
             <Link
               href="/about"
-              className={`${pathname === "/about" ? "font-bold border-b-2 border-blue-500" : ""
+              className={`${pathname === "/about" ? "font-bold border-b-2 border-blue-500 text-blue-500" : ""
                 } ${isSticky ? "text-black" : "text-white"} hover:text-blue-300 transition`}
             >
               About
             </Link>
             <Link
               href="/services"
-              className={`${pathname === "/services" ? "font-bold border-b-2 border-blue-500" : ""
+              className={`${pathname === "/services" ? "font-bold border-b-2 border-blue-500 text-blue-500" : ""
                 } ${isSticky ? "text-black" : "text-white"} hover:text-blue-300 transition`}
             >
               Services
             </Link>
             <Link
               href="/contact"
-              className={`${pathname === "/contact" ? "font-bold border-b-2 border-blue-500" : ""
+              className={`${pathname === "/contact" ? "font-bold border-b-2 border-blue-500 text-blue-500" : ""
                 } ${isSticky ? "text-black" : "text-white"} hover:text-blue-300 transition`}
             >
               Contact
             </Link>
           </nav>
-
           {/* Call-to-Action Button */}
 
           <button className="custom-button">Get in Touch</button>

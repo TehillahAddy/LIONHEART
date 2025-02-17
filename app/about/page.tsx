@@ -204,7 +204,7 @@ export default function About() {
                     style={{ height: "80px" }}
                 >
                     {/* Logo */}
-                   <img src="/images/logs.png"
+                    <img src="/images/logs.png"
                         alt="Lionheart Tech Logo"
                         width={100}
                         height={100}
@@ -215,33 +215,34 @@ export default function About() {
                     <nav className="hidden md:flex gap-6">
                         <Link
                             href="/"
-                            className={`${pathname === "/" ? "font-bold border-b-2 border-blue-500" : ""
+                            className={`${pathname === "/" ? "font-bold border-b-2 border-blue-500 text-blue-500" : ""
                                 } ${isSticky ? "text-black" : "text-white"} hover:text-blue-300 transition`}
                         >
                             Home
                         </Link>
                         <Link
                             href="/about"
-                            className={`${pathname === "/about" ? "font-bold border-b-2 border-blue-500" : ""
+                            className={`${pathname === "/about" ? "font-bold border-b-2 border-blue-500 text-blue-500" : ""
                                 } ${isSticky ? "text-black" : "text-white"} hover:text-blue-300 transition`}
                         >
                             About
                         </Link>
                         <Link
                             href="/services"
-                            className={`${pathname === "/services" ? "font-bold border-b-2 border-blue-500" : ""
+                            className={`${pathname === "/services" ? "font-bold border-b-2 border-blue-500 text-blue-500" : ""
                                 } ${isSticky ? "text-black" : "text-white"} hover:text-blue-300 transition`}
                         >
                             Services
                         </Link>
                         <Link
                             href="/contact"
-                            className={`${pathname === "/contact" ? "font-bold border-b-2 border-blue-500" : ""
+                            className={`${pathname === "/contact" ? "font-bold border-b-2 border-blue-500 text-blue-500" : ""
                                 } ${isSticky ? "text-black" : "text-white"} hover:text-blue-300 transition`}
                         >
                             Contact
                         </Link>
                     </nav>
+
 
                     {/* Call-to-Action Button */}
 
@@ -335,22 +336,58 @@ export default function About() {
                     </Link>
                 </motion.div>
             </section>
+
+
             {/* 🔹 Company History */}
-            <section className="bg-white py-16 px-6">
-                <div className="max-w-6xl mx-auto">
+            <section className="bg-gradient-to-r from-blue-50 to-white py-16 px-6">
+                <div className="max-w-6xl mx-auto text-center">
                     <h2 className="text-3xl font-sora text-center text-gray-800">Our Journey</h2>
-                    <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-8">
-                        <div className="p-6 shadow-md rounded-lg bg-gray-50">
-                            <h3 className="text-xl font-sora">Founded in 2015</h3>
-                            <p className="mt-2 text-gray-600">Started with a vision to empower businesses through technology.</p>
+                    <div className="mt-12 flex flex-col md:grid md:grid-cols-2 gap-8">
+                        {/* 🏆 Founded in 2015 */}
+                        <div className="p-6 shadow-lg rounded-xl bg-white border-l-4 border-blue-500 hover:scale-105 transition-transform">
+                            <h3 className="text-2xl font-semibold flex items-center gap-2">
+                                Founded in 2015
+                            </h3>
+                            <p className="mt-3 text-gray-700 md:text-lg">
+                                Started with a vision to empower businesses through technology.
+                            </p>
                         </div>
-                        <div className="p-6 shadow-md rounded-lg bg-gray-50">
-                            <h3 className="text-xl font-sora">Expanding Globally</h3>
-                            <p className="mt-2 text-gray-600">We have worked with 100+ clients worldwide and continue to grow.</p>
+
+                        {/* 🌍 Expanding Globally */}
+                        <div className="p-6 shadow-lg rounded-xl bg-white border-l-4 border-indigo-500 hover:scale-105 transition-transform">
+                            <h3 className="text-2xl font-semibold flex items-center gap-2">
+                                Expanding Globally
+                            </h3>
+                            <p className="mt-3 text-gray-700 md:text-lg">
+                                We have worked with 100+ clients worldwide and continue to grow.
+                            </p>
                         </div>
                     </div>
                 </div>
             </section>
+
+            {/* 🔹 Trusted by 100+ Companies */}
+            <section className="py-16 px-6 bg-gray-50">
+                <div className="max-w-6xl mx-auto text-center">
+                    {/* Title */}
+                    <h2 className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-indigo-500 text-transparent bg-clip-text">
+                        Trusted by 100+ Companies
+                    </h2>
+                    <p className="mt-3 text-gray-600 text-lg">
+                        We are proud to have partnered with industry-leading businesses across the globe.
+                    </p>
+
+                    {/* Logos Grid */}
+                    <div className="mt-10 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-8 items-center">
+                        <img src="/logos/google.svg" alt="Google" className="h-12 grayscale hover:grayscale-0 transition" />
+                        <img src="/logos/microsoft.svg" alt="Microsoft" className="h-12 grayscale hover:grayscale-0 transition" />
+                        <img src="/logos/spotify.svg" alt="Spotify" className="h-12 grayscale hover:grayscale-0 transition" />
+                        <img src="/logos/airbnb.svg" alt="Airbnb" className="h-12 grayscale hover:grayscale-0 transition" />
+                        <img src="/logos/shopify.svg" alt="Shopify" className="h-12 grayscale hover:grayscale-0 transition" />
+                    </div>
+                </div>
+            </section>
+
 
             {/* 🔹 Meet the Team */}
             <section className="py-16 px-6 bg-gray-100">
