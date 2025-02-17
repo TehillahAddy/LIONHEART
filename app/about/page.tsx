@@ -9,17 +9,19 @@ import { FaStar } from 'react-icons/fa';
 import Image from "next/image";
 import { motion } from "framer-motion";
 import styles from './about.module.css';
-
-
+import { usePathname } from "next/navigation";
 
 
 export default function About() {
+
     const [isSticky, setIsSticky] = useState(false);
     const [isHiding, setIsHiding] = useState(false);
     const [menuOpen, setMenuOpen] = useState(false);
     const [offset, setOffset] = useState(0);
     const [scrollProgress, setScrollProgress] = useState(0);
     const [showButton, setShowButton] = useState(false);
+    const pathname = usePathname(); // Get the current route
+
 
     useEffect(() => {
         const updateScrollProgress = () => {
@@ -43,20 +45,7 @@ export default function About() {
         setTimeout(() => setShowButton(false), 500);
     };
 
-    const [showStickyHeader, setShowStickyHeader] = useState(false);
 
-    useEffect(() => {
-        const handleScroll = () => {
-            if (window.scrollY > 100) { // Increased threshold
-                setShowStickyHeader(true);
-            } else {
-                setShowStickyHeader(false);
-            }
-        };
-
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -83,6 +72,38 @@ export default function About() {
         };
     }, [isSticky, isHiding]);
 
+    const [displayedText, setDisplayedText] = useState("");
+    const fullText = "We help ambitious businesses like yours generate more profits by building awareness, driving web traffic, and connecting with customers.";
+
+    useEffect(() => {
+        let index = 0;
+        let typingInterval: NodeJS.Timeout;
+
+        const startTyping = () => {
+            typingInterval = setInterval(() => {
+                if (index < fullText.length) {
+                    setDisplayedText(fullText.slice(0, index + 1));
+                    index++;
+                } else {
+                    clearInterval(typingInterval);
+
+                    // Reset index and clear text, then restart typing after a delay
+                    setTimeout(() => {
+                        index = 0;
+                        setDisplayedText("");
+                        startTyping();
+                    }, 1000); // Delay before restarting (1 second in this case)
+                }
+            }, 50); // Typing speed in milliseconds
+        };
+
+        startTyping();
+
+        return () => clearInterval(typingInterval); // Cleanup on unmount
+    }, []);
+
+
+    const [showStickyHeader, setShowStickyHeader] = useState(false);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -96,6 +117,7 @@ export default function About() {
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
+
 
     const projectss = [
         {
@@ -174,15 +196,15 @@ export default function About() {
                             </li>
                         </ul>
                     </nav>
-
                 </header>
+
                 <header
-                    className={`flex justify-between items-center ${isSticky ? (isHiding ? "header-sticky hide" : "header-sticky") : "header-custom"
+                    className={`flex justify-between items-center px-6 py-4 ${isSticky ? (isHiding ? "header-sticky hide" : "header-sticky") : "header-custom"
                         }`}
-                    style={{ height: "80px" }} // Constrain the header height
+                    style={{ height: "80px" }}
                 >
                     {/* Logo */}
-                    <img src="/images/logs.png"
+                   <img src="/images/logs.png"
                         alt="Lionheart Tech Logo"
                         width={100}
                         height={100}
@@ -190,14 +212,39 @@ export default function About() {
                     />
 
                     {/* Desktop Navigation */}
-                    <nav className="desktop-menu flex gap-6">
-                        <Link href="/" className="hover">Home</Link>
-                        <Link href="/about" className="hover">About</Link>
-                        <Link href="/services" className="hover">Services</Link>
-                        <Link href="/contact" className="hover">Contact</Link>
+                    <nav className="hidden md:flex gap-6">
+                        <Link
+                            href="/"
+                            className={`${pathname === "/" ? "font-bold border-b-2 border-blue-500" : ""
+                                } ${isSticky ? "text-black" : "text-white"} hover:text-blue-300 transition`}
+                        >
+                            Home
+                        </Link>
+                        <Link
+                            href="/about"
+                            className={`${pathname === "/about" ? "font-bold border-b-2 border-blue-500" : ""
+                                } ${isSticky ? "text-black" : "text-white"} hover:text-blue-300 transition`}
+                        >
+                            About
+                        </Link>
+                        <Link
+                            href="/services"
+                            className={`${pathname === "/services" ? "font-bold border-b-2 border-blue-500" : ""
+                                } ${isSticky ? "text-black" : "text-white"} hover:text-blue-300 transition`}
+                        >
+                            Services
+                        </Link>
+                        <Link
+                            href="/contact"
+                            className={`${pathname === "/contact" ? "font-bold border-b-2 border-blue-500" : ""
+                                } ${isSticky ? "text-black" : "text-white"} hover:text-blue-300 transition`}
+                        >
+                            Contact
+                        </Link>
                     </nav>
 
                     {/* Call-to-Action Button */}
+
                     <button className="custom-button">Get in Touch</button>
                 </header>
             </div>

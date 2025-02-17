@@ -19,6 +19,7 @@ import { FaFacebookF, FaTwitter, FaLinkedinIn, FaInstagram } from "react-icons/f
 import { FaXTwitter, FaLinkedin } from "react-icons/fa6";
 import "@fontsource/sora";
 import { FaRocket, FaLaptopCode, FaDatabase, FaMobileAlt, FaPalette, FaGem } from "react-icons/fa";
+import { usePathname } from "next/navigation";
 
 
 
@@ -29,6 +30,8 @@ export default function Home() {
   const [offset, setOffset] = useState(0);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [showButton, setShowButton] = useState(false);
+  const pathname = usePathname(); // Get the current route
+
 
   useEffect(() => {
     const updateScrollProgress = () => {
@@ -322,13 +325,12 @@ export default function Home() {
               </li>
             </ul>
           </nav>
-
         </header>
 
         <header
-          className={`flex justify-between items-center ${isSticky ? (isHiding ? "header-sticky hide" : "header-sticky") : "header-custom"
+          className={`flex justify-between items-center px-6 py-4 ${isSticky ? (isHiding ? "header-sticky hide" : "header-sticky") : "header-custom"
             }`}
-          style={{ height: "80px" }} // Constrain the header height
+          style={{ height: "80px" }}
         >
           {/* Logo */}
           <Image
@@ -340,18 +342,41 @@ export default function Home() {
           />
 
           {/* Desktop Navigation */}
-          <nav className="desktop-menu flex gap-6">
-            <Link href="/" className="hover">Home</Link>
-            <Link href="/about" className="hover">About</Link>
-            <Link href="/services" className="hover">Services</Link>
-            <Link href="/contact" className="hover">Contact</Link>
+          <nav className="hidden md:flex gap-6">
+            <Link
+              href="/"
+              className={`${pathname === "/" ? "font-bold border-b-2 border-blue-500" : ""
+                } ${isSticky ? "text-black" : "text-white"} hover:text-blue-300 transition`}
+            >
+              Home
+            </Link>
+            <Link
+              href="/about"
+              className={`${pathname === "/about" ? "font-bold border-b-2 border-blue-500" : ""
+                } ${isSticky ? "text-black" : "text-white"} hover:text-blue-300 transition`}
+            >
+              About
+            </Link>
+            <Link
+              href="/services"
+              className={`${pathname === "/services" ? "font-bold border-b-2 border-blue-500" : ""
+                } ${isSticky ? "text-black" : "text-white"} hover:text-blue-300 transition`}
+            >
+              Services
+            </Link>
+            <Link
+              href="/contact"
+              className={`${pathname === "/contact" ? "font-bold border-b-2 border-blue-500" : ""
+                } ${isSticky ? "text-black" : "text-white"} hover:text-blue-300 transition`}
+            >
+              Contact
+            </Link>
           </nav>
 
           {/* Call-to-Action Button */}
+
           <button className="custom-button">Get in Touch</button>
-
         </header>
-
 
         <section className="hero-section">
           <div className="welcome-badge">Welcome To</div>
