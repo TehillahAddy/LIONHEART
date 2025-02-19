@@ -251,7 +251,7 @@ export default function About() {
                     </div>
                 </div>
 
-                <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-12 md:mt-[-60px]">
+                <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-12 md:mt-[-90px]">
                     {/* Left: Text Content */}
                     <div className="md:w-1/2 text-center md:text-left">
                         <h1 className="text-4xl font-bold text-white drop-shadow-lg">
@@ -427,7 +427,7 @@ export default function About() {
             </section>
 
             {/* 🔹 Call to Action */}
-            <section className="bg-blue-900 text-white py-16 text-center">
+            <section className="text-white py-16 text-center" style={{ background: 'linear-gradient(to right, black, blue, black)' }}>
                 <h2 className="text-3xl font-sora">Join Our Journey</h2>
                 <p className="mt-4 text-gray-300">Want to work with us? Let's build something great together.</p>
                 <a href="/contact" className="mt-6 inline-block bg-white text-blue-900 px-6 py-3 rounded-lg font-sora transition hover:bg-gray-200">
