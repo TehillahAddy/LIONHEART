@@ -251,7 +251,7 @@ export default function About() {
                     <div className="text-center text-white max-w-3xl">
                         <h1 className="text-5xl font-bold drop-shadow-lg">About Us</h1>
                         <p className="mt-4 text-lg text-gray-200">
-                            Since 2015, we’ve helped 100+ companies scale through technology and creativity.
+                            Since 2015, we’ve helped 50+ companies scale through technology and creativity.
                             We’re on a mission to build solutions that drive real impact.
                         </p>
                     </div>
