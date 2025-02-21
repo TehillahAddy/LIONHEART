@@ -142,9 +142,23 @@ export default function About() {
 
 
     return (
-        <div className="bg-gray-100 min-h-screen">
+        <div className="bg-gray-50 min-h-screen">
             <div className={styles.homepages}>
                 <header className="mobile-header">
+                    <div className="header-container">
+                        {/* Logo */}
+                        <img src="/images/logs.png" alt="Lionheart Tech Logo" width={90} height={90} />
+
+                        {/* Hamburger Icon */}
+                        <div className="hamburger-icon" onClick={() => setMenuOpen(!menuOpen)}>
+                            {menuOpen ? (
+                                null
+                            ) : (
+                                <Bars3Icon className="h-8 w-8 text-[black] transition-transform duration-600 rotate-0" />
+                            )}
+                        </div>
+                    </div>
+
                     {showStickyHeader && (
                         <header className="sticky-header">
                             <div className="header-container">
@@ -228,55 +242,26 @@ export default function About() {
                             Contact
                         </Link>
                     </nav>
-
-
                     {/* Call-to-Action Button */}
 
                     <button className="custom-button">Get in Touch</button>
                 </header>
-            </div>
-            <section
-                className="relative h-[60vh] flex items-start justify-center px-6 pt-10"
-                style={{ background: 'linear-gradient(to right, black, blue, black)' }}
-            >
-                {/* Mobile Header (Only on Small Screens) */}
-                <div className="absolute top-1 left-0 w-full px-6 flex items-center justify-between md:hidden">
-                    {/* Logo (Left) */}
-                    <img src="/images/dll.png" alt="Lionheart Tech Logo" width={70} height={70} />
-                    {/* Hamburger Icon (Right) */}
-                    <div onClick={() => setMenuOpen(!menuOpen)}>
-                        {!menuOpen && (
-                            <Bars3Icon className="h-10 w-10 text-red-500 transition-transform duration-600 rotate-0" />
-                        )}
-                    </div>
-                </div>
 
-                <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-12 md:mt-[-90px]">
-                    {/* Left: Text Content */}
-                    <div className="md:w-1/2 text-center md:text-left">
-                        <h1 className="text-4xl font-bold text-white drop-shadow-lg">
-                            Empowering Businesses with Innovation
-                        </h1>
-                        <p className="mt-3 text-gray-300 text-lg">
+                <section className="relative w-screen min-h-[60vh] bg-gradient-to-r from-black via-blue-600 to-black flex items-center justify-center px-6 mt-20" >
+                    <div className="text-center text-white max-w-3xl">
+                        <h1 className="text-5xl font-bold drop-shadow-lg">About Us</h1>
+                        <p className="mt-4 text-lg text-gray-200">
                             Since 2015, we’ve helped 100+ companies scale through technology and creativity.
                             We’re on a mission to build solutions that drive real impact.
                         </p>
-
-                        <a href="#our-journey" className="mt-5 inline-block bg-blue-600 text-white px-6 py-3 rounded-lg shadow-md hover:bg-blue-700 transition">
-                            Our Journey
-                        </a>
                     </div>
 
                     {/* Right: Hero Image */}
                     <div className="md:w-1/2 flex justify-center">
-                <Image className="rotate-image" src="/images/link.png" alt="lIonheart Tech" width={400} height={400} />
+                        <Image className="rotate-image" src="/images/link.png" alt="lIonheart Tech" width={400} height={400} />
                     </div>
-                </div>
-
-
-            </section>
-
-
+                </section>
+            </div>
 
             <section className="galaxy" style={{ marginTop: "-60px" }} >
                 {/* GALACTIC BACKGROUND ANIMATION */}
