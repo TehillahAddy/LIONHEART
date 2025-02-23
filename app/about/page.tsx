@@ -10,7 +10,10 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import styles from './about.module.css';
 import { usePathname } from "next/navigation";
-
+import CountUp from "react-countup";
+import { useInView } from "framer-motion";
+import { useRef } from "react";
+import Tilt from "react-parallax-tilt";
 
 export default function About() {
 
@@ -21,6 +24,11 @@ export default function About() {
     const [scrollProgress, setScrollProgress] = useState(0);
     const [showButton, setShowButton] = useState(false);
     const pathname = usePathname(); // Get the current route
+
+    const CustomIcon1 = "/images/set.png"; // ✅ No import needed
+    const CustomIcon2 = "/images/sun.png"; // ✅ No import needed
+    const CustomIcon3 = "/images/link.png"; // ✅ No import needed
+    const CustomIcon4 = "/images/ah.png"; // ✅ No import needed
 
 
     useEffect(() => {
@@ -140,6 +148,27 @@ export default function About() {
         },
     ];
 
+    const stats = [
+        { value: 6, label: "Years of Excellence", icon: CustomIcon1 },
+        { value: 80, label: "Happy Clients", icon: CustomIcon2 },
+        { value: 200, label: "Total Projects", icon: CustomIcon3 },
+        { value: 100, label: "Live Projects", icon: CustomIcon4 },
+    ];
+
+    const ref = useRef(null);
+    const isInView = useInView(ref, { once: true });
+
+    // Scroll-based Dynamic Shadow Effect (Fixed)
+    const [shadowOffset, setShadowOffset] = useState(0);
+    useEffect(() => {
+        if (typeof window !== "undefined") {
+            const handleScroll = () => {
+                setShadowOffset(Math.min(window.scrollY * 0.1, 20)); // Prevents excessive offset
+            };
+            window.addEventListener("scroll", handleScroll);
+            return () => window.removeEventListener("scroll", handleScroll);
+        }
+    }, []);
 
     return (
         <div className="bg-gray-50 min-h-screen">
@@ -389,6 +418,101 @@ export default function About() {
                 </div>
             </section>
 
+            <motion.section
+                ref={ref}
+                initial={{ opacity: 0, y: 50 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 1.5, ease: "easeOut" }}
+                className="relative bg-black text-white py-20 px-6 overflow-hidden"
+            >
+                {/* 🔥 Moving Gradient Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 via-transparent to-blue-900/20 blur-[180px] opacity-50 animate-gradientFlow"></div>
+
+                {/* Section Title */}
+                <div className="text-center mb-12 relative z-10">
+                    <motion.h3
+                        initial={{ opacity: 0, y: -20 }}
+                        animate={isInView ? { opacity: 1, y: 0 } : {}}
+                        transition={{ delay: 0.2, duration: 1 }}
+                        className="text-lg font-semibold tracking-widest text-gray-400"
+                    >
+                        — ABOUT LIONHEART TECH —
+                    </motion.h3>
+                    <motion.h1
+                        initial={{ opacity: 0, y: -20 }}
+                        animate={isInView ? { opacity: 1, y: 0 } : {}}
+                        transition={{ delay: 0.4, duration: 1 }}
+                        className="text-6xl font-extrabold tracking-wide mt-3 drop-shadow-lg text-blue-400 hover:text-white transition-all duration-300 hover:shadow-[0px_0px_40px_rgba(0,255,255,0.6)]"
+                    >
+                        OUR SUCCESS 🦁🔥
+                    </motion.h1>
+                </div>
+
+                {/* Stats Cards */}
+                <div className="flex flex-wrap justify-center gap-8 max-w-6xl mx-auto relative z-10">
+                    {stats.map((stat, index) => (
+                        <Tilt
+                            key={index}
+                            glareEnable={true}
+                            glareMaxOpacity={0.5}
+                            glareColor="cyan"
+                            glarePosition="top"
+                            scale={1.1}
+                            className="relative"
+                        >
+                            <motion.div
+                                initial={{ opacity: 0, scale: 0.8 }}
+                                animate={isInView ? { opacity: 1, scale: 1 } : {}} // ✅ Fixed Syntax Issue
+                                transition={{ delay: 0.3 + index * 0.3, duration: 1, ease: "easeOut" }}
+                                whileHover={{
+                                    scale: 1.1,
+                                    rotate: [0, 2, -2, 0],
+                                    boxShadow: `0px 4px ${shadowOffset}px rgba(0, 255, 255, 0.5)`,
+                                }}
+                                className="relative bg-white/10 backdrop-blur-lg p-8 rounded-3xl shadow-lg flex flex-col items-center w-64 text-center border border-blue-400/40 transition-all transform hover:shadow-2xl hover:scale-105"
+                            >
+                                {/* 💡 Live Reflection Effect */}
+                                <div className="absolute -inset-1.5 bg-blue-500/10 rounded-3xl blur-md opacity-50"></div>
+
+                                {/* 🔥 Icon Animation */}
+                                <motion.div whileHover={{ scale: 1.2 }} transition={{ duration: 0.3 }} className="w-16 h-16 mb-3">
+                                    {typeof stat.icon === "string" ? (
+                                        <img src={stat.icon} alt={stat.label} className="w-full h-full object-contain" />
+                                    ) : (
+                                        <Image src={stat.icon} alt={stat.label} width={64} height={64} className="object-contain" />
+                                    )}
+                                </motion.div>
+
+
+                                {/* 🚀 Animated CountUp Numbers */}
+                                <h2 className="text-4xl font-bold mt-3 text-blue-300">
+                                    {isInView ? <CountUp end={stat.value} duration={10} delay={0.5} /> : "0"}+
+                                </h2>
+
+                                {/* 🌊 Animated Progress Bar */}
+                                <motion.div
+                                    initial={{ width: 0 }}
+                                    animate={isInView ? { width: "100%" } : {}}
+                                    transition={{ duration: 10, ease: "easeOut", delay: 0.5 }}
+                                    className="h-1 bg-blue-500 rounded-full w-full mt-2"
+                                ></motion.div>
+
+                                <p className="text-lg opacity-75 mt-3">{stat.label}</p>
+                            </motion.div>
+                        </Tilt>
+                    ))}
+                </div>
+
+                {/* 🌌 Floating Animated Particles */}
+                <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
+                    <div className="absolute w-10 h-10 bg-blue-400 rounded-full blur-2xl top-[10%] left-[20%] opacity-30 animate-bounce"></div>
+                    <div className="absolute w-14 h-14 bg-cyan-500 rounded-full blur-3xl top-[50%] left-[60%] opacity-20 animate-pulse"></div>
+                    <div className="absolute w-16 h-16 bg-purple-500 rounded-full blur-3xl top-[80%] left-[10%] opacity-20 animate-spin"></div>
+                </div>
+
+                {/* 🔥 Animated Liquid Morph Shapes */}
+                <div className="absolute bottom-0 left-0 right-0 h-64 bg-gradient-to-r from-blue-500/30 via-transparent to-blue-900/30 blur-3xl animate-morph"></div>
+            </motion.section>
 
             {/* 🔹 Meet the Team */}
             <section className="py-16 px-6 bg-gray-100">
