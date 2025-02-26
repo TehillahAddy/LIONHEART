@@ -484,8 +484,6 @@ export default function Services() {
         </div>
       </motion.section>
 
-
-
       {/* Services Grid */}
       <section className="max-w-6xl mx-auto py-16 px-6">
         <h2 className="text-3xl font-bold text-center text-gray-800">What We Offer</h2>
