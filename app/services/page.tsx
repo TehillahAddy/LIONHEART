@@ -418,7 +418,7 @@ export default function Services() {
         viewport={{ once: true }}
         transition={{ staggerChildren: 0.15 }}
         className="py-16 bg-cover bg-center bg-no-repeat text-gray-900 dark:text-white"
-        style={{ backgroundImage: "url('/images/pnd.jpg')" }} // Change to your actual image path
+        style={{ backgroundImage: "url('/images/3dd.jpg')" }} // Change to your actual image path
       >
         <div className="max-w-6xl mx-auto px-6 text-center">
           <h2 className="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-gray-800 to-blue-900 dark:from-gray-200 dark:to-blue-300 mb-6">
@@ -483,49 +483,50 @@ export default function Services() {
           </div>
         </div>
       </motion.section>
-
-      {/* Services Grid */}
-      <section className="max-w-6xl mx-auto py-16 px-6">
-        <h2 className="text-3xl font-bold text-center text-gray-800">What We Offer</h2>
-        <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-10">
-          {service.map((service) => (
-            <div key={service.title} className="p-6 bg-white shadow-lg rounded-xl text-center hover:shadow-2xl transition">
-              <div className="text-blue-600 text-5xl mb-4">{service.icon}</div>
-              <h3 className="text-xl font-semibold">{service.title}</h3>
-              <p className="mt-2 text-gray-600">{service.description}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Why Choose Us Section */}
-      <section className="bg-blue-100 py-16">
-        <div className="max-w-6xl mx-auto px-6 text-center">
-          <h2 className="text-3xl font-bold text-gray-800">Why Choose Us?</h2>
-          <p className="mt-4 text-lg text-gray-700">
-            We don’t just build services; we create value for your business.
+     
+      <motion.section
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1 }}
+        className="flex flex-col md:flex-row items-center justify-center min-h-screen bg-black text-white px-6 py-12"
+      >
+        {/* Left Side - Why Choose Us */}
+        <div className="md:w-1/2 text-center md:text-left mb-8 md:mb-0 px-6">
+          <h2 className="text-4xl font-bold text-blue-400 mb-4">Why Choose Us?</h2>
+          <p className="text-lg text-gray-300 mb-4">
+            We provide cutting-edge solutions designed to boost your business growth.
+            Our team is committed to delivering excellence with innovative strategies.
           </p>
-          <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-8">
-            {benefits.map((benefit, index) => (
-              <div key={index} className="p-6 bg-white shadow-md rounded-xl">
-                <h3 className="text-lg font-semibold text-blue-600">{benefit.title}</h3>
-                <p className="mt-2 text-gray-600">{benefit.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
-      {/* Call to Action */}
-      <section className="bg-blue-600 py-16 text-center text-white">
-        <h2 className="text-3xl font-bold">Ready to Elevate Your Business?</h2>
-        <p className="mt-2 text-lg text-gray-200">
-          Let's discuss how we can help you achieve your goals.
-        </p>
-        <a href="/contact" className="mt-5 inline-block bg-white text-blue-600 px-6 py-3 rounded-lg shadow-md hover:bg-gray-200 transition">
-          Contact Us
-        </a>
-      </section>
+          <ul className="space-y-3 text-gray-300">
+            <li className="flex items-center">
+              <span className="text-blue-400 text-xl mr-2">✔</span> Expert Team with Years of Experience
+            </li>
+            <li className="flex items-center">
+              <span className="text-blue-400 text-xl mr-2">✔</span> Customized Solutions Tailored for You
+            </li>
+            <li className="flex items-center">
+              <span className="text-blue-400 text-xl mr-2">✔</span> 24/7 Support & Reliable Service
+            </li>
+            <li className="flex items-center">
+              <span className="text-blue-400 text-xl mr-2">✔</span> Proven Success with Satisfied Clients
+            </li>
+          </ul>
+        </div>
+
+        {/* Right Side - Video */}
+        <div className="md:w-1/2 flex justify-center">
+          <video
+            className="w-full max-w-2xl rounded-xl shadow-lg"
+            src="/images/UD.mp4"
+            autoPlay
+            loop
+            muted
+            controls
+          />
+        </div>
+      </motion.section>
+
       {/* Footer */}
       <footer className="w-full bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-black py-12 px-6 md:px-16 lg:px-24 border-t border-gray-200 dark:border-gray-800 font-sora text-center md:text-left transition-colors duration-300">
         <div className="w-full max-w-7xl mx-auto flex flex-col md:flex-row justify-between">
