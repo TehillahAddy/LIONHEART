@@ -53,6 +53,7 @@ export default function Contact() {
 
     const [formData, setFormData] = useState({ name: "", email: "", message: "" });
     const [status, setStatus] = useState("");
+    const [loading, setLoading] = useState(false);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -60,27 +61,31 @@ export default function Contact() {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        setStatus("Sending...");
+        setStatus("");
+        setLoading(true);
 
         try {
-            const res = await fetch("http://localhost:5000/api/contact", {
+            const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/contact`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(formData),
             });
 
+            const result = await res.json();
+
             if (res.ok) {
-                setStatus("Message sent successfully!");
+                setStatus("✅ Message sent successfully!");
                 setFormData({ name: "", email: "", message: "" });
             } else {
-                setStatus("Error sending message.");
+                setStatus(`❌ ${result.error || "Failed to send message"}`);
             }
         } catch (error) {
-            console.error(error);
-            setStatus("Error sending message.");
+            console.error("Contact form error:", error);
+            setStatus("❌ Server error. Please try again later.");
+        } finally {
+            setLoading(false);
         }
     };
-
     const [showStickyHeader, setShowStickyHeader] = useState(false);
 
     useEffect(() => {
