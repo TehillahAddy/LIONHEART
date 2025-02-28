@@ -52,15 +52,33 @@ export default function Contact() {
     };
 
     const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+    const [status, setStatus] = useState("");
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        alert("Message sent! 🚀");
-        setFormData({ name: "", email: "", message: "" });
+        setStatus("Sending...");
+
+        try {
+            const res = await fetch("http://localhost:5000/api/contact", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(formData),
+            });
+
+            if (res.ok) {
+                setStatus("Message sent successfully!");
+                setFormData({ name: "", email: "", message: "" });
+            } else {
+                setStatus("Error sending message.");
+            }
+        } catch (error) {
+            console.error(error);
+            setStatus("Error sending message.");
+        }
     };
 
     const [showStickyHeader, setShowStickyHeader] = useState(false);
@@ -256,102 +274,104 @@ export default function Contact() {
 
 
                 <div className="flex flex-col md:flex-row items-center justify-center w-full max-w-6xl">
-                    {/* 📍 Contact Info */}
-                    <motion.div
-                        initial={{ opacity: 0, x: -50 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 1 }}
-                        className="w-full md:w-1/2 bg-white shadow-2xl rounded-3xl p-8 mb-8 md:mb-0 md:mr-8 backdrop-blur-lg bg-opacity-90"
-                    >
-                        <h2 className="text-3xl font-bold text-blue-600 mb-6">Contact Information</h2>
+            {/* 📍 Contact Info */}
+            <motion.div
+                initial={{ opacity: 0, x: -50 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 1 }}
+                className="w-full md:w-1/2 bg-white shadow-2xl rounded-3xl p-8 mb-8 md:mb-0 md:mr-8 backdrop-blur-lg bg-opacity-90"
+            >
+                <h2 className="text-3xl font-bold text-blue-600 mb-6">Contact Information</h2>
 
-                        {/* Address */}
-                        <div className="flex items-start space-x-4 mb-6">
-                            <FaMapMarkerAlt className="text-blue-500 text-2xl mt-1" />
-                            <div>
-                                <h3 className="text-xl font-semibold text-gray-800">Address</h3>
-                                <p className="text-gray-600">Greater Accra Region - Oyarifa</p>
-                                <p className="text-gray-600">Western Region - Wassa East District</p>
-                            </div>
-                        </div>
-
-                        {/* Email */}
-                        <div className="flex items-start space-x-4 mb-6">
-                            <FaEnvelope className="text-blue-500 text-2xl mt-1" />
-                            <div>
-                                <h3 className="text-xl font-semibold text-gray-800">Email</h3>
-                                <p className="text-gray-600">info@lionhearteach.com</p>
-                            </div>
-                        </div>
-
-                        {/* Phone */}
-                        <div className="flex items-start space-x-4">
-                            <FaPhone className="text-blue-500 text-2xl mt-1" />
-                            <div>
-                                <h3 className="text-xl font-semibold text-gray-800">Phone</h3>
-                                <p className="text-gray-600">+233552012116</p>
-                                <p className="text-gray-600">+233278985082</p>
-                                <p className="text-gray-600">+233277688148</p>
-                            </div>
-                        </div>
-                    </motion.div>
-
-                    {/* 📩 Contact Form */}
-                    <motion.form
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ delay: 0.3, duration: 1 }}
-                        onSubmit={handleSubmit}
-                        className="w-full md:w-1/2 bg-white shadow-2xl rounded-3xl p-8 backdrop-blur-lg bg-opacity-90"
-                    >
-                        <h2 className="text-3xl font-bold text-gray-800 mb-6">Send Us A Message</h2>
-
-                        <div className="mb-4">
-                            <label className="block text-gray-600">Your Name</label>
-                            <input
-                                type="text"
-                                name="name"
-                                value={formData.name}
-                                onChange={handleChange}
-                                className="w-full p-3 rounded-lg bg-gray-200 text-gray-800 focus:outline-none focus:ring focus:ring-blue-500 shadow-inner"
-                                required
-                            />
-                        </div>
-
-                        <div className="mb-4">
-                            <label className="block text-gray-600">Your Email</label>
-                            <input
-                                type="email"
-                                name="email"
-                                value={formData.email}
-                                onChange={handleChange}
-                                className="w-full p-3 rounded-lg bg-gray-200 text-gray-800 focus:outline-none focus:ring focus:ring-blue-500 shadow-inner"
-                                required
-                            />
-                        </div>
-
-                        <div className="mb-6">
-                            <label className="block text-gray-600">Your Message</label>
-                            <textarea
-                                name="message"
-                                value={formData.message}
-                                onChange={handleChange}
-                                rows={4}
-                                className="w-full p-3 rounded-lg bg-gray-200 text-gray-800 focus:outline-none focus:ring focus:ring-blue-500 shadow-inner"
-                                required
-                            />
-                        </div>
-
-                        <motion.button
-                            whileHover={{ scale: 1.1 }}
-                            whileTap={{ scale: 0.9 }}
-                            type="submit"
-                            className="w-full bg-gradient-to-r from-blue-500 to-indigo-700 text-white font-bold py-3 rounded-lg transition-all shadow-lg"
-                        >
-                            Send Message 🚀
-                        </motion.button>
-                    </motion.form>
+                {/* Address */}
+                <div className="flex items-start space-x-4 mb-6">
+                    <FaMapMarkerAlt className="text-blue-500 text-2xl mt-1" />
+                    <div>
+                        <h3 className="text-xl font-semibold text-gray-800">Address</h3>
+                        <p className="text-gray-600">Greater Accra Region - Oyarifa</p>
+                        <p className="text-gray-600">Western Region - Wassa East District</p>
+                    </div>
                 </div>
+
+                {/* Email */}
+                <div className="flex items-start space-x-4 mb-6">
+                    <FaEnvelope className="text-blue-500 text-2xl mt-1" />
+                    <div>
+                        <h3 className="text-xl font-semibold text-gray-800">Email</h3>
+                        <p className="text-gray-600">info@lionhearteach.com</p>
+                    </div>
+                </div>
+
+                {/* Phone */}
+                <div className="flex items-start space-x-4">
+                    <FaPhone className="text-blue-500 text-2xl mt-1" />
+                    <div>
+                        <h3 className="text-xl font-semibold text-gray-800">Phone</h3>
+                        <p className="text-gray-600">+233552012116</p>
+                        <p className="text-gray-600">+233278985082</p>
+                        <p className="text-gray-600">+233277688148</p>
+                    </div>
+                </div>
+            </motion.div>
+
+            {/* 📩 Contact Form */}
+            <motion.form
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.3, duration: 1 }}
+                onSubmit={handleSubmit}
+                className="w-full md:w-1/2 bg-white shadow-2xl rounded-3xl p-8 backdrop-blur-lg bg-opacity-90"
+            >
+                <h2 className="text-3xl font-bold text-gray-800 mb-6">Send Us A Message</h2>
+
+                <div className="mb-4">
+                    <label className="block text-gray-600">Your Name</label>
+                    <input
+                        type="text"
+                        name="name"
+                        value={formData.name}
+                        onChange={handleChange}
+                        className="w-full p-3 rounded-lg bg-gray-200 text-gray-800 focus:outline-none focus:ring focus:ring-blue-500 shadow-inner"
+                        required
+                    />
+                </div>
+
+                <div className="mb-4">
+                    <label className="block text-gray-600">Your Email</label>
+                    <input
+                        type="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        className="w-full p-3 rounded-lg bg-gray-200 text-gray-800 focus:outline-none focus:ring focus:ring-blue-500 shadow-inner"
+                        required
+                    />
+                </div>
+
+                <div className="mb-6">
+                    <label className="block text-gray-600">Your Message</label>
+                    <textarea
+                        name="message"
+                        value={formData.message}
+                        onChange={handleChange}
+                        rows={4}
+                        className="w-full p-3 rounded-lg bg-gray-200 text-gray-800 focus:outline-none focus:ring focus:ring-blue-500 shadow-inner"
+                        required
+                    />
+                </div>
+
+                <motion.button
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                    type="submit"
+                    className="w-full bg-gradient-to-r from-blue-500 to-indigo-700 text-white font-bold py-3 rounded-lg transition-all shadow-lg"
+                >
+                    Send Message 🚀
+                </motion.button>
+
+                {status && <p className="mt-4 text-center text-gray-700">{status}</p>}
+            </motion.form>
+        </div>
             </motion.section>
 
             <footer className="w-full bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-black py-12 px-6 md:px-16 lg:px-24 border-t border-gray-200 dark:border-gray-800 font-sora text-center md:text-left transition-colors duration-300">
@@ -470,5 +490,4 @@ export default function Contact() {
         </div>
     );
 }
-
 
