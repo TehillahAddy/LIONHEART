@@ -52,8 +52,8 @@ export default function Contact() {
     };
 
     const [formData, setFormData] = useState({ name: "", email: "", message: "" });
-    const [status, setStatus] = useState("");
-    const [loading, setLoading] = useState(false);
+    const [status, setStatus] = useState({ message: "", type: "" });
+    const [isSending, setIsSending] = useState(false);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -61,29 +61,27 @@ export default function Contact() {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        setStatus("");
-        setLoading(true);
+        setStatus({ message: "Sending message...", type: "info" });
+        setIsSending(true);
 
         try {
-            const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/contact`, {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/contact`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(formData),
             });
 
-            const result = await res.json();
-
-            if (res.ok) {
-                setStatus("✅ Message sent successfully!");
+            if (response.ok) {
+                setStatus({ message: "✅ Your message has been sent successfully!", type: "success" });
                 setFormData({ name: "", email: "", message: "" });
             } else {
-                setStatus(`❌ ${result.error || "Failed to send message"}`);
+                setStatus({ message: "❌ Failed to send message. Try again later.", type: "error" });
             }
         } catch (error) {
-            console.error("Contact form error:", error);
-            setStatus("❌ Server error. Please try again later.");
+            console.error(error);
+            setStatus({ message: "❌ Network error. Please check your connection.", type: "error" });
         } finally {
-            setLoading(false);
+            setIsSending(false);
         }
     };
     const [showStickyHeader, setShowStickyHeader] = useState(false);
@@ -321,61 +319,75 @@ export default function Contact() {
 
             {/* 📩 Contact Form */}
             <motion.form
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.3, duration: 1 }}
-                onSubmit={handleSubmit}
-                className="w-full md:w-1/2 bg-white shadow-2xl rounded-3xl p-8 backdrop-blur-lg bg-opacity-90"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.3, duration: 1 }}
+            onSubmit={handleSubmit}
+            className="w-full md:w-1/2 bg-white shadow-2xl rounded-3xl p-8 backdrop-blur-lg bg-opacity-90"
+        >
+            <h2 className="text-3xl font-bold text-gray-800 mb-6">Send Us A Message</h2>
+
+            <div className="mb-4">
+                <label className="block text-gray-600">Your Name</label>
+                <input
+                    type="text"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    className="w-full p-3 rounded-lg bg-gray-200 text-gray-800 focus:outline-none focus:ring focus:ring-blue-500 shadow-inner"
+                    required
+                />
+            </div>
+
+            <div className="mb-4">
+                <label className="block text-gray-600">Your Email</label>
+                <input
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    className="w-full p-3 rounded-lg bg-gray-200 text-gray-800 focus:outline-none focus:ring focus:ring-blue-500 shadow-inner"
+                    required
+                />
+            </div>
+
+            <div className="mb-6">
+                <label className="block text-gray-600">Your Message</label>
+                <textarea
+                    name="message"
+                    value={formData.message}
+                    onChange={handleChange}
+                    rows={4}
+                    className="w-full p-3 rounded-lg bg-gray-200 text-gray-800 focus:outline-none focus:ring focus:ring-blue-500 shadow-inner"
+                    required
+                />
+            </div>
+
+            <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                type="submit"
+                disabled={isSending}
+                className={`w-full text-white font-bold py-3 rounded-lg transition-all shadow-lg 
+                    ${isSending ? "bg-gray-400 cursor-not-allowed" : "bg-gradient-to-r from-blue-500 to-indigo-700 hover:from-blue-600 hover:to-indigo-800"}`}
             >
-                <h2 className="text-3xl font-bold text-gray-800 mb-6">Send Us A Message</h2>
+                {isSending ? "Sending..." : "Send Message 🚀"}
+            </motion.button>
 
-                <div className="mb-4">
-                    <label className="block text-gray-600">Your Name</label>
-                    <input
-                        type="text"
-                        name="name"
-                        value={formData.name}
-                        onChange={handleChange}
-                        className="w-full p-3 rounded-lg bg-gray-200 text-gray-800 focus:outline-none focus:ring focus:ring-blue-500 shadow-inner"
-                        required
-                    />
-                </div>
-
-                <div className="mb-4">
-                    <label className="block text-gray-600">Your Email</label>
-                    <input
-                        type="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        className="w-full p-3 rounded-lg bg-gray-200 text-gray-800 focus:outline-none focus:ring focus:ring-blue-500 shadow-inner"
-                        required
-                    />
-                </div>
-
-                <div className="mb-6">
-                    <label className="block text-gray-600">Your Message</label>
-                    <textarea
-                        name="message"
-                        value={formData.message}
-                        onChange={handleChange}
-                        rows={4}
-                        className="w-full p-3 rounded-lg bg-gray-200 text-gray-800 focus:outline-none focus:ring focus:ring-blue-500 shadow-inner"
-                        required
-                    />
-                </div>
-
-                <motion.button
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.9 }}
-                    type="submit"
-                    className="w-full bg-gradient-to-r from-blue-500 to-indigo-700 text-white font-bold py-3 rounded-lg transition-all shadow-lg"
+            {status.message && (
+                <motion.p
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.5 }}
+                    aria-live="polite"
+                    className={`mt-4 text-center font-semibold ${
+                        status.type === "success" ? "text-green-600" : "text-red-600"
+                    }`}
                 >
-                    Send Message 🚀
-                </motion.button>
-
-                {status && <p className="mt-4 text-center text-gray-700">{status}</p>}
-            </motion.form>
+                    {status.message}
+                </motion.p>
+            )}
+        </motion.form>
         </div>
             </motion.section>
 
