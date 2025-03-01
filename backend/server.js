@@ -6,36 +6,24 @@ const cors = require("cors");
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// ✅ Fixed CORS Setup
-const allowedOrigins = [
-    "http://localhost:3000",
-    "https://lionheart-seven.vercel.app",
-    "https://lionheart-tehillah-addys-projects.vercel.app"
-];
-
 const corsOptions = {
-    origin: (origin, callback) => {
-        if (!origin || allowedOrigins.includes(origin)) {
-            callback(null, true);
-        } else {
-            console.log("❌ Blocked by CORS:", origin);
-            callback(new Error("Not allowed by CORS"));
-        }
-    },
+    origin: ["http://localhost:3000", "https://lionheart-seven.vercel.app", "https://lionheart-tehillah-addys-projects.vercel.app"],
     methods: "GET,POST",
     allowedHeaders: "Content-Type",
-    credentials: true, // Allow cookies/auth headers
 };
-
 app.use(cors(corsOptions));
 app.use(express.json());
 
-// ✅ Debugging: Check if environment variables are loaded
-console.log("EMAIL_USER:", process.env.EMAIL_USER ? "✅ Loaded" : "❌ Not Found");
-console.log("EMAIL_PASS:", process.env.EMAIL_PASS ? "✅ Loaded" : "❌ Not Found");
-console.log("RECIPIENT_EMAIL:", process.env.RECIPIENT_EMAIL ? "✅ Loaded" : "❌ Not Found");
+// Email Transporter
+const transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS,
+    },
+});
 
-// ✅ Contact Form API
+// Email Route
 app.post("/api/contact", async (req, res) => {
     const { name, email, message } = req.body;
 
@@ -44,35 +32,38 @@ app.post("/api/contact", async (req, res) => {
     }
 
     try {
-        const transporter = nodemailer.createTransport({
-            service: "gmail",
-            auth: {
-                user: process.env.EMAIL_USER,
-                pass: process.env.EMAIL_PASS,
-            },
-        });
-
-        const mailOptions = {
+        // Email to Site Owner (You)
+        const mailOptionsToOwner = {
             from: process.env.EMAIL_USER,
             to: process.env.RECIPIENT_EMAIL,
             subject: `New Message from ${name}`,
             text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`,
         };
 
-        await transporter.sendMail(mailOptions);
-        res.status(200).json({ success: true, message: "✅ Email sent successfully!" });
+        // Confirmation Email to Sender
+        const mailOptionsToSender = {
+            from: process.env.EMAIL_USER,
+            to: email, // Sends to the user who submitted the form
+            subject: "We Received Your Message!",
+            text: `Hello ${name},\n\nThank you for reaching out to us! We have received your message and will get back to you as soon as possible.\n\nBest Regards,\nLionheart Tech Team`,
+        };
+
+        // Send both emails
+        await transporter.sendMail(mailOptionsToOwner);
+        await transporter.sendMail(mailOptionsToSender);
+
+        res.status(200).json({ success: true, message: "Emails sent successfully!" });
     } catch (error) {
-        console.error("❌ Email sending error:", error);
+        console.error(error);
         res.status(500).json({ error: "Email sending failed" });
     }
 });
 
-// ✅ Debugging Route
 app.get("/", (req, res) => {
     res.send("📡 Backend is running...");
 });
 
-// ✅ Start Server
+// Start Server
 app.listen(PORT, () => {
-    console.log(`🚀 Server running on http://localhost:${PORT}`);
+    console.log(`Server running on http://localhost:${PORT}`);
 });
