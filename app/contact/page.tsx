@@ -8,7 +8,7 @@ import { motion } from "framer-motion";
 import Image from 'next/image';
 import { usePathname } from "next/navigation";
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
-import { FaStar } from 'react-icons/fa';
+import { FaSearch } from 'react-icons/fa';
 import Logs from "../public/images/logs.png";
 import "@fontsource/sora";
 import styles from './contact.module.css';
@@ -16,6 +16,8 @@ import {
     Monitor, PenTool, Server, TrendingUp, Smartphone, Search, ClipboardList, ShieldCheck, FileText
 } from "lucide-react";
 import { FaMapMarkerAlt, FaEnvelope, FaPhone } from "react-icons/fa";
+import * as Dialog from "@radix-ui/react-dialog";
+
 
 
 
@@ -28,6 +30,7 @@ export default function Contact() {
     const [isHiding, setIsHiding] = useState(false);
     const [menuOpen, setMenuOpen] = useState(false);
     const pathname = usePathname(); // Get the current route
+    const [showModal, setShowModal] = useState(false);
 
     useEffect(() => {
         const updateScrollProgress = () => {
@@ -61,22 +64,21 @@ export default function Contact() {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        setStatus({ message: "Sending message...", type: "info" });
         setIsSending(true);
-    
-        const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:5000";  
+
+        const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:5000";
         console.log("Backend URL:", backendUrl); // Debugging line to check if it's set correctly
-    
+
         try {
             const response = await fetch(`${backendUrl}/api/contact`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(formData),
             });
-    
+
             if (response.ok) {
-                setStatus({ message: "✅ Your message has been sent successfully!", type: "success" });
                 setFormData({ name: "", email: "", message: "" });
+                setShowModal(true); // Show modal on success
             } else {
                 setStatus({ message: "❌ Failed to send message. Try again later.", type: "error" });
             }
@@ -86,7 +88,7 @@ export default function Contact() {
         } finally {
             setIsSending(false);
         }
-    };    
+    };
 
     const [showStickyHeader, setShowStickyHeader] = useState(false);
 
@@ -166,7 +168,7 @@ export default function Contact() {
                         <div className="search-bar">
                             <input type="text" placeholder="Search..." />
                             <button>
-                                <FaStar style={{ fontSize: "24px", color: "blue" }} />
+                                <FaSearch style={{ fontSize: "24px", color: "blue" }} />
                             </button>
                         </div>
                         <ul>
@@ -281,118 +283,175 @@ export default function Contact() {
 
 
                 <div className="flex flex-col md:flex-row items-center justify-center w-full max-w-6xl">
-            {/* 📍 Contact Info */}
-            <motion.div
-                initial={{ opacity: 0, x: -50 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 1 }}
-                className="w-full md:w-1/2 bg-white shadow-2xl rounded-3xl p-8 mb-8 md:mb-0 md:mr-8 backdrop-blur-lg bg-opacity-90"
-            >
-                <h2 className="text-3xl font-bold text-blue-600 mb-6">Contact Information</h2>
+                    {/* 📍 Contact Info */}
+                    <motion.div
+                        initial={{ opacity: 0, x: -50 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 1 }}
+                        className="w-full md:w-1/2 bg-white shadow-2xl rounded-3xl p-8 mb-8 md:mb-0 md:mr-8 backdrop-blur-lg bg-opacity-90"
+                    >
+                        <h2 className="text-3xl font-bold text-blue-600 mb-6">Contact Information</h2>
 
-                {/* Address */}
-                <div className="flex items-start space-x-4 mb-6">
-                    <FaMapMarkerAlt className="text-blue-500 text-2xl mt-1" />
-                    <div>
-                        <h3 className="text-xl font-semibold text-gray-800">Address</h3>
-                        <p className="text-gray-600">Greater Accra Region - Oyarifa</p>
-                        <p className="text-gray-600">Western Region - Wassa East District</p>
-                    </div>
+                        {/* Address */}
+                        <div className="flex items-start space-x-4 mb-6">
+                            <FaMapMarkerAlt className="text-blue-500 text-2xl mt-1" />
+                            <div>
+                                <h3 className="text-xl font-semibold text-gray-800">Address</h3>
+                                <p className="text-gray-600">Greater Accra Region - Oyarifa</p>
+                                <p className="text-gray-600">Western Region - Wassa East District</p>
+                            </div>
+                        </div>
+
+                        {/* Email */}
+                        <div className="flex items-start space-x-4 mb-6">
+                            <FaEnvelope className="text-blue-500 text-2xl mt-1" />
+                            <div>
+                                <h3 className="text-xl font-semibold text-gray-800">Email</h3>
+                                <p className="text-gray-600">info@lionhearteach.com</p>
+                            </div>
+                        </div>
+
+                        {/* Phone */}
+                        <div className="flex items-start space-x-4">
+                            <FaPhone className="text-blue-500 text-2xl mt-1" />
+                            <div>
+                                <h3 className="text-xl font-semibold text-gray-800">Phone</h3>
+                                <p className="text-gray-600">+233552012116</p>
+                                <p className="text-gray-600">+233278985082</p>
+                                <p className="text-gray-600">+233277688148</p>
+                            </div>
+                        </div>
+                    </motion.div>
+
+                    {/* 📩 Contact Form */}
+                    <motion.form
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ delay: 0.3, duration: 1 }}
+                        onSubmit={handleSubmit}
+                        className="w-full md:w-1/2 bg-white shadow-2xl rounded-3xl p-8 backdrop-blur-lg bg-opacity-90"
+                    >
+                        <h2 className="text-3xl font-bold text-gray-800 mb-6">Send Us A Message</h2>
+
+                        <div className="mb-4">
+                            <label className="block text-gray-600">Your Name</label>
+                            <input
+                                type="text"
+                                name="name"
+                                value={formData.name}
+                                onChange={handleChange}
+                                className="w-full p-3 rounded-lg bg-gray-200 text-gray-800 focus:outline-none focus:ring focus:ring-blue-500 shadow-inner"
+                                required
+                            />
+                        </div>
+
+                        <div className="mb-4">
+                            <label className="block text-gray-600">Your Email</label>
+                            <input
+                                type="email"
+                                name="email"
+                                value={formData.email}
+                                onChange={handleChange}
+                                className="w-full p-3 rounded-lg bg-gray-200 text-gray-800 focus:outline-none focus:ring focus:ring-blue-500 shadow-inner"
+                                required
+                            />
+                        </div>
+
+                        <div className="mb-6">
+                            <label className="block text-gray-600">Your Message</label>
+                            <textarea
+                                name="message"
+                                value={formData.message}
+                                onChange={handleChange}
+                                rows={4}
+                                className="w-full p-3 rounded-lg bg-gray-200 text-gray-800 focus:outline-none focus:ring focus:ring-blue-500 shadow-inner"
+                                required
+                            />
+                        </div>
+
+                        <motion.button
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                            type="submit"
+                            disabled={isSending}
+                            className={`w-full flex items-center justify-center gap-2 text-white font-bold py-3 rounded-lg transition-all shadow-lg 
+        ${isSending ? "bg-gray-400 cursor-not-allowed" : "bg-gradient-to-r from-blue-500 to-indigo-700 hover:from-blue-600 hover:to-indigo-800"}`}
+                        >
+                            {isSending ? (
+                                <>
+                                    Sending...
+                                    <Image
+                                        src="/images/mal.png"
+                                        alt="Sending Icon"
+                                        width={24}
+                                        height={24}
+                                        className="drop-shadow-lg transition-transform duration-300 hover:scale-110"
+                                    />
+                                </>
+                            ) : (
+                                <>
+                                    Send Message
+                                    <Image
+                                        src="/images/mal.png"
+                                        alt="Message Sent Icon"
+                                        width={24}
+                                        height={24}
+                                        className="drop-shadow-lg transition-transform duration-300 hover:scale-110"
+                                    />
+                                </>
+                            )}
+                        </motion.button>
+
+
+                        {status.message && (
+                            <motion.p
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                transition={{ duration: 0.5 }}
+                                aria-live="polite"
+                                className={`mt-4 text-center font-semibold ${status.type === "success" ? "text-green-600" : "text-red-600"
+                                    }`}
+                            >
+                                {status.message}
+                            </motion.p>
+                        )}
+                    </motion.form>
+                    <Dialog.Root open={showModal} onOpenChange={setShowModal}>
+                        <Dialog.Portal>
+                            <Dialog.Overlay className="fixed inset-0 bg-black/50 backdrop-blur-sm transition-opacity animate-fade-in" />
+                            <Dialog.Content className="fixed bg-white p-8 rounded-2xl shadow-2xl top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-sm text-center animate-scale-in">
+                                <div className="flex flex-col items-center">
+                                    {/* Success Icon */}
+                                    <div className="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center shadow-md animate-bounce-slow">
+                                        <svg className="w-10 h-10" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                            <path fillRule="evenodd" d="M2.25 12a9.75 9.75 0 1119.5 0 9.75 9.75 0 01-19.5 0zm14.03-3.97a.75.75 0 00-1.06-1.06L10.5 11.69 8.78 9.97a.75.75 0 10-1.06 1.06l2.25 2.25a.75.75 0 001.06 0l5.25-5.25z" clipRule="evenodd" />
+                                        </svg>
+                                    </div>
+
+                                    {/* Title & Description */}
+                                    <Dialog.Title className="text-2xl font-semibold text-gray-900 mt-4">Message Sent!</Dialog.Title>
+                                    <Dialog.Description className="mt-2 text-gray-600 text-sm leading-relaxed">
+                                        Your message has been successfully received. Our team will get back to you within
+                                        <span className="font-semibold text-gray-900"> 24 hours</span>.
+                                    </Dialog.Description>
+
+                                    {/* Close Button */}
+                                    <button
+                                        onClick={() => setShowModal(false)}
+                                        className="mt-6 px-6 py-3 bg-blue-600 hover:bg-blue-700 active:scale-95 text-white font-medium rounded-lg transition transform flex items-center gap-2 shadow-md"
+                                    >
+                                        <svg className="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.54-10.54a.75.75 0 00-1.06-1.06L9 9.94 7.54 8.4a.75.75 0 00-1.06 1.06l2 2a.75.75 0 001.06 0l4-4z" clipRule="evenodd" />
+                                        </svg>
+                                        OK, Got It
+                                    </button>
+                                </div>
+                            </Dialog.Content>
+                        </Dialog.Portal>
+                    </Dialog.Root>
+
+
                 </div>
-
-                {/* Email */}
-                <div className="flex items-start space-x-4 mb-6">
-                    <FaEnvelope className="text-blue-500 text-2xl mt-1" />
-                    <div>
-                        <h3 className="text-xl font-semibold text-gray-800">Email</h3>
-                        <p className="text-gray-600">info@lionhearteach.com</p>
-                    </div>
-                </div>
-
-                {/* Phone */}
-                <div className="flex items-start space-x-4">
-                    <FaPhone className="text-blue-500 text-2xl mt-1" />
-                    <div>
-                        <h3 className="text-xl font-semibold text-gray-800">Phone</h3>
-                        <p className="text-gray-600">+233552012116</p>
-                        <p className="text-gray-600">+233278985082</p>
-                        <p className="text-gray-600">+233277688148</p>
-                    </div>
-                </div>
-            </motion.div>
-
-            {/* 📩 Contact Form */}
-            <motion.form
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.3, duration: 1 }}
-            onSubmit={handleSubmit}
-            className="w-full md:w-1/2 bg-white shadow-2xl rounded-3xl p-8 backdrop-blur-lg bg-opacity-90"
-        >
-            <h2 className="text-3xl font-bold text-gray-800 mb-6">Send Us A Message</h2>
-
-            <div className="mb-4">
-                <label className="block text-gray-600">Your Name</label>
-                <input
-                    type="text"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    className="w-full p-3 rounded-lg bg-gray-200 text-gray-800 focus:outline-none focus:ring focus:ring-blue-500 shadow-inner"
-                    required
-                />
-            </div>
-
-            <div className="mb-4">
-                <label className="block text-gray-600">Your Email</label>
-                <input
-                    type="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    className="w-full p-3 rounded-lg bg-gray-200 text-gray-800 focus:outline-none focus:ring focus:ring-blue-500 shadow-inner"
-                    required
-                />
-            </div>
-
-            <div className="mb-6">
-                <label className="block text-gray-600">Your Message</label>
-                <textarea
-                    name="message"
-                    value={formData.message}
-                    onChange={handleChange}
-                    rows={4}
-                    className="w-full p-3 rounded-lg bg-gray-200 text-gray-800 focus:outline-none focus:ring focus:ring-blue-500 shadow-inner"
-                    required
-                />
-            </div>
-
-            <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                type="submit"
-                disabled={isSending}
-                className={`w-full text-white font-bold py-3 rounded-lg transition-all shadow-lg 
-                    ${isSending ? "bg-gray-400 cursor-not-allowed" : "bg-gradient-to-r from-blue-500 to-indigo-700 hover:from-blue-600 hover:to-indigo-800"}`}
-            >
-                {isSending ? "Sending..." : "Send Message 🚀"}
-            </motion.button>
-
-            {status.message && (
-                <motion.p
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 0.5 }}
-                    aria-live="polite"
-                    className={`mt-4 text-center font-semibold ${
-                        status.type === "success" ? "text-green-600" : "text-red-600"
-                    }`}
-                >
-                    {status.message}
-                </motion.p>
-            )}
-        </motion.form>
-        </div>
             </motion.section>
 
             <footer className="w-full bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-black py-12 px-6 md:px-16 lg:px-24 border-t border-gray-200 dark:border-gray-800 font-sora text-center md:text-left transition-colors duration-300">

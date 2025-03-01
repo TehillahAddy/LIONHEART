@@ -8,7 +8,7 @@ import { motion } from "framer-motion";
 import Image from 'next/image';
 import { usePathname } from "next/navigation";
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
-import { FaStar } from 'react-icons/fa';
+import { FaSearch } from 'react-icons/fa';
 import Logs from "../public/images/logs.png";
 import "@fontsource/sora";
 import styles from './services.module.css';
@@ -251,7 +251,7 @@ export default function Services() {
             <div className="search-bar">
               <input type="text" placeholder="Search..." />
               <button>
-                <FaStar style={{ fontSize: "24px", color: "blue" }} />
+                <FaSearch style={{ fontSize: "24px", color: "blue" }} />
               </button>
             </div>
             <ul>

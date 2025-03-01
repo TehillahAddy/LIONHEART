@@ -11,6 +11,7 @@ import 'aos/dist/aos.css'; // Import AOS styles
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { motion } from "framer-motion";
 import { FaStar } from 'react-icons/fa';
+import { FaSearch } from 'react-icons/fa';
 import {
   Monitor, PenTool, Server, TrendingUp, Smartphone, Search, ClipboardList, ShieldCheck, FileText
 } from "lucide-react";
@@ -307,7 +308,7 @@ export default function Home() {
             <div className="search-bar">
               <input type="text" placeholder="Search..." />
               <button>
-                <FaStar style={{ fontSize: "24px", color: "blue" }} />
+                <FaSearch style={{ fontSize: "24px", color: "blue" }} />
               </button>
             </div>
             <ul>

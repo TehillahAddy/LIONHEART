@@ -5,7 +5,7 @@ import Link from "next/link";
 import { FaXTwitter, FaLinkedin, FaInstagram } from "react-icons/fa6";
 import "@fontsource/sora";
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
-import { FaStar } from 'react-icons/fa';
+import {FaSearch } from 'react-icons/fa';
 import Image from "next/image";
 import { motion } from "framer-motion";
 import styles from './about.module.css';
@@ -26,9 +26,9 @@ export default function About() {
     const pathname = usePathname(); // Get the current route
 
     const CustomIcon1 = "/images/set.png"; // ✅ No import needed
-    const CustomIcon2 = "/images/sun.png"; // ✅ No import needed
+    const CustomIcon2 = "/images/co (1).png"; // ✅ No import needed
     const CustomIcon3 = "/images/link.png"; // ✅ No import needed
-    const CustomIcon4 = "/images/ah.png"; // ✅ No import needed
+    const CustomIcon4 = "/images/co (4).png"; // ✅ No import needed
 
 
     useEffect(() => {
@@ -207,7 +207,7 @@ export default function About() {
                         <div className="search-bar">
                             <input type="text" placeholder="Search..." />
                             <button>
-                                <FaStar style={{ fontSize: "24px", color: "blue" }} />
+                                <FaSearch style={{ fontSize: "20px", color: "blue" }} />
                             </button>
                         </div>
                         <ul>
@@ -438,14 +438,28 @@ export default function About() {
                     >
                         — ABOUT LIONHEART TECH —
                     </motion.h3>
-                    <motion.h1
-                        initial={{ opacity: 0, y: -20 }}
-                        animate={isInView ? { opacity: 1, y: 0 } : {}}
-                        transition={{ delay: 0.4, duration: 1 }}
-                        className="text-6xl font-extrabold tracking-wide mt-3 drop-shadow-lg text-blue-400 hover:text-white transition-all duration-300 hover:shadow-[0px_0px_40px_rgba(0,255,255,0.6)]"
-                    >
-                        OUR SUCCESS 🦁🔥
-                    </motion.h1>
+                    <div className="flex justify-center">
+                        <div className="flex justify-center">
+                            <motion.h1
+                                initial={{ opacity: 0, y: -20 }}
+                                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                                transition={{ delay: 0.4, duration: 1 }}
+                                className="flex items-center gap-3 text-6xl font-extrabold tracking-wide mt-3 drop-shadow-lg text-blue-400 transition-all duration-300 
+            hover:text-white hover:shadow-[0px_0px_40px_rgba(0,255,255,0.6)] p-3 rounded-lg"
+                            >
+                                <span>OUR SUCCESS</span>
+                                <Image
+                                    src="/images/med.png"
+                                    alt="Lion Icon"
+                                    width={50}
+                                    height={50}
+                                    className="drop-shadow-lg transition-transform duration-300 hover:scale-110"
+                                />
+                            </motion.h1>
+                        </div>
+                    </div>
+
+
                 </div>
 
                 {/* Stats Cards */}
