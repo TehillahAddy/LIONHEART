@@ -63,14 +63,17 @@ export default function Contact() {
         e.preventDefault();
         setStatus({ message: "Sending message...", type: "info" });
         setIsSending(true);
-
+    
+        const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:5000";  
+        console.log("Backend URL:", backendUrl); // Debugging line to check if it's set correctly
+    
         try {
-            const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/contact`, {
+            const response = await fetch(`${backendUrl}/api/contact`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(formData),
             });
-
+    
             if (response.ok) {
                 setStatus({ message: "✅ Your message has been sent successfully!", type: "success" });
                 setFormData({ name: "", email: "", message: "" });
@@ -83,7 +86,8 @@ export default function Contact() {
         } finally {
             setIsSending(false);
         }
-    };
+    };    
+
     const [showStickyHeader, setShowStickyHeader] = useState(false);
 
     useEffect(() => {

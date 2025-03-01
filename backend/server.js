@@ -6,9 +6,14 @@ const cors = require("cors");
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+const corsOptions = {
+    origin: ["http://localhost:3000", "https://lionheart-seven.vercel.app/", "https://lionheart-tehillah-addys-projects.vercel.app/"],
+    methods: "GET,POST",
+    allowedHeaders: "Content-Type",
+};
+app.use(cors(corsOptions));
+
 app.use(express.json());
-app.use(cors());
-app.use(cors({ origin: "http://localhost:3000" })); 
 
 
 // Email Route
@@ -41,6 +46,10 @@ app.post("/api/contact", async (req, res) => {
         console.error(error);
         res.status(500).json({ error: "Email sending failed" });
     }
+});
+
+app.get("/", (req, res) => {
+    res.send("📡 Backend is running...");
 });
 
 // Start Server

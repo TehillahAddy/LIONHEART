@@ -270,7 +270,7 @@ export default function Home() {
       <div className="homepage">
         <div className="background-container">
           <video autoPlay loop muted playsInline className="absolute w-full h-full object-cover">
-            <source src="/images/CV.mp4" type="video/mp4" />
+            <source src="/images/CVx.mp4" type="video/mp4" />
           </video>
         </div>
         <header className="mobile-header">
