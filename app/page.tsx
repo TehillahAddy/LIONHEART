@@ -273,26 +273,25 @@ export default function Home() {
     document.body.appendChild(script);
 
     script.onload = () => {
+      // Ensure Tawk_API is defined
       (window as any).Tawk_API = (window as any).Tawk_API || {};
 
-      // Function to remove "We are here" message
-      const removeStatusMessage = () => {
-        const statusMessage = document.querySelector(".tawk-status-message");
-        if (statusMessage) {
-          statusMessage.remove(); // Remove the status message
+      // Immediately adjust the chat widget position
+      const adjustPosition = () => {
+        const chatBubble = document.querySelector("iframe[title='chat widget']") as HTMLIFrameElement | null;
+        if (chatBubble) {
+          chatBubble.style.bottom = "100px"; // Moves it 80px up
+          chatBubble.style.right = "20px";  // Keeps it at bottom-right
         }
       };
 
-      // Try removing it immediately
-      removeStatusMessage();
+      // Run immediately
+      adjustPosition();
 
-      // Also remove after Tawk.to fully loads
-      (window as any).Tawk_API.onLoad = removeStatusMessage;
+      // Also apply after Tawk.to fully loads
+      (window as any).Tawk_API.onLoad = adjustPosition;
     };
   }, []);
-
-
-
 
 
   return (
