@@ -265,6 +265,35 @@ export default function Home() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.src = "https://embed.tawk.to/67c56590dad0201916e2c0dd/1ildh9fmr";
+    script.async = true;
+    script.setAttribute("crossorigin", "*");
+    document.body.appendChild(script);
+
+    script.onload = () => {
+      (window as any).Tawk_API = (window as any).Tawk_API || {};
+
+      // Function to remove "We are here" message
+      const removeStatusMessage = () => {
+        const statusMessage = document.querySelector(".tawk-status-message");
+        if (statusMessage) {
+          statusMessage.remove(); // Remove the status message
+        }
+      };
+
+      // Try removing it immediately
+      removeStatusMessage();
+
+      // Also remove after Tawk.to fully loads
+      (window as any).Tawk_API.onLoad = removeStatusMessage;
+    };
+  }, []);
+
+
+
+
 
   return (
     <div className="bg-gray-100 min-h-screen lp">
