@@ -293,7 +293,18 @@ export default function Home() {
     };
   }, []);
 
-<script src="//code.tidio.co/mrq6yrjzkcocq3z05lnb1rmarzeumrdq.js" async></script>
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.src = "//code.tidio.co/mrq6yrjzkcocq3z05lnb1rmarzeumrdq.js";
+    script.async = true;
+    document.body.appendChild(script);
+    
+    return () => {
+      document.body.removeChild(script); // Cleanup on unmount
+    };
+  }, []);
+
+  return null; // No UI needed
 
 
   return (
