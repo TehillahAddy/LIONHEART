@@ -293,6 +293,8 @@ export default function Home() {
     };
   }, []);
 
+<script src="//code.tidio.co/mrq6yrjzkcocq3z05lnb1rmarzeumrdq.js" async></script>
+
 
   return (
     <div className="bg-gray-100 min-h-screen lp">
