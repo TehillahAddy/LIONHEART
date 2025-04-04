@@ -265,35 +265,6 @@ export default function Home() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  
-
-  useEffect(() => {
-    const script = document.createElement("script");
-    script.src = "https://embed.tawk.to/67c56590dad0201916e2c0dd/1ildh9fmr";
-    script.async = true;
-    script.setAttribute("crossorigin", "*");
-    document.body.appendChild(script);
-
-    script.onload = () => {
-      // Ensure Tawk_API is defined
-      (window as any).Tawk_API = (window as any).Tawk_API || {};
-
-      // Immediately adjust the chat widget position
-      const adjustPosition = () => {
-        const chatBubble = document.querySelector("iframe[title='chat widget']") as HTMLIFrameElement | null;
-        if (chatBubble) {
-          chatBubble.style.bottom = "100px"; // Moves it 80px up
-          chatBubble.style.right = "20px";  // Keeps it at bottom-right
-        }
-      };
-
-      // Run immediately
-      adjustPosition();
-
-      // Also apply after Tawk.to fully loads
-      (window as any).Tawk_API.onLoad = adjustPosition;
-    };
-  }, []);
 
   useEffect(() => {
     const script = document.createElement("script");
@@ -312,7 +283,7 @@ export default function Home() {
       <div className="homepage">
         <div className="background-container">
           <video autoPlay loop muted playsInline className="absolute w-full h-full object-cover">
-            <source src="/images/CVx.mp4" type="video/mp4" />
+            <source src="/images/CV.mp4" type="video/mp4" />
           </video>
         </div>
         <header className="mobile-header">
