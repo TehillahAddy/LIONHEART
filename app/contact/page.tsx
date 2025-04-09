@@ -298,7 +298,6 @@ export default function Contact() {
                             <div>
                                 <h3 className="text-xl font-semibold text-gray-800">Address</h3>
                                 <p className="text-gray-600">Greater Accra Region - Oyarifa</p>
-                                <p className="text-gray-600">Western Region - Wassa East District</p>
                             </div>
                         </div>
 
@@ -307,7 +306,7 @@ export default function Contact() {
                             <FaEnvelope className="text-blue-500 text-2xl mt-1" />
                             <div>
                                 <h3 className="text-xl font-semibold text-gray-800">Email</h3>
-                                <p className="text-gray-600">info@lionhearteach.com</p>
+                                <p className="text-gray-600">lionheartroar1@gmail.com</p>
                             </div>
                         </div>
 
