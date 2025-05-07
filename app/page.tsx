@@ -265,18 +265,34 @@ export default function Home() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-
   useEffect(() => {
     const script = document.createElement("script");
     script.src = "//code.tidio.co/mrq6yrjzkcocq3z05lnb1rmarzeumrdq.js";
     script.async = true;
     document.body.appendChild(script);
 
+    const adjustChatPosition = () => {
+      const tidioChat = document.getElementById("tidio-chat") as HTMLElement | null;
+
+      if (tidioChat) {
+        tidioChat.style.bottom = "80px"; // try adjusting again after it loads
+      }
+    };
+
+    const observer = new MutationObserver(adjustChatPosition);
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true,
+    });
+
     return () => {
       document.body.removeChild(script);
+      observer.disconnect();
     };
   }, []);
-  
+
+
+
 
   return (
     <div className="bg-gray-100 min-h-screen lp">

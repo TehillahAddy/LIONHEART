@@ -5,7 +5,7 @@ import Link from "next/link";
 import { FaXTwitter, FaLinkedin, FaInstagram } from "react-icons/fa6";
 import "@fontsource/sora";
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
-import {FaSearch } from 'react-icons/fa';
+import { FaSearch } from 'react-icons/fa';
 import Image from "next/image";
 import { motion } from "framer-motion";
 import styles from './about.module.css';
@@ -150,9 +150,9 @@ export default function About() {
 
     const stats = [
         { value: 6, label: "Years of Excellence", icon: CustomIcon1 },
-        { value: 80, label: "Happy Clients", icon: CustomIcon2 },
-        { value: 200, label: "Total Projects", icon: CustomIcon3 },
-        { value: 100, label: "Live Projects", icon: CustomIcon4 },
+        { value: 50, label: "Happy Clients", icon: CustomIcon2 },
+        { value: 100, label: "Total Projects", icon: CustomIcon3 },
+        { value: 150, label: "Live Projects", icon: CustomIcon4 },
     ];
 
     const ref = useRef(null);
@@ -280,7 +280,7 @@ export default function About() {
                     <div className="text-center text-white max-w-3xl">
                         <h1 className="text-5xl font-bold drop-shadow-lg">About Us</h1>
                         <p className="mt-4 text-lg text-gray-200">
-                            Since 2015, we’ve helped 50+ companies scale through technology and creativity.
+                            Since 2019, we’ve helped 50+ companies scale through technology and creativity.
                             We’re on a mission to build solutions that drive real impact.
                         </p>
                     </div>
@@ -376,20 +376,19 @@ export default function About() {
                         {/* 🏆 Founded in 2015 */}
                         <div className="p-6 shadow-lg rounded-xl bg-white border-l-4 border-blue-500 hover:scale-105 transition-transform">
                             <h3 className="text-2xl font-semibold flex items-center gap-2">
-                                Founded in 2015
+                                Founded in 2019
                             </h3>
                             <p className="mt-3 text-gray-700 md:text-lg">
                                 Started with a vision to empower businesses through technology.
                             </p>
                         </div>
 
-                        {/* 🌍 Expanding Globally */}
                         <div className="p-6 shadow-lg rounded-xl bg-white border-l-4 border-indigo-500 hover:scale-105 transition-transform">
                             <h3 className="text-2xl font-semibold flex items-center gap-2">
                                 Expanding Globally
                             </h3>
                             <p className="mt-3 text-gray-700 md:text-lg">
-                                We have worked with 100+ clients worldwide and continue to grow.
+                                We have worked with 50+ clients and continue to grow.
                             </p>
                         </div>
                     </div>
@@ -401,7 +400,7 @@ export default function About() {
                 <div className="max-w-6xl mx-auto text-center">
                     {/* Title */}
                     <h2 className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-indigo-500 text-transparent bg-clip-text">
-                        Trusted by 100+ Companies
+                        Trusted by 50+ Companies
                     </h2>
                     <p className="mt-3 text-gray-600 text-lg">
                         We are proud to have partnered with industry-leading businesses across the globe.
@@ -409,11 +408,11 @@ export default function About() {
 
                     {/* Logos Grid */}
                     <div className="mt-10 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-8 items-center">
-                        <img src="/logos/google.svg" alt="Google" className="h-12 grayscale hover:grayscale-0 transition" />
-                        <img src="/logos/microsoft.svg" alt="Microsoft" className="h-12 grayscale hover:grayscale-0 transition" />
-                        <img src="/logos/spotify.svg" alt="Spotify" className="h-12 grayscale hover:grayscale-0 transition" />
-                        <img src="/logos/airbnb.svg" alt="Airbnb" className="h-12 grayscale hover:grayscale-0 transition" />
-                        <img src="/logos/shopify.svg" alt="Shopify" className="h-12 grayscale hover:grayscale-0 transition" />
+                        <img src="/images/logs.png" alt="Google" className=" hover:grayscale-0 transition" width={90} height={90} />
+                        <img src="/images/l.png" alt="Microsoft" className=" hover:grayscale-0 transition" width={90} height={90} />
+                        <img src="/images/pokaEmbrace1.webp" alt="Spotify" className=" hover:grayscale-0 transition" width={90} height={90}/>
+                        <img src="/images/uni.png" alt="Airbnb" className=" hover:grayscale-0 transition" width={90} height={90} />
+                        <img src="/logos/shopify.svg" alt="Shopify" className=" hover:grayscale-0 transition" width={90} height={90} />
                     </div>
                 </div>
             </section>
@@ -535,9 +534,9 @@ export default function About() {
                     <p className="mt-4 text-gray-600">A passionate team of experts dedicated to innovation.</p>
                     <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-8">
                         {[
-                            { name: "John Doe", role: "CEO", img: "https://via.placeholder.com/150" },
-                            { name: "Jane Smith", role: "CTO", img: "https://via.placeholder.com/150" },
-                            { name: "Mike Johnson", role: "Head of Design", img: "https://via.placeholder.com/150" }
+                            { name: "Addy Tehillah", role: "CEO", img: "/images/him.jpg" },
+                            { name: "Jude Tettehkwao", role: "CTO", img: "/images/5.png"},
+                            { name: "Barak Wereko", role: "Head of Design", img: "/images/5.png" }
                         ].map((member, index) => (
                             <div key={index} className="p-6 shadow-md rounded-lg bg-white text-center">
                                 <img src={member.img} alt={member.name} className="w-24 h-24 mx-auto rounded-full" />
