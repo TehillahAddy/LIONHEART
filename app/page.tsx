@@ -756,7 +756,7 @@ export default function Home() {
           <Image className="rotate-image" src="/images/ah.png" alt="lIonheart Tech" width={600} height={600} />
         </div>
         <div className="content" data-aos="fade-left">
-          <h1>Fast-tracking your I.T. needs with expert support</h1>
+          <h1>Fast-tracking your I.T needs with expert support</h1>
           <p>Opt for the leading digital agency to expand your business</p>
           <div className="button-container">
             <button>View More About Us</button>
