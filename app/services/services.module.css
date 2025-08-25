@@ -16,3 +16,7 @@
       overflow-x: hidden;
     }
   }
+
+  html {
+  overflow-y: scroll; /* Forces scrollbar to always be visible */
+}

@@ -56,6 +56,15 @@ export default function Home() {
     setTimeout(() => setShowButton(false), 500);
   };
 
+  const logos = [
+    { src: "/images/logs.png", alt: "Partner 1" },
+    { src: "/images/l.png", alt: "Partner 2" },
+    { src: "/images/pokaEmbrace1.webp", alt: "Partner 3" },
+    { src: "/images/uni.png", alt: "Partner 4" },
+    { src: "/images/logg.png", alt: "Partner 5" },
+  ];
+
+
 
   const services = [
     {
@@ -589,15 +598,15 @@ export default function Home() {
         whileInView="visible"
         viewport={{ once: true }}
         transition={{ staggerChildren: 0.15 }}
-        className="py-16 bg-cover bg-center bg-no-repeat text-gray-900 dark:text-white"
-        style={{ backgroundImage: "url('/images/pnd.jpg')" }} // Change to your actual image path
+        className="py-16 bg-cover bg-center bg-no-repeat text-gray-900"
+        style={{ backgroundImage: "url('/images/3dd.jpg')" }}
       >
         <div className="max-w-6xl mx-auto px-6 text-center">
-          <h2 className="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-gray-800 to-blue-900 dark:from-gray-200 dark:to-blue-300 mb-6">
+          <h2 className="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-gray-800 to-blue-900 mb-6">
             Affordable Pricing Plan For Your Business
           </h2>
 
-          <p className="text-lg text-gray-600 dark:text-gray-400 mb-12">
+          <p className="text-lg text-gray-600 mb-12">
             Choose a plan that fits your needs and scale with ease.
           </p>
 
@@ -613,8 +622,8 @@ export default function Home() {
                   boxShadow: "0px 10px 20px rgba(0, 0, 255, 0.3)",
                 }}
                 transition={{ type: "spring", stiffness: 150, damping: 10 }}
-                className="relative p-8 border border-gray-300 dark:border-gray-700 rounded-xl shadow-lg bg-cover bg-center bg-no-repeat backdrop-blur-lg group overflow-hidden transition-all"
-                style={{ backgroundImage: "url('/images/l.avif')" }} // Change to your actual image path
+                className="relative p-8 border border-gray-300 rounded-xl shadow-lg bg-cover bg-center bg-no-repeat backdrop-blur-lg group overflow-hidden transition-all"
+                style={{ backgroundImage: "url('/images/l.avif')" }}
               >
                 <div className="absolute inset-0 w-full h-full border-2 border-transparent group-hover:border-blue-500 rounded-xl transition-all duration-300"></div>
 
@@ -622,15 +631,15 @@ export default function Home() {
                   <Image src={plan.icon} alt={plan.name} width={50} height={50} />
                 </div>
 
-                <h3 className="text-2xl font-bold text-gray-900 dark:text-gray-200 mb-4 group-hover:text-blue-500 transition-all">
+                <h3 className="text-2xl font-bold text-gray-900 mb-4 group-hover:text-blue-500 transition-all">
                   {plan.name}
                 </h3>
 
-                <p className="text-3xl font-extrabold text-gray-800 dark:text-gray-300 mb-4">
+                <p className="text-3xl font-extrabold text-gray-800 mb-4">
                   {plan.price}
                 </p>
 
-                <ul className="text-gray-600 dark:text-gray-400 space-y-2">
+                <ul className="text-gray-600 space-y-2">
                   {plan.features.map((feature, i) => (
                     <li key={i} className="flex items-center justify-center gap-2">
                       ✅ {feature}
@@ -655,8 +664,6 @@ export default function Home() {
           </div>
         </div>
       </motion.section>
-
-
       <section
         className="w-full px-8 py-16 bg-gradient-to-br from-gray-900 to-black text-center text-white"
         style={{ width: "100vw !important", marginLeft: "calc(-50vw + 50%)", marginRight: "calc(-50vw + 50%)" }}
@@ -760,6 +767,69 @@ export default function Home() {
           <p>Opt for the leading digital agency to expand your business</p>
           <div className="button-container">
             <button>View More About Us</button>
+          </div>
+        </div>
+      </section>
+      <section className="py-20 px-6 bg-gradient-to-br from-blue-50 to-red-50 relative overflow-hidden">
+        {/* Background decoration */}
+        <div className="absolute inset-0 opacity-5">
+          <div className="absolute top-10 left-10 w-72 h-72 bg-blue-500 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-10 right-10 w-96 h-96 bg-indigo-500 rounded-full blur-3xl"></div>
+        </div>
+
+        <div className="max-w-6xl mx-auto text-center relative z-10">
+          {/* Title */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <h2 className="text-5xl font-bold bg-gradient-to-r from-blue-600 via-indigo-500 to-purple-600 text-transparent bg-clip-text">
+              Trusted by 20+ Companies
+            </h2>
+            <p className="mt-4 text-gray-600 text-xl max-w-2xl mx-auto">
+              We are proud to have partnered with industry-leading businesses across the globe.
+            </p>
+          </motion.div>
+
+          {/* Moving Logos Carousel */}
+          <div className="mt-16 overflow-hidden group">
+            <motion.div
+              className="flex items-center gap-16"
+              animate={{ x: ["0%", "-50%"] }}
+              transition={{
+                duration: 12, // ⚡ faster than before (was 30)
+                repeat: Infinity,
+                ease: "linear",
+              }}
+            >
+              {[...logos, ...logos].map((logo, index) => (
+                <motion.img
+                  key={index}
+                  src={logo.src}
+                  alt={logo.alt}
+                  width={100}
+                  height={100}
+                  className="flex-shrink-0 cursor-pointer"
+                  animate={{
+                    y: [0, -6, 0],
+                    rotate: [0, 2, -2, 0],
+                    scale: [1, 1.05, 1],
+                  }}
+                  transition={{
+                    duration: 3 + index * 0.3, // ⚡ quicker floating (was 6 + index * 0.5)
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
+                  whileHover={{
+                    scale: 1.2,
+                    y: -12,
+                    transition: { duration: 0.3 },
+                  }}
+                />
+              ))}
+            </motion.div>
           </div>
         </div>
       </section>

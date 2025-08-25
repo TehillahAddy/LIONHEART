@@ -30,6 +30,14 @@ export default function About() {
     const CustomIcon3 = "/images/link.png"; // ✅ No import needed
     const CustomIcon4 = "/images/co (4).png"; // ✅ No import needed
 
+    const logos = [
+        { src: "/images/logs.png", alt: "Partner 1" },
+        { src: "/images/l.png", alt: "Partner 2" },
+        { src: "/images/pokaEmbrace1.webp", alt: "Partner 3" },
+        { src: "/images/uni.png", alt: "Partner 4" },
+        { src: "/images/logg.png", alt: "Partner 5" },
+    ];
+
 
     useEffect(() => {
         const updateScrollProgress = () => {
@@ -394,29 +402,69 @@ export default function About() {
                     </div>
                 </div>
             </section>
+            <section className="py-20 px-6 bg-gradient-to-br from-blue-50 to-red-50 relative overflow-hidden">
+                {/* Background decoration */}
+                <div className="absolute inset-0 opacity-5">
+                    <div className="absolute top-10 left-10 w-72 h-72 bg-blue-500 rounded-full blur-3xl"></div>
+                    <div className="absolute bottom-10 right-10 w-96 h-96 bg-indigo-500 rounded-full blur-3xl"></div>
+                </div>
 
-            {/* 🔹 Trusted by 100+ Companies */}
-            <section className="py-16 px-6 bg-gray-50">
-                <div className="max-w-6xl mx-auto text-center">
+                <div className="max-w-6xl mx-auto text-center relative z-10">
                     {/* Title */}
-                    <h2 className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-indigo-500 text-transparent bg-clip-text">
-                        Trusted by 50+ Companies
-                    </h2>
-                    <p className="mt-3 text-gray-600 text-lg">
-                        We are proud to have partnered with industry-leading businesses across the globe.
-                    </p>
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6 }}
+                    >
+                        <h2 className="text-5xl font-bold bg-gradient-to-r from-blue-600 via-indigo-500 to-purple-600 text-transparent bg-clip-text">
+                            Trusted by 20+ Companies
+                        </h2>
+                        <p className="mt-4 text-gray-600 text-xl max-w-2xl mx-auto">
+                            We are proud to have partnered with industry-leading businesses across the globe.
+                        </p>
+                    </motion.div>
 
-                    {/* Logos Grid */}
-                    <div className="mt-10 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-8 items-center">
-                        <img src="/images/logs.png" alt="Google" className=" hover:grayscale-0 transition" width={90} height={90} />
-                        <img src="/images/l.png" alt="Microsoft" className=" hover:grayscale-0 transition" width={90} height={90} />
-                        <img src="/images/pokaEmbrace1.webp" alt="Spotify" className=" hover:grayscale-0 transition" width={90} height={90}/>
-                        <img src="/images/uni.png" alt="Airbnb" className=" hover:grayscale-0 transition" width={90} height={90} />
-                        <img src="/logos/shopify.svg" alt="Shopify" className=" hover:grayscale-0 transition" width={90} height={90} />
+                    {/* Moving Logos Carousel */}
+                    <div className="mt-16 overflow-hidden group">
+                        <motion.div
+                            className="flex items-center gap-16"
+                            animate={{ x: ["0%", "-50%"] }}
+                            transition={{
+                                duration: 12, // ⚡ faster than before (was 30)
+                                repeat: Infinity,
+                                ease: "linear",
+                            }}
+                        >
+                            {[...logos, ...logos].map((logo, index) => (
+                                <motion.img
+                                    key={index}
+                                    src={logo.src}
+                                    alt={logo.alt}
+                                    width={100}
+                                    height={100}
+                                    className="flex-shrink-0 cursor-pointer"
+                                    animate={{
+                                        y: [0, -6, 0],
+                                        rotate: [0, 2, -2, 0],
+                                        scale: [1, 1.05, 1],
+                                    }}
+                                    transition={{
+                                        duration: 3 + index * 0.3, // ⚡ quicker floating (was 6 + index * 0.5)
+                                        repeat: Infinity,
+                                        ease: "easeInOut",
+                                    }}
+                                    whileHover={{
+                                        scale: 1.2,
+                                        y: -12,
+                                        transition: { duration: 0.3 },
+                                    }}
+                                />
+                            ))}
+                        </motion.div>
                     </div>
                 </div>
             </section>
-
             <motion.section
                 ref={ref}
                 initial={{ opacity: 0, y: 50 }}
@@ -535,7 +583,7 @@ export default function About() {
                     <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-8">
                         {[
                             { name: "Addy Tehillah", role: "CEO", img: "/images/him.jpg" },
-                            { name: "Jude Tettehkwao", role: "CTO", img: "/images/5.png"},
+                            { name: "Jude Tettehkwao", role: "CTO", img: "/images/5.png" },
                             { name: "Barak Wereko", role: "Head of Design", img: "/images/5.png" }
                         ].map((member, index) => (
                             <div key={index} className="p-6 shadow-md rounded-lg bg-white text-center">

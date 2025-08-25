@@ -30,20 +30,7 @@ export default function Services() {
   const [menuOpen, setMenuOpen] = useState(false);
   const pathname = usePathname(); // Get the current route
 
-  useEffect(() => {
-    const updateScrollProgress = () => {
-      const scrollTop = window.scrollY;
-      const windowHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const progress = (scrollTop / windowHeight) * 100;
-      setScrollProgress(progress);
 
-      // Show button only when scrolling down OR up, hide at the top
-      setShowButton(scrollTop > 100);
-    };
-
-    window.addEventListener("scroll", updateScrollProgress);
-    return () => window.removeEventListener("scroll", updateScrollProgress);
-  }, []);
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -177,40 +164,29 @@ export default function Services() {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 100) { // Increased threshold
-        setShowStickyHeader(true);
-      } else {
-        setShowStickyHeader(false);
-      }
-    };
+      const scrollTop = window.scrollY;
+      const windowHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = (scrollTop / windowHeight) * 100;
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+      // Update all states at once
+      setScrollProgress(progress);
+      setShowButton(scrollTop > 100);
+      setShowStickyHeader(scrollTop > 100);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-
-      // Show sticky header after scrolling past 350px
-      if (currentScrollY > 350 && !isSticky && !isHiding) {
+      // Handle sticky logic
+      if (scrollTop > 350 && !isSticky && !isHiding) {
         setIsSticky(true);
-      }
-      // Hide sticky header when scrolling back to within 350px
-      else if (currentScrollY <= 350 && isSticky) {
+      } else if (scrollTop <= 350 && isSticky) {
         setIsHiding(true);
         setTimeout(() => {
-          setIsSticky(false); // Remove sticky state after animation
-          setIsHiding(false); // Reset hiding state
-        }, 500); // Match this duration with the CSS animation timing
+          setIsSticky(false);
+          setIsHiding(false);
+        }, 500);
       }
     };
 
     window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
+    return () => window.removeEventListener("scroll", handleScroll);
   }, [isSticky, isHiding]);
 
 
@@ -417,15 +393,15 @@ export default function Services() {
         whileInView="visible"
         viewport={{ once: true }}
         transition={{ staggerChildren: 0.15 }}
-        className="py-16 bg-cover bg-center bg-no-repeat text-gray-900 dark:text-white"
-        style={{ backgroundImage: "url('/images/3dd.jpg')" }} // Change to your actual image path
+        className="py-16 bg-cover bg-center bg-no-repeat text-gray-900"
+        style={{ backgroundImage: "url('/images/3dd.jpg')" }}
       >
         <div className="max-w-6xl mx-auto px-6 text-center">
-          <h2 className="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-gray-800 to-blue-900 dark:from-gray-200 dark:to-blue-300 mb-6">
+          <h2 className="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-gray-800 to-blue-900 mb-6">
             Affordable Pricing Plan For Your Business
           </h2>
 
-          <p className="text-lg text-gray-600 dark:text-gray-400 mb-12">
+          <p className="text-lg text-gray-600 mb-12">
             Choose a plan that fits your needs and scale with ease.
           </p>
 
@@ -441,8 +417,8 @@ export default function Services() {
                   boxShadow: "0px 10px 20px rgba(0, 0, 255, 0.3)",
                 }}
                 transition={{ type: "spring", stiffness: 150, damping: 10 }}
-                className="relative p-8 border border-gray-300 dark:border-gray-700 rounded-xl shadow-lg bg-cover bg-center bg-no-repeat backdrop-blur-lg group overflow-hidden transition-all"
-                style={{ backgroundImage: "url('/images/l.avif')" }} // Change to your actual image path
+                className="relative p-8 border border-gray-300 rounded-xl shadow-lg bg-cover bg-center bg-no-repeat backdrop-blur-lg group overflow-hidden transition-all"
+                style={{ backgroundImage: "url('/images/l.avif')" }}
               >
                 <div className="absolute inset-0 w-full h-full border-2 border-transparent group-hover:border-blue-500 rounded-xl transition-all duration-300"></div>
 
@@ -450,15 +426,15 @@ export default function Services() {
                   <Image src={plan.icon} alt={plan.name} width={50} height={50} />
                 </div>
 
-                <h3 className="text-2xl font-bold text-gray-900 dark:text-gray-200 mb-4 group-hover:text-blue-500 transition-all">
+                <h3 className="text-2xl font-bold text-gray-900 mb-4 group-hover:text-blue-500 transition-all">
                   {plan.name}
                 </h3>
 
-                <p className="text-3xl font-extrabold text-gray-800 dark:text-gray-300 mb-4">
+                <p className="text-3xl font-extrabold text-gray-800 mb-4">
                   {plan.price}
                 </p>
 
-                <ul className="text-gray-600 dark:text-gray-400 space-y-2">
+                <ul className="text-gray-600 space-y-2">
                   {plan.features.map((feature, i) => (
                     <li key={i} className="flex items-center justify-center gap-2">
                       ✅ {feature}
@@ -483,7 +459,7 @@ export default function Services() {
           </div>
         </div>
       </motion.section>
-     
+
       <motion.section
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
@@ -594,7 +570,7 @@ export default function Services() {
 
         {/* Newsletter Subscription */}
         <div className="mt-8 text-center relative w-full max-w-md mx-auto">
-          <h3 className="font-semibold text-black mb-2">Stay Updated</h3>
+          <h3 className="font-semibold text-white mb-2">Stay Updated</h3>
           <div className="relative w-full max-w-md">
             <input
               type="email"
