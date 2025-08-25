@@ -7,9 +7,9 @@ import Link from "next/link";
 import Logos from "../public/images/52.webp";
 import Logs from "../public/images/logs.png";
 import AOS from 'aos';
+import { motion } from "framer-motion";
 import 'aos/dist/aos.css'; // Import AOS styles
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
-import { motion } from "framer-motion";
 import { FaStar } from 'react-icons/fa';
 import { FaSearch } from 'react-icons/fa';
 import {
@@ -32,6 +32,7 @@ export default function Home() {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [showButton, setShowButton] = useState(false);
   const pathname = usePathname(); // Get the current route
+
 
 
   useEffect(() => {
@@ -300,9 +301,15 @@ export default function Home() {
     };
   }, []);
 
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const [containerWidth, setContainerWidth] = useState(0);
 
-
-
+  useEffect(() => {
+    if (containerRef.current) {
+      setContainerWidth(containerRef.current.scrollWidth / 2);
+      // half since we duplicate logos
+    }
+  }, [logos]);
   return (
     <div className="bg-gray-100 min-h-screen lp">
       <div className="homepage">
@@ -770,6 +777,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+
       <section className="py-20 px-6 bg-gradient-to-br from-blue-50 to-red-50 relative overflow-hidden">
         {/* Background decoration */}
         <div className="absolute inset-0 opacity-5">
@@ -796,10 +805,11 @@ export default function Home() {
           {/* Moving Logos Carousel */}
           <div className="mt-16 overflow-hidden group">
             <motion.div
+              ref={containerRef}
               className="flex items-center gap-16"
-              animate={{ x: ["0%", "-50%"] }}
+              animate={{ x: [0, -containerWidth] }}
               transition={{
-                duration: 12, // ⚡ faster than before (was 30)
+                duration: containerWidth / 100, // speed stays consistent (~100px/sec)
                 repeat: Infinity,
                 ease: "linear",
               }}
@@ -818,7 +828,7 @@ export default function Home() {
                     scale: [1, 1.05, 1],
                   }}
                   transition={{
-                    duration: 3 + index * 0.3, // ⚡ quicker floating (was 6 + index * 0.5)
+                    duration: 3 + index * 0.3,
                     repeat: Infinity,
                     ease: "easeInOut",
                   }}
